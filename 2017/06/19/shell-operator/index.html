@@ -1,0 +1,834 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WORK," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1. 常见的shell算术运算符 + - x / % ** ++ --  加 减 乘 除 取 余 幂运算 增加 减少 ! &amp;amp;&amp;amp; ||  非 逻辑与 逻辑或 大于 小于 等于 大于等于 小于 等于（==）不等于（!==）赋值（=） &amp;gt;&amp;gt; \&amp;lt;\&amp;lt; 向右偏移，向左偏移  2. Shell 中常见的算术运算命令 (())   用于整数运算的常用运算符，效率较高 let">
+<meta name="keywords" content="WORK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell中的运算">
+<meta property="og:url" content="http://yoursite.com/2017/06/19/shell-operator/index.html">
+<meta property="og:site_name" content="ZingsMan">
+<meta property="og:description" content="1. 常见的shell算术运算符 + - x / % ** ++ --  加 减 乘 除 取 余 幂运算 增加 减少 ! &amp;amp;&amp;amp; ||  非 逻辑与 逻辑或 大于 小于 等于 大于等于 小于 等于（==）不等于（!==）赋值（=） &amp;gt;&amp;gt; \&amp;lt;\&amp;lt; 向右偏移，向左偏移  2. Shell 中常见的算术运算命令 (())   用于整数运算的常用运算符，效率较高 let">
+<meta property="og:updated_time" content="2017-06-22T16:34:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell中的运算">
+<meta name="twitter:description" content="1. 常见的shell算术运算符 + - x / % ** ++ --  加 减 乘 除 取 余 幂运算 增加 减少 ! &amp;amp;&amp;amp; ||  非 逻辑与 逻辑或 大于 小于 等于 大于等于 小于 等于（==）不等于（!==）赋值（=） &amp;gt;&amp;gt; \&amp;lt;\&amp;lt; 向右偏移，向左偏移  2. Shell 中常见的算术运算命令 (())   用于整数运算的常用运算符，效率较高 let">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/19/shell-operator/"/>
+
+
+
+
+
+  <title> shell中的运算 | ZingsMan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZingsMan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/19/shell-operator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                shell中的运算
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-19T10:01:43+08:00">
+                2017-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SHELL/" itemprop="url" rel="index">
+                    <span itemprop="name">SHELL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-常见的shell算术运算符"><a href="#1-常见的shell算术运算符" class="headerlink" title="1. 常见的shell算术运算符"></a>1. 常见的shell算术运算符</h3><ul>
+<li>+ - x / % ** ++ --  加 减 乘 除 取 余 幂运算 增加 减少</li>
+<li>! &amp;&amp; ||  非 逻辑与 逻辑或</li>
+<li>大于 小于 等于 大于等于 小于 等于（==）不等于（!==）赋值（=）</li>
+<li>>> \&lt;\&lt; 向右偏移，向左偏移</li>
+</ul>
+<h3 id="2-Shell-中常见的算术运算命令"><a href="#2-Shell-中常见的算术运算命令" class="headerlink" title="2. Shell 中常见的算术运算命令"></a>2. Shell 中常见的算术运算<strong>命令</strong></h3><ul>
+<li>(())   用于整数运算的常用运算符，效率较高</li>
+<li>let    用于整数的运算，类似于“(())”</li>
+<li>expr   用于整数运算，还有很多其他额外功能（判断是否为整数）</li>
+<li>bc     Linux下自带的一个计算器程序（整数和小数计算）</li>
+<li>$[]    用于整数运算</li>
+<li>awk    awk既可以用于整数运算，也可用于小数运算</li>
+<li>declare 定义变量的属性，-i 参数就是定义整型变量</li>
+</ul>
+<h3 id="3-使用举例"><a href="#3-使用举例" class="headerlink" title="3. 使用举例"></a>3. 使用举例</h3><ol>
+<li><p>((1+1))  可以使用成”echo ((1+1))” 或者 ((8&gt;7&amp;&amp;5==5)) 或者 i=$((i+1))<br>提示： 在(()) 中使用变量可以将$符号省略<br>利用(())制作一个简单的计算器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#/bin/bash</div><div class="line">if [ $# != 2 ]</div><div class="line">then</div><div class="line">echo &quot;please input two args,Age: /bin/sh $0 10 5&quot;</div><div class="line">exit 1</div><div class="line">fi</div><div class="line">echo &quot;$1+$2=$(($1+$2))&quot;</div><div class="line">echo &quot;$1-$2=$(($1-$2))&quot;</div><div class="line">echo &quot;$1*$2=$(($1*$2))&quot;</div><div class="line">echo &quot;$1/$2=$(($1/$2))&quot;</div><div class="line">echo &quot;$1**$2=$(($1**$2))&quot;</div><div class="line">echo &quot;$1%$2=$(($1%$2))&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>let运算命令用法<br>格式： let 赋值表达式  例如: let i=i+8 &amp;&amp; echo $1<br>这个用法等同于((i+8)), (())这种方式效率更高<br>例子: 使用let，对web服务页面进行监控<br>在这里我们使用<code>wget</code> 命令可以<strong>检测某网页是否能正常访问</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">checkurl()&#123;</div><div class="line">timeout=5</div><div class="line">fails=0</div><div class="line">success=0</div><div class="line">while true #死循环，一直检测</div><div class="line">do</div><div class="line">wget --timeout=$timeout --tries=1 www.baidu.com -q -O /dev/null</div><div class="line">echo $fails $success</div><div class="line">if [ $? -ne 0 ]   #返回值不为0 就表示失败</div><div class="line">then</div><div class="line">        let fails=fails+1     #可用((fails=fails+1))代替</div><div class="line">echo $fails </div><div class="line">else</div><div class="line">        let success=success+1  #返回为0，代表访问成功</div><div class="line">echo $success</div><div class="line">fi</div><div class="line">if [ $success -ge 1 ]</div><div class="line">then</div><div class="line">echo &apos;sys is open!&apos;</div><div class="line">exit 0</div><div class="line">fi</div><div class="line">if [ $fails -ge 2 ]</div><div class="line">then</div><div class="line">echo &quot;sys is down!&quot;</div><div class="line">#mail -s &quot;sys is down&quot; root@localhost  #如果访问失败次数大于等于2，就发邮件告警</div><div class="line">exit 2</div><div class="line">fi</div><div class="line">done</div><div class="line">&#125;</div><div class="line">ehceckurl #执行函数</div></pre></td></tr></table></figure>
+</li>
+<li><p>expr 命令用法<br>格式： expr(evaluate(求值) expressions(表达式)) 它既可用于整数，也可小数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">expr 2 + 2  #数字作用至少有一个空格，使用乘号，需要使用\转义 </div><div class="line">4</div><div class="line">i=`expr $i + 6`</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>使用expr判断变量是否是一个整数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">read -p &quot;input a number:&quot; a</div><div class="line">expr $a + 1 &gt;/dev/null 2&gt;&amp;1</div><div class="line">[ $? -eq 0 ] &amp;&amp; echo &quot;$a is a int&quot; || echo &quot;$a is a chars&quot;</div></pre></td></tr></table></figure></p>
+<p>提示：也可以使用expr match 功能进行整数判断，可执行 man expr 获得帮助</p>
+<ol>
+<li><p>利用expr 判断扩展名是否符合要求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">if expr &quot;$1&quot; : &quot;.*\.pub&quot; &amp;&gt;/dev/null</div><div class="line">then</div><div class="line">echo &quot;your are useing $1&quot;</div><div class="line">else</div><div class="line">echo &quot;your use *.pbu file&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+<li><p>利用expr 计算字符串的长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[admin@web_server ~]$ char=&apos;pengke&apos;</div><div class="line">[admin@web_server ~]$ expr length &apos;$char&apos;</div><div class="line">5</div></pre></td></tr></table></figure>
+</li>
+<li><p>利用bc命令来计算，它是Linux下面的计算器<br>按下bc后，就能进入运算界面。或者：<br><code>echo 3+5 | bc</code></p>
+</li>
+<li><p>利用sed 生成连续的数字序列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sed -s &quot;+&quot; 10      # -s 是自定义分隔符</div><div class="line">1+2+3+4+5+6+7+8+9+10</div><div class="line">echo  &#123;1..10&#125; | tr &quot; &quot; &quot;+&quot;   #生产空格分隔的数列，用tr将空格替换成+</div><div class="line">1+2+3+4+5+6+7+8+9+10</div></pre></td></tr></table></figure>
+</li>
+<li><p>利用awk实现运算<br>echo “7.7 3.8” | awk ‘{print ($1-$2)}’</p>
+</li>
+</ol>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>大多运算命令都支持整数，支持小数的有：expr 和awk<br>expr 和 awk 都是很重要的命令</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weixin.png" alt="ZingsMan WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zhifubao.jpg" alt="ZingsMan Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WORK/" rel="tag"># WORK</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/08/使用markdown/" rel="next" title="使用markdown">
+                <i class="fa fa-chevron-left"></i> 使用markdown
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/19/shell-panduan/" rel="prev" title="shell中条件测试与判断语句">
+                shell中条件测试与判断语句 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="ZingsMan" />
+          <p class="site-author-name" itemprop="name">ZingsMan</p>
+           
+              <p class="site-description motion-element" itemprop="description">业精于勤荒于嬉,行成于思毁于随。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zingsman" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zingsman" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zingsman" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-常见的shell算术运算符"><span class="nav-number">1.</span> <span class="nav-text">1. 常见的shell算术运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Shell-中常见的算术运算命令"><span class="nav-number">2.</span> <span class="nav-text">2. Shell 中常见的算术运算命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用举例"><span class="nav-number">3.</span> <span class="nav-text">3. 使用举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-总结"><span class="nav-number">4.</span> <span class="nav-text">4. 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZingsMan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

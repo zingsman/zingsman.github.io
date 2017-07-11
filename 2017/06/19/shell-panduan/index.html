@@ -1,0 +1,879 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WORK," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1. 概述在shell中，执行条件表达式后会返回真或假，0表示真，非0表示假。下列是常见的条件测试常用的语法。  test &amp;lt;测试表达示&amp;gt;   test后面有个空格，再接表达式。 [ 测试表达式 ]      中括号里面，左右各有一个空格。 [[ 测试表达式 ]]    双中括号，是很新的用法。 ((测试表达式))      这个两端不需要空格注意：第一种用法和第二种用法是等价的，2方">
+<meta name="keywords" content="WORK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell中条件测试与判断语句">
+<meta property="og:url" content="http://yoursite.com/2017/06/19/shell-panduan/index.html">
+<meta property="og:site_name" content="ZingsMan">
+<meta property="og:description" content="1. 概述在shell中，执行条件表达式后会返回真或假，0表示真，非0表示假。下列是常见的条件测试常用的语法。  test &amp;lt;测试表达示&amp;gt;   test后面有个空格，再接表达式。 [ 测试表达式 ]      中括号里面，左右各有一个空格。 [[ 测试表达式 ]]    双中括号，是很新的用法。 ((测试表达式))      这个两端不需要空格注意：第一种用法和第二种用法是等价的，2方">
+<meta property="og:updated_time" content="2017-06-22T16:34:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell中条件测试与判断语句">
+<meta name="twitter:description" content="1. 概述在shell中，执行条件表达式后会返回真或假，0表示真，非0表示假。下列是常见的条件测试常用的语法。  test &amp;lt;测试表达示&amp;gt;   test后面有个空格，再接表达式。 [ 测试表达式 ]      中括号里面，左右各有一个空格。 [[ 测试表达式 ]]    双中括号，是很新的用法。 ((测试表达式))      这个两端不需要空格注意：第一种用法和第二种用法是等价的，2方">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/19/shell-panduan/"/>
+
+
+
+
+
+  <title> shell中条件测试与判断语句 | ZingsMan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZingsMan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/19/shell-panduan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                shell中条件测试与判断语句
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-19T14:21:48+08:00">
+                2017-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SHELL/" itemprop="url" rel="index">
+                    <span itemprop="name">SHELL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>在shell中，执行条件表达式后会返回<code>真</code>或<code>假</code>，<code>0</code>表示真，非0表示假。下列是常见的条件测试常用的语法。</p>
+<ol>
+<li>test &lt;测试表达示&gt;   test后面有个空格，再接表达式。</li>
+<li>[ 测试表达式 ]      中括号里面，左右各有一个空格。</li>
+<li>[[ 测试表达式 ]]    双中括号，是很新的用法。</li>
+<li>((测试表达式))      这个两端不需要空格<br>注意：第一种用法和第二种用法是等价的，2方法用的更广，里面可以使用通配符进行匹配。<br>“&amp;&amp;、||、&gt;、&lt;、”通常是出现在[[]]中，而[]中一般用 -a -o -gt -lt 代替判断符号</li>
+</ol>
+<h3 id="2-逻辑操作符-amp-amp"><a href="#2-逻辑操作符-amp-amp" class="headerlink" title="2. 逻辑操作符 &amp;&amp; ||"></a>2. 逻辑操作符 &amp;&amp; ||</h3><p>例子：<br><code>test -f file &amp;&amp; echo true || echo false</code><br>在上面例子中，如果file文件存在，返回0，代表真。<br>&amp;&amp; 代表前一次为真才执行。  || 表示，为假才执行。注意<strong><code>test -f file</code>返回结果假如第一次逻辑运算不匹配，会继续传到后面去</strong></p>
+<blockquote>
+<p>关于test,使用用法，可以使用man test查看</p>
+</blockquote>
+<p>test 命令的测试功能非常强大，和[]和[[]] 功能重合。可以选择性使用</p>
+<h3 id="3-举例"><a href="#3-举例" class="headerlink" title="3. 举例"></a>3. 举例</h3><ol>
+<li><code>test -f file</code> 等价于 <code>[ -f file ]</code> </li>
+<li>双中括号使用，双中括号里面两端也需要空格。<br><code>[[ -f file ]] &amp;&amp; echo yes || echo no</code></li>
+<li>test 常用参数，可以判断是否为空，各种权限（rwx），大小，文件的新旧等 </li>
+</ol>
+<h3 id="4-特殊条件测试表达式举例-不使用if条件判断示情况下"><a href="#4-特殊条件测试表达式举例-不使用if条件判断示情况下" class="headerlink" title="4. 特殊条件测试表达式举例(不使用if条件判断示情况下)"></a>4. 特殊条件测试表达式举例(不使用if条件判断示情况下)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[ 表达式 ] &amp;&amp;&#123;</div><div class="line">    命令1</div><div class="line">    命令2</div><div class="line">&#125;</div><div class="line">[[ 表达式 ]] &amp;&amp;&#123;</div><div class="line">    命令1 </div><div class="line">    命令2 </div><div class="line">&#125;</div><div class="line">test 条件1 &amp;&amp;&#123;</div><div class="line">    命令1</div><div class="line">    命令2</div><div class="line">&#125;</div><div class="line">#使用if判断结构</div><div class="line">if [ 表达式 ]</div><div class="line">  then</div><div class="line">    命令1</div><div class="line">    命令2</div><div class="line">fi</div></pre></td></tr></table></figure>
+<h3 id="5-字符串测试操作符"><a href="#5-字符串测试操作符" class="headerlink" title="5. 字符串测试操作符"></a>5. 字符串测试操作符</h3><p>可以使用 -n 参数 ，代表后面字符串不等于空， -z 参数，代表字符串为空<br>还可以使用 =  或者 != 表示两个字符串相等或者等。这里是指内容相当而不是长度。<br>整数二元比较操作符使用参考：</p>
+<table>
+<thead>
+<tr>
+<th>在[]和test中使用</th>
+<th>在(())和[[]]中使用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-eq</td>
+<td>==或=</td>
+<td>相等，全拼为equal </td>
+</tr>
+<tr>
+<td>-ne</td>
+<td>!=</td>
+<td>不相等，全拼为not equal </td>
+</tr>
+<tr>
+<td>-ge</td>
+<td>&gt;=</td>
+<td>大于等于，全拼为greater than </td>
+</tr>
+<tr>
+<td>-gt</td>
+<td>&gt;</td>
+<td>大于，全拼为greater equal </td>
+</tr>
+<tr>
+<td>-le</td>
+<td>&lt;=</td>
+<td>小于等于，全拼为less equal </td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>&lt;</td>
+<td>小于，全拼为less than </td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意</strong> 一般来说，[]里面是不能&lt;或者&gt;,但是可以先使用转义符</p>
+<h3 id="6-逻辑比较符"><a href="#6-逻辑比较符" class="headerlink" title="6. 逻辑比较符"></a>6. 逻辑比较符</h3><table>
+<thead>
+<tr>
+<th>在[]和test中使用</th>
+<th>在(())和[[]]中使用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>&amp;&amp;</td>
+<td>and，与，两端为真，则结果为真</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>两竖</td>
+<td>or，或，两端有一个为真，则结果为真</td>
+</tr>
+<tr>
+<td>!</td>
+<td>!</td>
+<td>not,非，两端相反，则结果为真</td>
+</tr>
+</tbody>
+</table>
+<p>举例：<br><code>[ -f file1 -a -f file2 ] &amp;&amp; echo yes || echo no</code></p>
+<h3 id="7-企业案例"><a href="#7-企业案例" class="headerlink" title="7. 企业案例"></a>7. 企业案例</h3><p>输入或者通过命令传入一个字符或数字，如果传入的数字等于1，就打印1；<br>如果等于2，就打印2.如果不等于1也不等于2.就提示输入不对。然后退出程序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">read -p &quot;please input your result:&quot; a</div><div class="line">[ &quot;$a&quot; == &quot;1&quot; ] &amp;&amp; echo 1 &amp;&amp; exit 0</div><div class="line">[ &quot;$a&quot; == &quot;2&quot; ] &amp;&amp; echo 2 &amp;&amp; exit 2</div><div class="line">[ &quot;$a&quot; -ne  &quot;1&quot; -o &quot;$a&quot; -ne &quot;2&quot; ] &amp;&amp;&#123;</div><div class="line">        echo &quot;your input error!&quot;</div><div class="line">        exit 1</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weixin.png" alt="ZingsMan WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zhifubao.jpg" alt="ZingsMan Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WORK/" rel="tag"># WORK</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/19/shell-operator/" rel="next" title="shell中的运算">
+                <i class="fa fa-chevron-left"></i> shell中的运算
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/22/yum-config/" rel="prev" title="内网yum源配置">
+                内网yum源配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="ZingsMan" />
+          <p class="site-author-name" itemprop="name">ZingsMan</p>
+           
+              <p class="site-description motion-element" itemprop="description">业精于勤荒于嬉,行成于思毁于随。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zingsman" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zingsman" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zingsman" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-逻辑操作符-amp-amp"><span class="nav-number">2.</span> <span class="nav-text">2. 逻辑操作符 && ||</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-举例"><span class="nav-number">3.</span> <span class="nav-text">3. 举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-特殊条件测试表达式举例-不使用if条件判断示情况下"><span class="nav-number">4.</span> <span class="nav-text">4. 特殊条件测试表达式举例(不使用if条件判断示情况下)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-字符串测试操作符"><span class="nav-number">5.</span> <span class="nav-text">5. 字符串测试操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-逻辑比较符"><span class="nav-number">6.</span> <span class="nav-text">6. 逻辑比较符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-企业案例"><span class="nav-number">7.</span> <span class="nav-text">7. 企业案例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZingsMan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

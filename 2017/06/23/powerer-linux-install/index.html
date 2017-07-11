@@ -1,0 +1,811 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="power-linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="寻找系统power-linux系统是ppc64le系统架构，平常的X86，或者64bit架构的系统都不支持。下载特定的系统redhat7.2下载地址，网上自行寻找。RHEL-7.2-Server-ppc64le-dvd.iso power-linux介绍和自己理解 power-linux和华为服务打不通，ibm的web管理界面，远远没有华为好用和方便。 power-linux web管理界面上，控">
+<meta name="keywords" content="power-linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IBM惠普powerer-linux装redhat系统">
+<meta property="og:url" content="http://yoursite.com/2017/06/23/powerer-linux-install/index.html">
+<meta property="og:site_name" content="ZingsMan">
+<meta property="og:description" content="寻找系统power-linux系统是ppc64le系统架构，平常的X86，或者64bit架构的系统都不支持。下载特定的系统redhat7.2下载地址，网上自行寻找。RHEL-7.2-Server-ppc64le-dvd.iso power-linux介绍和自己理解 power-linux和华为服务打不通，ibm的web管理界面，远远没有华为好用和方便。 power-linux web管理界面上，控">
+<meta property="og:updated_time" content="2017-06-22T16:34:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IBM惠普powerer-linux装redhat系统">
+<meta name="twitter:description" content="寻找系统power-linux系统是ppc64le系统架构，平常的X86，或者64bit架构的系统都不支持。下载特定的系统redhat7.2下载地址，网上自行寻找。RHEL-7.2-Server-ppc64le-dvd.iso power-linux介绍和自己理解 power-linux和华为服务打不通，ibm的web管理界面，远远没有华为好用和方便。 power-linux web管理界面上，控">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/23/powerer-linux-install/"/>
+
+
+
+
+
+  <title> IBM惠普powerer-linux装redhat系统 | ZingsMan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZingsMan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/powerer-linux-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IBM惠普powerer-linux装redhat系统
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T14:33:03+08:00">
+                2017-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WORK/" itemprop="url" rel="index">
+                    <span itemprop="name">WORK</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="寻找系统"><a href="#寻找系统" class="headerlink" title="寻找系统"></a>寻找系统</h3><p>power-linux系统是<code>ppc64le</code>系统架构，平常的X86，或者64bit架构的系统都不支持。<br>下载特定的系统<code>redhat7.2</code>下载地址，网上自行寻找。<br><code>RHEL-7.2-Server-ppc64le-dvd.iso</code></p>
+<h3 id="power-linux介绍和自己理解"><a href="#power-linux介绍和自己理解" class="headerlink" title="power-linux介绍和自己理解"></a>power-linux介绍和自己理解</h3><ol>
+<li>power-linux和华为服务打不通，ibm的web管理界面，远远没有华为好用和方便。</li>
+<li>power-linux web管理界面上，控制台串口登录不进去系统，java总是报错。所以<br>使用了了ibmitools工具，进行串口登录。他登录方式是你的pc的cmd命令行。还是很方便。</li>
+<li>听说power-linux登录web管理界面，不能远程装系统（ubuntu可以），我也没有找到挂载<br>镜像的地方。</li>
+</ol>
+<h3 id="ibmitools软件的使用"><a href="#ibmitools软件的使用" class="headerlink" title="ibmitools软件的使用"></a>ibmitools软件的使用</h3><ol>
+<li>下载软件。百度网盘：</li>
+<li>点ibmitool.exe 运行。然后点run.bat运行，自动打开cmd命令行</li>
+<li>登录串口的终端就是这个cmd窗口。运行命令：<br><code>ipmitool -I lanplus -H server_ip_address -U ipmi_user -P ipmi_password sol activate</code> 其中ip是imana管理地址。用户名是登录管理界面的用户和密码。</li>
+<li>登录成功，就相当于登录了串口。—就是不能挂载镜像安装。</li>
+</ol>
+<h3 id="power-linux装系统redhat-7-2"><a href="#power-linux装系统redhat-7-2" class="headerlink" title="power-linux装系统redhat.7.2"></a>power-linux装系统redhat.7.2</h3><p>由于发现已经重装了系统，就没有装系统。</p>
+<h3 id="power-linux在线配置raid-卡"><a href="#power-linux在线配置raid-卡" class="headerlink" title="power-linux在线配置raid 卡"></a>power-linux在线配置raid 卡</h3><p>这里我们运用到工具。在系统中安装这个工具，就能命令行在线做raid<br><code>Arcconf-1.08-21385.ppc64le.rpm</code> 下载后直接 rpm -i 路径   安装即可<br>安装步骤：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#操作步骤</span></div><div class="line"><span class="comment">#1、上传raid卡管理工具安装包到系统，用rpm直接安装</span></div><div class="line">    Arcconf-1.08-21385.ppc64le.rpm</div><div class="line"><span class="comment">#2、查看raid卡信息</span></div><div class="line">   arcconf getconfig 1 |more   <span class="comment">#（注意硬盘的state mode ）</span></div><div class="line"><span class="comment">#3、一般默认前置硬盘state mode为RAW,将其改为ready。</span></div><div class="line">   arcconf task start 1 device 0 0 initialize noprompt</div><div class="line"><span class="comment">#4、创建raid</span></div><div class="line">   arcconf create 1 logicaldrive max 10 0 0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 noprompt</div><div class="line"><span class="comment"># 其中 10 代表raid 10 ，后面数字就是盘符</span></div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong> 一定要注意盘符的查看：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#查看命令：</span></div><div class="line">arcconf getconfig 1 |more</div><div class="line"><span class="comment">#结果：</span></div><div class="line">Logical device number 1</div><div class="line">   Logical device name                      : LogicalDrv 1</div><div class="line">   Block Size of member drives              : 512 Bytes</div><div class="line">   RAID level                               : 10          <span class="comment">#代表RAID 10</span></div><div class="line">   Unique Identifier                        : B83F682D</div><div class="line">   Status of logical device                 : Optimal</div><div class="line">   Additional details                       : Quick initialized</div><div class="line">   Size                                     : 11427830 MB</div><div class="line">   Parity space                             : 11427840 MB</div><div class="line">   Stripe-unit size                         : 256 KB</div><div class="line">   Read-cache setting                       : Enabled</div><div class="line">   Read-cache status                        : On</div><div class="line">   Write-cache setting                      : Enabled</div><div class="line">   Write-cache status                       : On</div><div class="line">   Partitioned                              : Yes</div><div class="line">   Protected by Hot-Spare                   : No</div><div class="line">   Bootable                                 : No</div><div class="line">   Failed stripes                           : No</div><div class="line">   Power settings                           : Disabled</div><div class="line"></div><div class="line"><span class="comment">#单个设备信息</span></div><div class="line">----------------------------------------------------------------------</div><div class="line">Physical Device information</div><div class="line">----------------------------------------------------------------------</div><div class="line">      Device <span class="comment">#0</span></div><div class="line">         Device is a Hard drive</div><div class="line">         State                              : Online</div><div class="line">         Block Size                         : 512 Bytes</div><div class="line">         Supported                          : Yes</div><div class="line">         Programmed Max Speed               : SATA 6.0 Gb/s</div><div class="line">         Transfer Speed                     : SATA 6.0 Gb/s</div><div class="line">         Reported Channel,Device(T:L)       : 0,0(0:0)    <span class="comment">#这里0,0就是盘符</span></div><div class="line">         Reported Location                  : Enclosure 0, Slot 0(Connector 0)</div><div class="line">         Reported ESD(T:L)                  : 2,0(0:0)</div><div class="line">         Vendor                             : ATA</div></pre></td></tr></table></figure></p>
+<h3 id="做好raid后就是使用part进行超过2T磁盘分区"><a href="#做好raid后就是使用part进行超过2T磁盘分区" class="headerlink" title="做好raid后就是使用part进行超过2T磁盘分区"></a>做好raid后就是使用part进行超过2T磁盘分区</h3><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">parted /dev/sdd</div><div class="line">mklabel gpt</div><div class="line">yes</div><div class="line"><span class="built_in">print</span></div><div class="line">mkpart primary 0 -1</div><div class="line">i</div><div class="line"><span class="built_in">print</span></div><div class="line">quit</div><div class="line"><span class="comment"># 进行挂载和格式化</span></div><div class="line">mkfs -t xfs /dev/sdb1   <span class="comment">#可能使用mke2fs格式化，或者其他ext4系统</span></div><div class="line"><span class="comment"># 挂载</span></div><div class="line">mount /dev/sdb1 /data</div><div class="line"><span class="comment"># 更新 /etc/fstab 文件</span></div><div class="line">/dev/sdb1               /data                   xfs     defaults        0 0</div></pre></td></tr></table></figure></p>
+<h3 id="然后进行最后的各项配置。"><a href="#然后进行最后的各项配置。" class="headerlink" title="然后进行最后的各项配置。"></a>然后进行最后的各项配置。</h3><p>配置包括：YUM源。用户，监控，网卡绑定等一系列操作</p>
+<blockquote>
+<p>这里在配置YUM源的方面。由于系统架构为ppc这种架构。以前搭建的yum源无法使用。<br>直接，将这个系统镜像里边的包解压放到yum源某个目录。<br>在客户端配置文件中。对应的url就能使用镜像yum源。</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>后面学习看看ansible自动化工具作配置。已经公司已经写好脚本的使用。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weixin.png" alt="ZingsMan WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zhifubao.jpg" alt="ZingsMan Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/power-linux/" rel="tag"># power-linux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/22/yum-config/" rel="next" title="内网yum源配置">
+                <i class="fa fa-chevron-left"></i> 内网yum源配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/10/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="ZingsMan" />
+          <p class="site-author-name" itemprop="name">ZingsMan</p>
+           
+              <p class="site-description motion-element" itemprop="description">业精于勤荒于嬉,行成于思毁于随。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zingsman" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zingsman" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zingsman" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#寻找系统"><span class="nav-number">1.</span> <span class="nav-text">寻找系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#power-linux介绍和自己理解"><span class="nav-number">2.</span> <span class="nav-text">power-linux介绍和自己理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ibmitools软件的使用"><span class="nav-number">3.</span> <span class="nav-text">ibmitools软件的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#power-linux装系统redhat-7-2"><span class="nav-number">4.</span> <span class="nav-text">power-linux装系统redhat.7.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#power-linux在线配置raid-卡"><span class="nav-number">5.</span> <span class="nav-text">power-linux在线配置raid 卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做好raid后就是使用part进行超过2T磁盘分区"><span class="nav-number">6.</span> <span class="nav-text">做好raid后就是使用part进行超过2T磁盘分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然后进行最后的各项配置。"><span class="nav-number">7.</span> <span class="nav-text">然后进行最后的各项配置。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZingsMan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
