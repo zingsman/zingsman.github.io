@@ -280,6 +280,134 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/24/gdisk-分区/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/24/gdisk-分区/" itemprop="url">
+                  gdisk_分区
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T16:37:38+08:00">
+                2017-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在安装系统中，一般来说超过2T的硬盘，就不能使用fdisk分区了。我们常用part分区，<br>由于公司，要求将20T硬盘以逻辑卷形式挂在/data目录下。part分区好像并没有设置<br>系统分区为格式 lvm 格式。所以需要 gdisk 分区。gdisk就是（GPT格式的disk）</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>配置之前，可以使用<code>fdisk -l</code> 查看，是那一块盘哦<br>详细信息如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">mkdir /data</div><div class="line"></div><div class="line">gdisk /dev/sdk</div><div class="line"></div><div class="line">Command (? for help): ?</div><div class="line">b       back up GPT data to a file</div><div class="line">c       change a partition's name</div><div class="line">d       delete a partition</div><div class="line">i       show detailed information on a partition</div><div class="line">l       list known partition types</div><div class="line">n       add a new partition</div><div class="line">o       create a new empty GUID partition table (GPT)</div><div class="line">p       print the partition table</div><div class="line">q       quit without saving changes</div><div class="line">r       recovery and transformation options (experts only)</div><div class="line">s       sort partitions</div><div class="line">t       change a partition's type code</div><div class="line">v       verify disk</div><div class="line">w       write table to disk and exit</div><div class="line">x       extra functionality (experts only)</div><div class="line">?       print this menu</div><div class="line"></div><div class="line">Command (? for help): </div><div class="line"></div><div class="line"></div><div class="line">Command (? for help): n</div><div class="line">Partition number (1-128, default 1): </div><div class="line">First sector (34-40957358046, default = 2048) or &#123;+-&#125;size&#123;KMGTP&#125;: </div><div class="line">Last sector (2048-40957358046, default = 40957358046) or &#123;+-&#125;size&#123;KMGTP&#125;: </div><div class="line">Current type is 'Linux filesystem'</div><div class="line">Hex code or GUID (L to show codes, Enter = 8300): 8e00</div><div class="line">Changed type of partition to 'Linux LVM'</div><div class="line"></div><div class="line">Command (? for help): p</div><div class="line">Disk /dev/sdk: 40957358080 sectors, 19.1 TiB</div><div class="line">Logical sector size: 512 bytes</div><div class="line">Disk identifier (GUID): F8C461D2-634A-4A57-B6CF-977F2A0E86BF</div><div class="line">Partition table holds up to 128 entries</div><div class="line">First usable sector is 34, last usable sector is 40957358046</div><div class="line">Partitions will be aligned on 2048-sector boundaries</div><div class="line">Total free space is 2014 sectors (1007.0 KiB)</div><div class="line"></div><div class="line">Number  Start (sector)    End (sector)  Size       Code  Name</div><div class="line">   1            2048     40957358046   19.1 TiB    8E00  Linux LVM</div><div class="line"></div><div class="line">wq</div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong> 其中我们默认是使用全部分在一个分区，所有一直按确认即可。<br>帮助：<code>？</code>   <code>n</code> 是添加分区， <code>l</code>是查看分区格式类型。和fdisk不一样，这里的8e00 在fdisk是8e  <code>t</code>是改变分区系统格式<br>最后<code>wq</code> 退出即可。  最候使用 <code>fdisk -l</code>  看看我们的分区详情。</p>
+<p>然后分区，加入 lvm  其中lvcreat有新命令哦<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">pvcreate /dev/sdk1</div><div class="line">vgextend rhel /dev/sdk1</div><div class="line">vgdisplay </div><div class="line">lvcreate -n data -l 100%FREE rhel</div><div class="line">mkfs.xfs /dev/mapper/rhel-data </div><div class="line">vi /etc/fstab </div><div class="line">/dev/mapper/rhel-data   /data                   xfs     defaults        0 0</div><div class="line">mount -a</div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong> lvcreat 命令是使用vg里面的空间，我们扩展或者新建时候，在选择大小时候，有两种方式<br>PE和SIZE：<code>vgdisplay</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">[root@localhost src]# vgdisplay </div><div class="line">  --- Volume group ---</div><div class="line">  VG Name               rhel</div><div class="line">  System ID             </div><div class="line">  Format                lvm2</div><div class="line">  Metadata Areas        2</div><div class="line">  Metadata Sequence No  6</div><div class="line">  VG Access             read/write</div><div class="line">  VG Status             resizable</div><div class="line">  MAX LV                0</div><div class="line">  Cur LV                4</div><div class="line">  Open LV               4</div><div class="line">  Max PV                0</div><div class="line">  Cur PV                2</div><div class="line">  Act PV                2</div><div class="line">  VG Size               19.98 TiB</div><div class="line">  PE Size               4.00 MiB</div><div class="line">  Total PE              5237883</div><div class="line">  Alloc PE / Size       5237883 / 19.98 TiB</div><div class="line">  Free  PE / Size       0 / 0 </div><div class="line"><span class="meta">  #</span>这里使用：PE模式命令：lvcreate -n data -l 100%FREE rhel</div><div class="line">  VG UUID               qt7tUm-NoXx-e1GP-QnCf-Ibrd-1s5f-kmQ0JM</div><div class="line">   </div><div class="line">[root@localhost src]#</div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong> 其中讲道理是lvextend也可以用这种方式。现在总结2中方法：</p>
+<h3 id="lvcreat"><a href="#lvcreat" class="headerlink" title="lvcreat"></a>lvcreat</h3><p><code>lvcreate -n data -l 100%FREE rhel</code> 将vg中所有空间拿来使用（PE）<br><code>lvcreate -n data -L 100G rhel</code> 将vg里面100G给lv data使用</p>
+<h3 id="lvextend"><a href="#lvextend" class="headerlink" title="lvextend"></a>lvextend</h3><p><code>lvextend -L +100M /dev/mapper/rhel-data</code>    将vg里面100G给lv data使用</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/19/ansible学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -763,9 +891,9 @@
 <li>登录成功，就相当于登录了串口。—就是不能挂载镜像安装。</li>
 </ol>
 <h3 id="power-linux装系统redhat-7-2"><a href="#power-linux装系统redhat-7-2" class="headerlink" title="power-linux装系统redhat.7.2"></a>power-linux装系统redhat.7.2</h3><p>由于发现已经重装了系统，就没有装系统。</p>
-<h3 id="power-linux在线配置raid-卡"><a href="#power-linux在线配置raid-卡" class="headerlink" title="power-linux在线配置raid 卡"></a>power-linux在线配置raid 卡</h3><p>这里我们运用到工具。在系统中安装这个工具，就能命令行在线做raid<br><code>Arcconf-1.08-21385.ppc64le.rpm</code> 下载后直接 rpm -i 路径   安装即可<br>安装步骤：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#操作步骤</span></div><div class="line"><span class="comment">#1、上传raid卡管理工具安装包到系统，用rpm直接安装</span></div><div class="line">    Arcconf-1.08-21385.ppc64le.rpm</div><div class="line"><span class="comment">#2、查看raid卡信息</span></div><div class="line">   arcconf getconfig 1 |more   <span class="comment">#（注意硬盘的state mode ）</span></div><div class="line"><span class="comment">#3、一般默认前置硬盘state mode为RAW,将其改为ready。</span></div><div class="line">   arcconf task start 1 device 0 0 initialize noprompt</div><div class="line"><span class="comment">#4、创建raid</span></div><div class="line">   arcconf create 1 logicaldrive max 10 0 0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 noprompt</div><div class="line"><span class="comment"># 其中 10 代表raid 10 ，后面数字就是盘符</span></div></pre></td></tr></table></figure></p>
+<h3 id="power-linux在线配置raid-卡"><a href="#power-linux在线配置raid-卡" class="headerlink" title="power-linux在线配置raid 卡"></a>power-linux在线配置raid 卡</h3><p>这里我们运用到工具。在系统中安装这个工具，就能命令行在线做raid<br><code>Arcconf-1.08-21385.ppc64le.rpm</code> 下载后直接 rpm -i 路径   安装即可<br>安装步骤：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#操作步骤</span></div><div class="line"><span class="comment">#1、上传raid卡管理工具安装包到系统，用rpm直接安装</span></div><div class="line">    Arcconf-1.08-21385.ppc64le.rpm</div><div class="line"><span class="comment">#2、查看raid卡信息</span></div><div class="line">   arcconf getconfig 1 |more   <span class="comment">#（注意硬盘的state mode ）</span></div><div class="line"><span class="comment">#3、一般默认前置硬盘state mode为RAW,将其改为ready，下一块盘为 1 0。</span></div><div class="line">   arcconf task start 1 device 0 0 initialize noprompt</div><div class="line"><span class="comment">#4、创建raid</span></div><div class="line">   arcconf create 1 logicaldrive max 10 0 0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 noprompt</div><div class="line"><span class="comment"># 其中 10 代表raid 10 ，后面数字就是盘符</span></div></pre></td></tr></table></figure></p>
 <p><strong>注意</strong> 一定要注意盘符的查看：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#查看命令：</span></div><div class="line">arcconf getconfig 1 |more</div><div class="line"><span class="comment">#结果：</span></div><div class="line">Logical device number 1</div><div class="line">   Logical device name                      : LogicalDrv 1</div><div class="line">   Block Size of member drives              : 512 Bytes</div><div class="line">   RAID level                               : 10          <span class="comment">#代表RAID 10</span></div><div class="line">   Unique Identifier                        : B83F682D</div><div class="line">   Status of logical device                 : Optimal</div><div class="line">   Additional details                       : Quick initialized</div><div class="line">   Size                                     : 11427830 MB</div><div class="line">   Parity space                             : 11427840 MB</div><div class="line">   Stripe-unit size                         : 256 KB</div><div class="line">   Read-cache setting                       : Enabled</div><div class="line">   Read-cache status                        : On</div><div class="line">   Write-cache setting                      : Enabled</div><div class="line">   Write-cache status                       : On</div><div class="line">   Partitioned                              : Yes</div><div class="line">   Protected by Hot-Spare                   : No</div><div class="line">   Bootable                                 : No</div><div class="line">   Failed stripes                           : No</div><div class="line">   Power settings                           : Disabled</div><div class="line"></div><div class="line"><span class="comment">#单个设备信息</span></div><div class="line">----------------------------------------------------------------------</div><div class="line">Physical Device information</div><div class="line">----------------------------------------------------------------------</div><div class="line">      Device <span class="comment">#0</span></div><div class="line">         Device is a Hard drive</div><div class="line">         State                              : Online</div><div class="line">         Block Size                         : 512 Bytes</div><div class="line">         Supported                          : Yes</div><div class="line">         Programmed Max Speed               : SATA 6.0 Gb/s</div><div class="line">         Transfer Speed                     : SATA 6.0 Gb/s</div><div class="line">         Reported Channel,Device(T:L)       : 0,0(0:0)    <span class="comment">#这里0,0就是盘符</span></div><div class="line">         Reported Location                  : Enclosure 0, Slot 0(Connector 0)</div><div class="line">         Reported ESD(T:L)                  : 2,0(0:0)</div><div class="line">         Vendor                             : ATA</div></pre></td></tr></table></figure></p>
-<h3 id="做好raid后就是使用part进行超过2T磁盘分区"><a href="#做好raid后就是使用part进行超过2T磁盘分区" class="headerlink" title="做好raid后就是使用part进行超过2T磁盘分区"></a>做好raid后就是使用part进行超过2T磁盘分区</h3><p>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">parted /dev/sdd</div><div class="line">mklabel gpt</div><div class="line">yes</div><div class="line"><span class="built_in">print</span></div><div class="line">mkpart primary 0 -1</div><div class="line">i</div><div class="line"><span class="built_in">print</span></div><div class="line">quit</div><div class="line"><span class="comment"># 进行挂载和格式化</span></div><div class="line">mkfs -t xfs /dev/sdb1   <span class="comment">#可能使用mke2fs格式化，或者其他ext4系统</span></div><div class="line"><span class="comment"># 挂载</span></div><div class="line">mount /dev/sdb1 /data</div><div class="line"><span class="comment"># 更新 /etc/fstab 文件</span></div><div class="line">/dev/sdb1               /data                   xfs     defaults        0 0</div></pre></td></tr></table></figure></p>
+<h3 id="做好raid后就是使用part进行超过2T磁盘分区"><a href="#做好raid后就是使用part进行超过2T磁盘分区" class="headerlink" title="做好raid后就是使用part进行超过2T磁盘分区"></a>做好raid后就是使用part进行超过2T磁盘分区</h3><p>也可使用gdisk分区，gdisk分区和gdisk分区差不多。详情看 gdisk 分区<br>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">parted /dev/sdd</div><div class="line">mklabel gpt</div><div class="line">yes</div><div class="line"><span class="built_in">print</span></div><div class="line">mkpart primary 0 -1</div><div class="line">i</div><div class="line"><span class="built_in">print</span></div><div class="line">quit</div><div class="line"><span class="comment"># 进行挂载和格式化</span></div><div class="line">mkfs -t xfs /dev/sdb1   <span class="comment">#可能使用mke2fs格式化，或者其他ext4系统</span></div><div class="line"><span class="comment"># 挂载</span></div><div class="line">mount /dev/sdb1 /data</div><div class="line"><span class="comment"># 更新 /etc/fstab 文件</span></div><div class="line">/dev/sdb1               /data                   xfs     defaults        0 0</div></pre></td></tr></table></figure></p>
 <h3 id="然后进行最后的各项配置。"><a href="#然后进行最后的各项配置。" class="headerlink" title="然后进行最后的各项配置。"></a>然后进行最后的各项配置。</h3><p>配置包括：YUM源。用户，监控，网卡绑定等一系列操作</p>
 <blockquote>
 <p>这里在配置YUM源的方面。由于系统架构为ppc这种架构。以前搭建的yum源无法使用。<br>直接，将这个系统镜像里边的包解压放到yum源某个目录。<br>在客户端配置文件中。对应的url就能使用镜像yum源。</p>
@@ -1752,7 +1880,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1774,7 +1902,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
