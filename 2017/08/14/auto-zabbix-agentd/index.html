@@ -1,0 +1,775 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="zabbix," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="zabbix通过导入文件的方式批量添加监控概述由于zabbix监控系统的自动发现主机，不是很适合物联网的业务环境。每次也需要自己手动添加监控，更改主机名字。和nagios监控的工作量差不多。所以时间shell脚步完成批量主机的导入。 思路 首先观察原来zabbix服务器导出的xml 标准文件 发现，在hosts里面几个重要信息。包括（主机，主机ip，主机名字） 然后我用for循环，使用数据重定向。">
+<meta name="keywords" content="zabbix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="auto_zabbix_agentd">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/auto-zabbix-agentd/index.html">
+<meta property="og:site_name" content="ZingsMan">
+<meta property="og:description" content="zabbix通过导入文件的方式批量添加监控概述由于zabbix监控系统的自动发现主机，不是很适合物联网的业务环境。每次也需要自己手动添加监控，更改主机名字。和nagios监控的工作量差不多。所以时间shell脚步完成批量主机的导入。 思路 首先观察原来zabbix服务器导出的xml 标准文件 发现，在hosts里面几个重要信息。包括（主机，主机ip，主机名字） 然后我用for循环，使用数据重定向。">
+<meta property="og:updated_time" content="2017-08-14T03:53:34.515Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="auto_zabbix_agentd">
+<meta name="twitter:description" content="zabbix通过导入文件的方式批量添加监控概述由于zabbix监控系统的自动发现主机，不是很适合物联网的业务环境。每次也需要自己手动添加监控，更改主机名字。和nagios监控的工作量差不多。所以时间shell脚步完成批量主机的导入。 思路 首先观察原来zabbix服务器导出的xml 标准文件 发现，在hosts里面几个重要信息。包括（主机，主机ip，主机名字） 然后我用for循环，使用数据重定向。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/14/auto-zabbix-agentd/"/>
+
+
+
+
+
+  <title> auto_zabbix_agentd | ZingsMan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZingsMan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/auto-zabbix-agentd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                auto_zabbix_agentd
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T11:34:51+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="zabbix通过导入文件的方式批量添加监控"><a href="#zabbix通过导入文件的方式批量添加监控" class="headerlink" title="zabbix通过导入文件的方式批量添加监控"></a>zabbix通过导入文件的方式批量添加监控</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>由于zabbix监控系统的自动发现主机，不是很适合物联网的业务环境。每次也需要自己手动添加监控，更改主机名字。和nagios监控的工作量差不多。所以时间shell脚步完成批量主机的导入。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ul>
+<li>首先观察原来zabbix服务器导出的xml 标准文件</li>
+<li>发现，在hosts里面几个重要信息。包括（主机，主机ip，主机名字）</li>
+<li>然后我用for循环，使用数据重定向。写入这些信息即可。<br>最后，改脚本方法很笨，可能在大佬们看来不值一提。不过我认为：能完成自己的功能就行。</li>
+</ul>
+<h3 id="核心知识"><a href="#核心知识" class="headerlink" title="核心知识"></a>核心知识</h3><p>shell的for循环:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a=10</div><div class="line">for ((i=0;i&lt;=$a;i++))</div><div class="line">do</div><div class="line">echo "Test text."</div><div class="line">done</div></pre></td></tr></table></figure></p>
+<p>vi编辑器添加和插入字符串<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:5,15 s/^/#/g     # 在5到15行首插入#注释符号</div><div class="line">:5,15 s/$/ .sh/g  # 在5到15行末插入.sh</div></pre></td></tr></table></figure></p>
+<p>awk 中的print用$i代替$1 $2 等<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a=10</div><div class="line">test="1 2 3 4 5 6 7 8 9 10 11"</div><div class="line">for ((i=1,i&lt;=$a,i++))</div><div class="line">do</div><div class="line">echo $test | awk '&#123;print i&#125;i="$i"'</div><div class="line"><span class="meta">#</span><span class="bash"> awk 就是在使用外部变量前，需要定义</span></div><div class="line">done</div></pre></td></tr></table></figure></p>
+<h3 id="zabbix-监控源代码"><a href="#zabbix-监控源代码" class="headerlink" title="zabbix 监控源代码"></a>zabbix 监控源代码</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line">head -n 10 zbx_export_hosts.xml &gt; final.xml</div><div class="line">hosts=`cat hosts`</div><div class="line">all=`echo $hosts | awk '&#123;print NF&#125;'`</div><div class="line">if [ ! -n "$1" ];then</div><div class="line">    name='no-name'</div><div class="line">else</div><div class="line">    name=$1</div><div class="line">fi</div><div class="line">for (( i=1;i&lt;=$all;i++))</div><div class="line">do</div><div class="line">    echo "        &lt;host&gt;" &gt;&gt; final.xml</div><div class="line">    a=`echo $hosts | awk '&#123;print $i&#125;' i="$i" `</div><div class="line">    echo "            &lt;host&gt;$a&lt;/host&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;name&gt;$name-$a&lt;/name&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;description/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;proxy/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;status&gt;0&lt;/status&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;ipmi_authtype&gt;-1&lt;/ipmi_authtype&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;ipmi_privilege&gt;2&lt;/ipmi_privilege&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;ipmi_username/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;ipmi_password/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;tls_connect&gt;1&lt;/tls_connect&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;tls_accept&gt;1&lt;/tls_accept&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;tls_issuer/&gt; " &gt;&gt; final.xml</div><div class="line">    echo "            &lt;tls_subject/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;tls_psk_identity/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;tls_psk/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;templates&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                &lt;template&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                    &lt;name&gt;Linux-Templates&lt;/name&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                &lt;/template&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;/templates&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;groups&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                &lt;group&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                    &lt;name&gt;Linux servers&lt;/name&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                &lt;/group&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;/groups&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;interfaces&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                &lt;interface&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                    &lt;default&gt;1&lt;/default&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                    &lt;type&gt;1&lt;/type&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                    &lt;useip&gt;1&lt;/useip&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                    &lt;ip&gt;$a&lt;/ip&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                    &lt;dns/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                    &lt;port&gt;10050&lt;/port&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                    &lt;bulk&gt;1&lt;/bulk&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                    &lt;interface_ref&gt;if1&lt;/interface_ref&gt;" &gt;&gt; final.xml</div><div class="line">    echo "                &lt;/interface&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;/interfaces&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;applications/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;items/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;discovery_rules/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;macros/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "            &lt;inventory/&gt;" &gt;&gt; final.xml</div><div class="line">    echo "        &lt;/host&gt;" &gt;&gt; final.xml</div><div class="line">done</div><div class="line"></div><div class="line">tail -n 2 zbx_export_hosts.xml &gt;&gt; final.xml</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现在初学python，忘记了很多shell的知识。这点需要加强。<br>同事用python 2.7 完成该功能的代码：值得学习：<br><a href="http://blog.hhzzer.com/2017/08/14/python%E5%88%9B%E5%BB%BAzabbix%E4%B8%BB%E6%9C%BA%E5%AF%BC%E5%85%A5xml%E4%BF%A1%E6%81%AF/" target="_blank" rel="external">http://blog.hhzzer.com/2017/08/14/python%E5%88%9B%E5%BB%BAzabbix%E4%B8%BB%E6%9C%BA%E5%AF%BC%E5%85%A5xml%E4%BF%A1%E6%81%AF/</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weixin.png" alt="ZingsMan WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/zhifubao.jpg" alt="ZingsMan Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/zabbix/" rel="tag"># zabbix</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/10/python-12306/" rel="next" title="python_12306">
+                <i class="fa fa-chevron-left"></i> python_12306
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="ZingsMan" />
+          <p class="site-author-name" itemprop="name">ZingsMan</p>
+           
+              <p class="site-description motion-element" itemprop="description">业精于勤荒于嬉,行成于思毁于随。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zingsman" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zingsman" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zingsman" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zabbix通过导入文件的方式批量添加监控"><span class="nav-number">1.</span> <span class="nav-text">zabbix通过导入文件的方式批量添加监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心知识"><span class="nav-number">1.3.</span> <span class="nav-text">核心知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zabbix-监控源代码"><span class="nav-number">1.4.</span> <span class="nav-text">zabbix 监控源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZingsMan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
