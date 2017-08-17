@@ -280,6 +280,153 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/17/vim-use/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/17/vim-use/" itemprop="url">
+                  vim_use
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-17T11:47:27+08:00">
+                2017-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="vim-编辑器的使用"><a href="#vim-编辑器的使用" class="headerlink" title="vim 编辑器的使用"></a>vim 编辑器的使用</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在日常运维工作中，非常平凡的接触vim编辑器。对vim编辑器的熟悉，是非常重要的事情，往往会大大提高我们的工作效率</p>
+<h2 id="vim编辑器的模式"><a href="#vim编辑器的模式" class="headerlink" title="vim编辑器的模式"></a>vim编辑器的模式</h2><p>vim一共有6中模式。但是我们常用的只有 <strong>普通模式</strong>，<strong>编辑模式</strong>，<strong>命令行模式</strong>。只需要了解这几个模式就可以了。</p>
+<h3 id="普通模式"><a href="#普通模式" class="headerlink" title="普通模式"></a>普通模式</h3><p>我们使用vim text.txt 进入后，就是默认的普通模式，这里面可以执行光标的移动，内容（对象）的删除的操作。<br>比如：</p>
+<ul>
+<li><code>yy</code> 复制光标当前行，  <code>2yy</code>就是 复制光标当前2行</li>
+<li><code>p</code> 在光标下一行粘贴复制的内容</li>
+<li><code>dd</code> 删除光标当前行，  <code>2dd</code>  删除光标一下多少行。<code>d</code>为删除操作，如果你按<code>d</code>,在按下光标，就会删除2行，相当于：<code>2dd</code><h3 id="编辑模式"><a href="#编辑模式" class="headerlink" title="编辑模式"></a>编辑模式</h3>在普通模式下，按<code>i</code> 或者<code>a</code>进入编辑模式。在编辑模式里，可以编辑文本。<br>返回到普通模式按<code>esc</code> 大写的I和A 分别表示在行首和行末插入。<h3 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h3>进入命令行模式，在普通模式下，执行命令按：<code>:+命令</code> 搜索按:<code>/+命令</code> 或者<code>?+命令</code><br>过滤命令(<code>!</code>键)。在命令完成之后，回到原来的模式，通常我普通模式<h2 id="vim退出"><a href="#vim退出" class="headerlink" title="vim退出"></a>vim退出</h2><h3 id="命令退出"><a href="#命令退出" class="headerlink" title="命令退出"></a>命令退出</h3>vim退出有以下几种方式：<br>命令 | 解释说明 |<br>——| ———|<br><code>:q!</code> | 强制退出，不保存|<br><code>:q</code>  | 退出|<br><code>:wq!</code>| 强制保存并退出|<br><code>:w &lt;文件路径&gt;</code> |文件另存为|<br><code>:saveas &lt;文件路径&gt;</code> |文件另存为|<br><code>:x</code> | 保存并退出 |<br><code>:wq</code> | 保存并退出 |<h3 id="快捷键退出"><a href="#快捷键退出" class="headerlink" title="快捷键退出"></a>快捷键退出</h3>在普通模式下 <code>shift + zz</code> 保存并退出<h2 id="常用的vim命令"><a href="#常用的vim命令" class="headerlink" title="常用的vim命令"></a>常用的vim命令</h2><h3 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令:"></a>删除命令:</h3><code>.</code> 重复上一次命令<br><code>x</code> 普通模式下输入<code>x</code>,删除第一个字符<h3 id="文本跳转"><a href="#文本跳转" class="headerlink" title="文本跳转"></a>文本跳转</h3><code>10x</code> 连续删除10个字符<br><code>3dd</code> 连续删除3行<br><code>nG</code> 光标移动到地几行，或者 <code>: 10 G</code><br><code>gg</code> 光标移动到首行<br><code>G</code> 光标移动到尾行<br><code>:set nu</code>  设置显示行号<h3 id="行内跳转"><a href="#行内跳转" class="headerlink" title="行内跳转"></a>行内跳转</h3><code>w</code> 到下一个单词开头<br><code>e</code> 到下一个单词开头<br><code>b</code> 到下一个单词开头<br><code>ge</code> 到下一个单词开头<br><code>0或^</code> 到下一个单词开头<br><code>$</code> 到下一个单词开头<br><code>f&lt;字母&gt;</code> 向后搜字母，并跳到第一个匹配之前的文章<h3 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h3></li>
+<li>普通模式中，yy复制游标所在的整行（3yy表示复制3行）</li>
+<li>普通模式中，y^ 复制至行首，或y0。不含光标所在处字符。</li>
+<li>普通模式中，y$ 复制至行尾。含光标所在处字符。</li>
+<li>普通模式中，yw 复制一个单词。</li>
+<li>普通模式中，y2w 复制两个单词。</li>
+<li>普通模式中，yG 复制至文本末。</li>
+<li>普通模式中，y1G 复制至文本开头。<br><strong>粘贴</strong></li>
+<li>普通模式中，p(小写)代表粘贴至光标后（下）</li>
+<li>普通模式中，P(大写)代表粘贴至光标前（上）<br><strong>剪切</strong><br>其实前面讲得dd删除命令就是剪切，你每次<code>dd</code>删除文档内容后，便可以使用p来粘贴，也这一点可以让我们实现一个很爽快的功能——交换上下行：</li>
+</ul>
+<p><code>ddp</code>,就这么简单，即实现了快速交换光标所在行与它下面的行</p>
+<h3 id="替换和撤销操作"><a href="#替换和撤销操作" class="headerlink" title="替换和撤销操作"></a>替换和撤销操作</h3><p><code>r+&lt;待替换字母&gt;</code>  将游标所在字母替换为指定字母<br><code>R</code>   连续替换，直到按下<code>Esc</code><br><code>u{n}</code>   撤销一次或n次操作<br><code>U(大写)</code>   撤销当前行的所有修改<br><code>Ctrl+r</code>  redo，即撤销undo的操作</p>
+<h3 id="快速缩进"><a href="#快速缩进" class="headerlink" title="快速缩进"></a>快速缩进</h3><p>普通模式下输入 <code>15G</code>，跳转到15行<br>普通模式下输入 <code>&gt;&gt;</code> 整行将向右缩进（使用，用于格式化代码超爽）<br>普通模式下输入 <code>&lt;&lt;</code> 整行向左回退<br>普通模式下输入 <code>:</code> 进入命令行模式下对shiftwidth值进行设置可以控制缩进和回退的字符数</p>
+<h3 id="shiftwidth命令"><a href="#shiftwidth命令" class="headerlink" title="shiftwidth命令"></a>shiftwidth命令</h3><p>shiftwidth命令是指上一节<code>&gt;&gt;</code>命令产生的缩进（可以简写成sw）<br>普通模式下输入:进入命令行模式下对shiftwidth值进行设置可以控制缩进和回退的字符数<br>获取目前的设定值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:set shiftwidth?</div></pre></td></tr></table></figure></p>
+<p>设置缩进的10个字符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:set shiftwidth=10</div></pre></td></tr></table></figure></p>
+<h3 id="设置文件为准"><a href="#设置文件为准" class="headerlink" title="设置文件为准"></a>设置文件为准</h3><ul>
+<li>命令行模式下输入:ce(center)命令使本行内容居中</li>
+<li>命令行模式下输入:ri(right)命令使本行文本靠右</li>
+<li>命令行模式下输入:le(left)命令使本行内容靠左<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2>普通模式下输入<code>/</code> 然后输入查找的值，<code>?</code>的功能相同，/是向下，?是向上<br>进入查找之后，输入<code>n</code>和<code>N</code>可以继续查找<br><code>n</code>表示继续查找，<code>N</code>反向查找<h2 id="常用shell-替换"><a href="#常用shell-替换" class="headerlink" title="常用shell 替换"></a>常用shell 替换</h2><code>：5，55 s/^/&quot; &gt;&gt; final.xml/g</code>     在5到55首 插入      “&gt;&gt; final.xml<br><code>：5，55 s/$/&quot; &gt;&gt; final.xml/g</code>    在5到55末 插入      “&gt;&gt; final.xml<br><code>：5，55 s/pengke/zhang/g&quot;</code>    在5到55末pegnke替换成zhang<br><code>:20, s/pengke/PENGKE/g</code>   在20到末尾 pengke替换成PENGKE<br><code>:,15 s/pengke/PENGKE/g</code>   在1到15 pengke替换成PENGKE<h2 id="高级功能"><a href="#高级功能" class="headerlink" title="高级功能"></a>高级功能</h2>多文件编辑<br>可视化模式<br>视窗操作<br>文档加密<br>在vim中执行外部命令<br>vim功能设置<br>实验楼地址：<br><a href="https://www.shiyanlou.com/courses/2/labs/19/document" target="_blank" rel="external">https://www.shiyanlou.com/courses/2/labs/19/document</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/auto-zabbix-agentd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1749,192 +1896,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/19/shell-operator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZingsMan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZingsMan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/19/shell-operator/" itemprop="url">
-                  shell中的运算
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-19T10:01:43+08:00">
-                2017-06-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SHELL/" itemprop="url" rel="index">
-                    <span itemprop="name">SHELL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-常见的shell算术运算符"><a href="#1-常见的shell算术运算符" class="headerlink" title="1. 常见的shell算术运算符"></a>1. 常见的shell算术运算符</h3><ul>
-<li>+ - x / % ** ++ --  加 减 乘 除 取 余 幂运算 增加 减少</li>
-<li>! &amp;&amp; ||  非 逻辑与 逻辑或</li>
-<li>大于 小于 等于 大于等于 小于 等于（==）不等于（!==）赋值（=）</li>
-<li>>> \&lt;\&lt; 向右偏移，向左偏移</li>
-</ul>
-<h3 id="2-Shell-中常见的算术运算命令"><a href="#2-Shell-中常见的算术运算命令" class="headerlink" title="2. Shell 中常见的算术运算命令"></a>2. Shell 中常见的算术运算<strong>命令</strong></h3><ul>
-<li>(())   用于整数运算的常用运算符，效率较高</li>
-<li>let    用于整数的运算，类似于“(())”</li>
-<li>expr   用于整数运算，还有很多其他额外功能（判断是否为整数）</li>
-<li>bc     Linux下自带的一个计算器程序（整数和小数计算）</li>
-<li>$[]    用于整数运算</li>
-<li>awk    awk既可以用于整数运算，也可用于小数运算</li>
-<li>declare 定义变量的属性，-i 参数就是定义整型变量</li>
-</ul>
-<h3 id="3-使用举例"><a href="#3-使用举例" class="headerlink" title="3. 使用举例"></a>3. 使用举例</h3><ol>
-<li><p>((1+1))  可以使用成”echo ((1+1))” 或者 ((8&gt;7&amp;&amp;5==5)) 或者 i=$((i+1))<br>提示： 在(()) 中使用变量可以将$符号省略<br>利用(())制作一个简单的计算器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#/bin/bash</div><div class="line">if [ $# != 2 ]</div><div class="line">then</div><div class="line">echo &quot;please input two args,Age: /bin/sh $0 10 5&quot;</div><div class="line">exit 1</div><div class="line">fi</div><div class="line">echo &quot;$1+$2=$(($1+$2))&quot;</div><div class="line">echo &quot;$1-$2=$(($1-$2))&quot;</div><div class="line">echo &quot;$1*$2=$(($1*$2))&quot;</div><div class="line">echo &quot;$1/$2=$(($1/$2))&quot;</div><div class="line">echo &quot;$1**$2=$(($1**$2))&quot;</div><div class="line">echo &quot;$1%$2=$(($1%$2))&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>let运算命令用法<br>格式： let 赋值表达式  例如: let i=i+8 &amp;&amp; echo $1<br>这个用法等同于((i+8)), (())这种方式效率更高<br>例子: 使用let，对web服务页面进行监控<br>在这里我们使用<code>wget</code> 命令可以<strong>检测某网页是否能正常访问</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">checkurl()&#123;</div><div class="line">timeout=5</div><div class="line">fails=0</div><div class="line">success=0</div><div class="line">while true #死循环，一直检测</div><div class="line">do</div><div class="line">wget --timeout=$timeout --tries=1 www.baidu.com -q -O /dev/null</div><div class="line">echo $fails $success</div><div class="line">if [ $? -ne 0 ]   #返回值不为0 就表示失败</div><div class="line">then</div><div class="line">        let fails=fails+1     #可用((fails=fails+1))代替</div><div class="line">echo $fails </div><div class="line">else</div><div class="line">        let success=success+1  #返回为0，代表访问成功</div><div class="line">echo $success</div><div class="line">fi</div><div class="line">if [ $success -ge 1 ]</div><div class="line">then</div><div class="line">echo &apos;sys is open!&apos;</div><div class="line">exit 0</div><div class="line">fi</div><div class="line">if [ $fails -ge 2 ]</div><div class="line">then</div><div class="line">echo &quot;sys is down!&quot;</div><div class="line">#mail -s &quot;sys is down&quot; root@localhost  #如果访问失败次数大于等于2，就发邮件告警</div><div class="line">exit 2</div><div class="line">fi</div><div class="line">done</div><div class="line">&#125;</div><div class="line">ehceckurl #执行函数</div></pre></td></tr></table></figure>
-</li>
-<li><p>expr 命令用法<br>格式： expr(evaluate(求值) expressions(表达式)) 它既可用于整数，也可小数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">expr 2 + 2  #数字作用至少有一个空格，使用乘号，需要使用\转义 </div><div class="line">4</div><div class="line">i=`expr $i + 6`</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>使用expr判断变量是否是一个整数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">read -p &quot;input a number:&quot; a</div><div class="line">expr $a + 1 &gt;/dev/null 2&gt;&amp;1</div><div class="line">[ $? -eq 0 ] &amp;&amp; echo &quot;$a is a int&quot; || echo &quot;$a is a chars&quot;</div></pre></td></tr></table></figure></p>
-<p>提示：也可以使用expr match 功能进行整数判断，可执行 man expr 获得帮助</p>
-<ol>
-<li><p>利用expr 判断扩展名是否符合要求</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">if expr &quot;$1&quot; : &quot;.*\.pub&quot; &amp;&gt;/dev/null</div><div class="line">then</div><div class="line">echo &quot;your are useing $1&quot;</div><div class="line">else</div><div class="line">echo &quot;your use *.pbu file&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
-</li>
-<li><p>利用expr 计算字符串的长度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[admin@web_server ~]$ char=&apos;pengke&apos;</div><div class="line">[admin@web_server ~]$ expr length &apos;$char&apos;</div><div class="line">5</div></pre></td></tr></table></figure>
-</li>
-<li><p>利用bc命令来计算，它是Linux下面的计算器<br>按下bc后，就能进入运算界面。或者：<br><code>echo 3+5 | bc</code></p>
-</li>
-<li><p>利用sed 生成连续的数字序列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sed -s &quot;+&quot; 10      # -s 是自定义分隔符</div><div class="line">1+2+3+4+5+6+7+8+9+10</div><div class="line">echo  &#123;1..10&#125; | tr &quot; &quot; &quot;+&quot;   #生产空格分隔的数列，用tr将空格替换成+</div><div class="line">1+2+3+4+5+6+7+8+9+10</div></pre></td></tr></table></figure>
-</li>
-<li><p>利用awk实现运算<br>echo “7.7 3.8” | awk ‘{print ($1-$2)}’</p>
-</li>
-</ol>
-<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>大多运算命令都支持整数，支持小数的有：expr 和awk<br>expr 和 awk 都是很重要的命令</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1984,7 +1945,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2006,7 +1967,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
