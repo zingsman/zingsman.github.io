@@ -280,6 +280,151 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/18/python-picture-to-ascii/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/18/python-picture-to-ascii/" itemprop="url">
+                  python_picture_to_ascii
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-18T11:15:26+08:00">
+                2017-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="将图片转换成字符串图片"><a href="#将图片转换成字符串图片" class="headerlink" title="将图片转换成字符串图片"></a>将图片转换成字符串图片</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>学习python，作为入门python的基础项目。实验地址:<br><a href="https://www.shiyanlou.com/courses/370/labs/1191/document" target="_blank" rel="external">https://www.shiyanlou.com/courses/370/labs/1191/document</a></p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>pyhon 2.7环境</li>
+<li>使用库 argparse库。参考： <a href="https://blog.ixxoo.me/argparse.html" target="_blank" rel="external">https://blog.ixxoo.me/argparse.html</a></li>
+<li>实验 pillow(PIL) 库 <code>from PIL import Image</code></li>
+<li>Python 基础<h2 id="大概思路"><a href="#大概思路" class="headerlink" title="大概思路"></a>大概思路</h2><strong>用颜色灰度值（0黑~255白）转换成对应的字符串**</strong><br>一般读取图片坐标，我们得到的是RGB值。将图片RGB值转换为灰度：<br><code>gray ＝ 0.2126 * r + 0.7152 * g + 0.0722 * b</code><br>我们处理要转换的图片，输入几个参数（argument库的使用）：</li>
+</ul>
+<ol>
+<li>图片路径（必须参数）</li>
+<li>另存字符画的路径（默认当前目录output.txt）(可选参数)</li>
+<li>图片的长和宽(可选参数)<h3 id="处理过程"><a href="#处理过程" class="headerlink" title="处理过程"></a>处理过程</h3></li>
+<li>首先，读取我们输入的参数。</li>
+<li>使用PIL.image库打开我们的图片</li>
+<li>通过for循环，对长宽的坐标进行循环，并处理<code>getpixel((j,i))</code>得到我们的RGB值。</li>
+<li>将RGB值转到我们转换的字符串的函数中。输出相应的灰度值</li>
+<li>显示结果</li>
+</ol>
+<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#use python 2.7</span></div><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image <span class="comment">#使用pillow库</span></div><div class="line"><span class="keyword">import</span> argparse   <span class="comment">#使用argparse 库，能方便的处理参数</span></div><div class="line"></div><div class="line"><span class="comment"># command argument</span></div><div class="line"></div><div class="line">parser = argparse.ArgumentParser() <span class="comment">#定义一个变量对象，来设置参数信息</span></div><div class="line"></div><div class="line">parser.add_argument(<span class="string">"file"</span>,help = <span class="string">"input your picture"</span>)</div><div class="line"> <span class="comment"># "file"为必要参数。有--代表可选参数</span></div><div class="line">parser.add_argument(<span class="string">"-o"</span>,<span class="string">"--output"</span>, help = <span class="string">"if you want,input you result file"</span>) </div><div class="line"><span class="comment"># “-o”,是"--output"参数的简写。可选参数</span></div><div class="line">parser.add_argument(<span class="string">"--width"</span>,type = int, default = <span class="number">80</span>) </div><div class="line"><span class="comment">#定义可选参数，类型，和默认值</span></div><div class="line">parser.add_argument(<span class="string">"--height"</span>, type = int, default = <span class="number">80</span>)</div><div class="line"></div><div class="line">args = parser.parse_args()  <span class="comment"># 定义变量来获取参数</span></div><div class="line"></div><div class="line">IMG = args.file  <span class="comment">#文件图片</span></div><div class="line">WIDTH = args.width  <span class="comment"># 宽</span></div><div class="line">HEIGHT = args.height <span class="comment"># 高</span></div><div class="line">OUTPUT = args.output <span class="comment"># 另存为地址</span></div><div class="line"></div><div class="line">ascii_char = list(<span class="string">"$@B%8&amp;WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1&#123;&#125;[]?-_+~&lt;&gt;i!lI;:,\"^`'. "</span>)  </div><div class="line"><span class="comment"># 我们将0-255的颜色灰度值转换成这些字符串，即是越接近0，用越左边的字符串表示</span></div><div class="line"></div><div class="line"><span class="comment"># 256 clocr to 70 charstrings</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_char</span><span class="params">(r,g,b,alph = <span class="number">256</span>)</span>:</span></div><div class="line">    <span class="comment"># 为什么plph值默认值为:256, 而getpixel()穿过来的是[2,255]</span></div><div class="line">    <span class="keyword">if</span> alph == <span class="number">0</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">' '</span></div><div class="line">    length = len(ascii_char)</div><div class="line">    gray = int(<span class="number">0.2126</span> * r + <span class="number">0.7152</span> * g + <span class="number">0.0722</span> * b)  <span class="comment">#灰度值的计算公式，固定</span></div><div class="line"></div><div class="line">    unit = (<span class="number">256.0</span> + <span class="number">1</span>)/length</div><div class="line">    <span class="keyword">return</span> ascii_char[int(gray/unit)]</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:   </div><div class="line"><span class="comment"># 好习惯编程，别人import你的模块，不会执行里面的内容</span></div><div class="line"></div><div class="line">    im = Image.open(IMG)  <span class="comment">#打开图片对象，用im，使用PIL.Image库</span></div><div class="line">    im = im.resize((WIDTH,HEIGHT),Image.NEAREST) </div><div class="line">    <span class="comment">#充值图片大小，就是返回你定义的长高图片对象.Image.NEAREST是默认方式。可以不研究.</span></div><div class="line">    <span class="comment">#第二个参数resample有四个选项，分别是Image.NEAREST、Image.BILINEAR、Image.BICUBIC、Image.LANCZOS，默认是第一个，第四个质量最高。</span></div><div class="line">    txt = <span class="string">""</span> <span class="comment">#初始化txt</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(HEIGHT):</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(WIDTH):</div><div class="line">            txt += get_char(*im.getpixel((j,i)))</div><div class="line">            <span class="comment"># get_char（r,g,b,alph）有四个参数。我们使用im.getpixel()</span></div><div class="line">            <span class="comment">#函数，是得到某坐标(j,i) 图片的RGB值，和另一个参数，跟图片类型相关</span></div><div class="line">            <span class="comment"># 即是getpixel((j,i)) 得到值(R值，G值，B值，A值) 这里A值就是色彩空间。将A值穿给</span></div><div class="line">            <span class="comment"># get_char()函数的 alph。</span></div><div class="line">            <span class="comment">#这里使用 * 号，是对元组的拆封过程，会返回对应元组的所有对象。</span></div><div class="line"></div><div class="line">        txt += <span class="string">'\n'</span></div><div class="line">    <span class="keyword">print</span> txt</div><div class="line">    <span class="keyword">if</span> OUTPUT:</div><div class="line">        <span class="keyword">with</span> open(OUTPUT,<span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">            f.write(txt)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">with</span> open(<span class="string">"output.txt"</span>,<span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">            f.write(txt)</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>网上问题答疑:</p>
+<ol>
+<li><code>*im.getpixel((j, i))</code>返回的是什么？为什么要加“ <em> ”？<br>答:返回的是一个元组，这个元组有三个元素，分别对应三个颜色通道（RGB）的值。<br>`</em><code>是一个运算符，对元组使用</code><em><code>运算符即为元组拆封操作。元组拆封会返回元祖的所有元素。
+所以表达式</code></em>im.getpixel((j,i))` 返回 3 个值，正好对应 get_char() 函数的三个参数。还有一个值就是对应的get_char()的alph值</li>
+<li><code>im = im.resize((WIDTH, HEIGHT), Image.NEAREST)</code>，这里的Image.NEAREST和resize函数是什么意思?<br>答；返回的4个值为:<br> PIL.Image.NEAREST (use nearest neighbour),<br> PIL.Image.BILINEAR (linear interpolation),<br> PIL.Image.BICUBIC (cubic spline interpolation),<br> PIL.Image.LANCZOS (a high-quality downsampling filter)</li>
+<li>另答案:<br><code>getpixel</code> : 返回指定位置的像素，如果所打开的图像是多层次的图片，那这个方法就返回一个元组。<br><code>im.getpixel( xy ) =&gt; value or tuple</code><br>本实验中的函数，我的理解是，图片模式应该是RGBA:4元素元组，<br>而且：<code>def get_char(r,g,b,alpha = 256)</code>，这个函数里边也是4个参数。<br>然后，说下我对这个程序的理解：<br>`txt += get_char(im.getpixel((j,i)))``<br>这个函数，首先调用了im.getpixel函数，im.getpixel的参数是（j,i）。（j,i）其实是图片的横纵坐标。通过调用这个函数，把图片的横纵坐标上的颜色，分割成了(r,g,b,alpha)这个四个参数，然后调用get_char这个函数。<br>再说下get_char这个函数是怎么运行的。<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_char</span><span class="params">(r,g,b,alpha = <span class="number">256</span>)</span>:</span></div><div class="line"><span class="keyword">if</span> alpha == <span class="number">0</span>: //如果alpha等于<span class="number">0</span>，也就是判断图片现在是不是没有了。</div><div class="line"><span class="keyword">return</span> <span class="string">' '</span></div><div class="line">length = len(ascii_char)//就是上边那一串字符串的长度</div><div class="line">gray = int(<span class="number">0.2126</span> r + <span class="number">0.7152</span> g + <span class="number">0.0722</span> b) //灰度的计算公式</div><div class="line"><span class="comment">#####另外：</span></div><div class="line">unit = (<span class="number">256.0</span> + <span class="number">1</span>)/length</div><div class="line"><span class="keyword">return</span> ascii_char[int(gray/unit)]  //其实这个就是gray*length/<span class="number">257</span>，这个公式相当于按照灰度，在那串字符串中选一个字母。。。</div></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/17/vim-use/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -363,16 +508,16 @@
 <ul>
 <li><code>yy</code> 复制光标当前行，  <code>2yy</code>就是 复制光标当前2行</li>
 <li><code>p</code> 在光标下一行粘贴复制的内容</li>
-<li><code>dd</code> 删除光标当前行，  <code>2dd</code>  删除光标一下多少行。<code>d</code>为删除操作，如果你按<code>d</code>,在按下光标，就会删除2行，相当于：<code>2dd</code><h3 id="编辑模式"><a href="#编辑模式" class="headerlink" title="编辑模式"></a>编辑模式</h3>在普通模式下，按<code>i</code> 或者<code>a</code>进入编辑模式。在编辑模式里，可以编辑文本。<br>返回到普通模式按<code>esc</code> 大写的I和A 分别表示在行首和行末插入。<h3 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h3>进入命令行模式，在普通模式下，执行命令按：<code>:+命令</code> 搜索按:<code>/+命令</code> 或者<code>?+命令</code><br>过滤命令(<code>!</code>键)。在命令完成之后，回到原来的模式，通常我普通模式<h2 id="vim退出"><a href="#vim退出" class="headerlink" title="vim退出"></a>vim退出</h2><h3 id="命令退出"><a href="#命令退出" class="headerlink" title="命令退出"></a>命令退出</h3>vim退出有以下几种方式：<br>命令 | 解释说明 |<br>——| ———|<br><code>:q!</code> | 强制退出，不保存|<br><code>:q</code>  | 退出|<br><code>:wq!</code>| 强制保存并退出|<br><code>:w &lt;文件路径&gt;</code> |文件另存为|<br><code>:saveas &lt;文件路径&gt;</code> |文件另存为|<br><code>:x</code> | 保存并退出 |<br><code>:wq</code> | 保存并退出 |<h3 id="快捷键退出"><a href="#快捷键退出" class="headerlink" title="快捷键退出"></a>快捷键退出</h3>在普通模式下 <code>shift + zz</code> 保存并退出<h2 id="常用的vim命令"><a href="#常用的vim命令" class="headerlink" title="常用的vim命令"></a>常用的vim命令</h2><h3 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令:"></a>删除命令:</h3><code>.</code> 重复上一次命令<br><code>x</code> 普通模式下输入<code>x</code>,删除第一个字符<h3 id="文本跳转"><a href="#文本跳转" class="headerlink" title="文本跳转"></a>文本跳转</h3><code>10x</code> 连续删除10个字符<br><code>3dd</code> 连续删除3行<br><code>nG</code> 光标移动到地几行，或者 <code>: 10 G</code><br><code>gg</code> 光标移动到首行<br><code>G</code> 光标移动到尾行<br><code>:set nu</code>  设置显示行号<h3 id="行内跳转"><a href="#行内跳转" class="headerlink" title="行内跳转"></a>行内跳转</h3><code>w</code> 到下一个单词开头<br><code>e</code> 到下一个单词开头<br><code>b</code> 到下一个单词开头<br><code>ge</code> 到下一个单词开头<br><code>0或^</code> 到下一个单词开头<br><code>$</code> 到下一个单词开头<br><code>f&lt;字母&gt;</code> 向后搜字母，并跳到第一个匹配之前的文章<h3 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h3></li>
-<li>普通模式中，yy复制游标所在的整行（3yy表示复制3行）</li>
-<li>普通模式中，y^ 复制至行首，或y0。不含光标所在处字符。</li>
-<li>普通模式中，y$ 复制至行尾。含光标所在处字符。</li>
-<li>普通模式中，yw 复制一个单词。</li>
-<li>普通模式中，y2w 复制两个单词。</li>
-<li>普通模式中，yG 复制至文本末。</li>
-<li>普通模式中，y1G 复制至文本开头。<br><strong>粘贴</strong></li>
-<li>普通模式中，p(小写)代表粘贴至光标后（下）</li>
-<li>普通模式中，P(大写)代表粘贴至光标前（上）<br><strong>剪切</strong><br>其实前面讲得dd删除命令就是剪切，你每次<code>dd</code>删除文档内容后，便可以使用p来粘贴，也这一点可以让我们实现一个很爽快的功能——交换上下行：</li>
+<li><code>dd</code> 删除光标当前行，  <code>2dd</code>  删除光标一下多少行。<code>d</code>为删除操作，如果你按<code>d</code>,在按下光标，就会删除2行，相当于：<code>2dd</code><h3 id="编辑模式"><a href="#编辑模式" class="headerlink" title="编辑模式"></a>编辑模式</h3>在普通模式下，按<code>i</code> 或者<code>a</code>进入编辑模式。在编辑模式里，可以编辑文本。<br>返回到普通模式按<code>esc</code> 大写的I和A 分别表示在行首和行末插入。<h3 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h3>进入命令行模式，在普通模式下，执行命令按：<code>:+命令</code> 搜索按:<code>/+命令</code> 或者<code>?+命令</code><br>过滤命令(<code>!</code>键)。在命令完成之后，回到原来的模式，通常我普通模式<h2 id="vim退出"><a href="#vim退出" class="headerlink" title="vim退出"></a>vim退出</h2><h3 id="命令退出"><a href="#命令退出" class="headerlink" title="命令退出"></a>命令退出</h3>vim退出有以下几种方式：<br><code>:q!</code> 强制退出，不保存<br><code>:q</code>  退出<br><code>:wq!</code>  强制保存并退出<br><code>:w &lt;文件路径&gt;</code> 文件另存为<br><code>:saveas &lt;文件路径&gt;</code> 文件另存为<br><code>:x</code>  保存并退出<br><code>:wq</code>  保存并退出 <h3 id="快捷键退出"><a href="#快捷键退出" class="headerlink" title="快捷键退出"></a>快捷键退出</h3>在普通模式下 <code>shift + zz</code> 保存并退出<h2 id="常用的vim命令"><a href="#常用的vim命令" class="headerlink" title="常用的vim命令"></a>常用的vim命令</h2><h3 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令:"></a>删除命令:</h3><code>.</code> 重复上一次命令<br><code>x</code> 普通模式下输入<code>x</code>,删除第一个字符<h3 id="文本跳转"><a href="#文本跳转" class="headerlink" title="文本跳转"></a>文本跳转</h3><code>10x</code> 连续删除10个字符<br><code>3dd</code> 连续删除3行<br><code>nG</code> 光标移动到地几行，或者 <code>: 10 G</code><br><code>gg</code> 光标移动到首行<br><code>G</code> 光标移动到尾行<br><code>:set nu</code>  设置显示行号<h3 id="行内跳转"><a href="#行内跳转" class="headerlink" title="行内跳转"></a>行内跳转</h3><code>w</code> 到下一个单词开头<br><code>e</code> 到下一个单词开头<br><code>b</code> 到下一个单词开头<br><code>ge</code> 到下一个单词开头<br><code>0或^</code> 到下一个单词开头<br><code>$</code> 到下一个单词开头<br><code>f&lt;字母&gt;</code> 向后搜字母，并跳到第一个匹配之前的文章<h3 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h3></li>
+<li>普通模式中，<code>yy</code>复制游标所在的整行（<code>3yy</code>表示复制3行）</li>
+<li>普通模式中，<code>y^</code> 复制至行首，或<code>y0</code>。不含光标所在处字符。</li>
+<li>普通模式中，<code>y$</code> 复制至行尾。含光标所在处字符。</li>
+<li>普通模式中，<code>yw</code>复制一个单词。</li>
+<li>普通模式中，<code>y2w</code>复制两个单词。</li>
+<li>普通模式中，<code>yG</code>复制至文本末。</li>
+<li>普通模式中，<code>y1G</code>复制至文本开头。<br><strong>粘贴</strong></li>
+<li>普通模式中，<code>p</code>(小写)代表粘贴至光标后（下）</li>
+<li>普通模式中，<code>P</code>(大写)代表粘贴至光标前（上）<br><strong>剪切</strong><br>其实前面讲得<code>dd</code>删除命令就是剪切，你每次<code>dd</code>删除文档内容后，便可以使用p来粘贴，也这一点可以让我们实现一个很爽快的功能——交换上下行：</li>
 </ul>
 <p><code>ddp</code>,就这么简单，即实现了快速交换光标所在行与它下面的行</p>
 <h3 id="替换和撤销操作"><a href="#替换和撤销操作" class="headerlink" title="替换和撤销操作"></a>替换和撤销操作</h3><p><code>r+&lt;待替换字母&gt;</code>  将游标所在字母替换为指定字母<br><code>R</code>   连续替换，直到按下<code>Esc</code><br><code>u{n}</code>   撤销一次或n次操作<br><code>U(大写)</code>   撤销当前行的所有修改<br><code>Ctrl+r</code>  redo，即撤销undo的操作</p>
@@ -1055,7 +1200,7 @@
 <p>将变量定义在，其他文件中，host文件包含定义变量的文件<br>参考链接：<a href="http://www.ansible.com.cn/docs/intro_inventory.html" target="_blank" rel="external">http://www.ansible.com.cn/docs/intro_inventory.html</a></p>
 <h3 id="2-2-支持主机组里面的变量如下："><a href="#2-2-支持主机组里面的变量如下：" class="headerlink" title="2.2 支持主机组里面的变量如下："></a>2.2 支持主机组里面的变量如下：</h3><p>inventory文件的参数（组变量）如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">ansible_ssh_host</div><div class="line">      #将要连接的远程主机名.与你想要设定的主机的别名不同的话,可通过此变量设置.</div><div class="line"></div><div class="line">ansible_ssh_port</div><div class="line">      #ssh端口号.如果不是默认的端口号,通过此变量设置.</div><div class="line"></div><div class="line">ansible_ssh_user</div><div class="line">      #默认的 ssh 用户名</div><div class="line"></div><div class="line">ansible_ssh_pass</div><div class="line">      #ssh 密码(这种方式并不安全,我们强烈建议使用 --ask-pass 或 SSH 密钥)</div><div class="line"></div><div class="line">ansible_sudo_pass</div><div class="line">      #sudo 密码(这种方式并不安全,我们强烈建议使用 --ask-sudo-pass)</div><div class="line"></div><div class="line">ansible_sudo_exe (new in version 1.8)</div><div class="line">      #sudo 命令路径(适用于1.8及以上版本)</div><div class="line"></div><div class="line">ansible_connection</div><div class="line">      #与主机的连接类型.比如:local, ssh 或者 paramiko. Ansible 1.2 以前默认使用</div><div class="line">      # paramiko.1.2 以后默认使用 &apos;smart&apos;,&apos;smart&apos; 方式会根据是否</div><div class="line">      #支持ControlPersist, 来判断&apos;ssh&apos; 方式是否可行.</div><div class="line"></div><div class="line">ansible_ssh_private_key_file</div><div class="line">      #ssh 使用的私钥文件.适用于有多个密钥,而你不想使用 SSH 代理的情况.</div><div class="line"></div><div class="line">ansible_shell_type</div><div class="line">      #目标系统的shell类型.默认情况下,命令的执行使用 &apos;sh&apos; 语法,</div><div class="line">      #可设置为 &apos;csh&apos; 或 &apos;fish&apos;.</div><div class="line"></div><div class="line">ansible_python_interpreter</div><div class="line">      #目标主机的 python 路径.适用于的情况: 系统中有多个 Python, </div><div class="line">      #或者命令路径不是&quot;/usr/bin/python&quot;,比如  \*BSD, 或者 /usr/bin/python</div><div class="line">      #不是 2.X 版本的 Python.我们不使用 &quot;/usr/bin/env&quot; 机制,</div><div class="line">      #因为这要求远程用户的路径设置正确,且要求 &quot;python&quot; 可执行程序名不可</div><div class="line">      #为 python以外的名字(实际有可能名为python26).</div><div class="line">      #与 ansible_python_interpreter 的工作方式相同,</div><div class="line">      #可设定如 ruby 或 perl 的路径....</div></pre></td></tr></table></figure></p>
 <p>以上是静态的inventory 文件，也可以是inventory 动态文件，保存在数据库中等<br>例如： 配置管理数据库工具：  ansible-cmdb  这个很重要，可以通过web方式，显示出来<br>参考链接：<a href="http://www.ansible.com.cn/docs/intro_dynamic_inventory.html" target="_blank" rel="external">http://www.ansible.com.cn/docs/intro_dynamic_inventory.html</a><br>参考链接：<a href="http://www.ansible.com.cn/docs/developing_inventory.html" target="_blank" rel="external">http://www.ansible.com.cn/docs/developing_inventory.html</a></p>
-<h3 id="2-3-patterns-（模式）"><a href="#2-3-patterns-（模式）" class="headerlink" title="2.3 patterns  （模式）"></a>2.3 patterns  （模式）</h3><p>它就是 不用playbooks，直接用ansible执行一系列命令<br>在Ansible中,Patterns 是指我们怎样确定由哪一台主机来管理. 意思就是与哪台主机进行交互.<br>但是在:doc:playbooks 中它指的是对应主机应用特定的配置或执行特定进程.<br>例子：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ansible webservers -m service -a "name=httpd state=restarted"`</div><div class="line"><span class="meta">#</span>若多个组： 用冒号隔开，表示或， 表示在一个组，不在另一个组用：</div><div class="line">ansible webservers:test -m service -a "name=httpd state=restarted"</div><div class="line">ansible webservers:!test -m service -a "name=httpd state=restarted"</div><div class="line">ansible webservers:&amp;test -m service -a "name=httpd state=restarted"   #两个组的交集</div></pre></td></tr></table></figure></p>
+<h3 id="2-3-patterns-（模式）"><a href="#2-3-patterns-（模式）" class="headerlink" title="2.3 patterns  （模式）"></a>2.3 patterns  （模式）</h3><p>它就是 不用playbooks，直接用ansible执行一系列命令<br>在Ansible中,Patterns 是指我们怎样确定由哪一台主机来管理. 意思就是与哪台主机进行交互.<br>但是在:doc:playbooks 中它指的是对应主机应用特定的配置或执行特定进程.<br>例子：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ansible webservers -m service -a "name=httpd state=restarted"`</div><div class="line"><span class="meta">#</span><span class="bash">若多个组： 用冒号隔开，表示或， 表示在一个组，不在另一个组用：</span></div><div class="line">ansible webservers:test -m service -a "name=httpd state=restarted"</div><div class="line">ansible webservers:!test -m service -a "name=httpd state=restarted"</div><div class="line">ansible webservers:&amp;test -m service -a "name=httpd state=restarted"   #两个组的交集</div></pre></td></tr></table></figure></p>
 <p>它分为两类：一个是ansilbel（Ad-Hoc） 和 playbooks（ymal文件）</p>
 <h3 id="2-4-Introduction-To-Ad-Hoc-Commands"><a href="#2-4-Introduction-To-Ad-Hoc-Commands" class="headerlink" title="2.4  Introduction To Ad-Hoc Commands"></a>2.4  Introduction To Ad-Hoc Commands</h3><p>所谓 ad-hoc 命令是什么呢?</p>
 <ol>
@@ -1665,237 +1810,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/19/shell-panduan/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZingsMan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZingsMan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/19/shell-panduan/" itemprop="url">
-                  shell中条件测试与判断语句
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-19T14:21:48+08:00">
-                2017-06-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SHELL/" itemprop="url" rel="index">
-                    <span itemprop="name">SHELL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>在shell中，执行条件表达式后会返回<code>真</code>或<code>假</code>，<code>0</code>表示真，非0表示假。下列是常见的条件测试常用的语法。</p>
-<ol>
-<li>test &lt;测试表达示&gt;   test后面有个空格，再接表达式。</li>
-<li>[ 测试表达式 ]      中括号里面，左右各有一个空格。</li>
-<li>[[ 测试表达式 ]]    双中括号，是很新的用法。</li>
-<li>((测试表达式))      这个两端不需要空格<br>注意：第一种用法和第二种用法是等价的，2方法用的更广，里面可以使用通配符进行匹配。<br>“&amp;&amp;、||、&gt;、&lt;、”通常是出现在[[]]中，而[]中一般用 -a -o -gt -lt 代替判断符号</li>
-</ol>
-<h3 id="2-逻辑操作符-amp-amp"><a href="#2-逻辑操作符-amp-amp" class="headerlink" title="2. 逻辑操作符 &amp;&amp; ||"></a>2. 逻辑操作符 &amp;&amp; ||</h3><p>例子：<br><code>test -f file &amp;&amp; echo true || echo false</code><br>在上面例子中，如果file文件存在，返回0，代表真。<br>&amp;&amp; 代表前一次为真才执行。  || 表示，为假才执行。注意<strong><code>test -f file</code>返回结果假如第一次逻辑运算不匹配，会继续传到后面去</strong></p>
-<blockquote>
-<p>关于test,使用用法，可以使用man test查看</p>
-</blockquote>
-<p>test 命令的测试功能非常强大，和[]和[[]] 功能重合。可以选择性使用</p>
-<h3 id="3-举例"><a href="#3-举例" class="headerlink" title="3. 举例"></a>3. 举例</h3><ol>
-<li><code>test -f file</code> 等价于 <code>[ -f file ]</code> </li>
-<li>双中括号使用，双中括号里面两端也需要空格。<br><code>[[ -f file ]] &amp;&amp; echo yes || echo no</code></li>
-<li>test 常用参数，可以判断是否为空，各种权限（rwx），大小，文件的新旧等 </li>
-</ol>
-<h3 id="4-特殊条件测试表达式举例-不使用if条件判断示情况下"><a href="#4-特殊条件测试表达式举例-不使用if条件判断示情况下" class="headerlink" title="4. 特殊条件测试表达式举例(不使用if条件判断示情况下)"></a>4. 特殊条件测试表达式举例(不使用if条件判断示情况下)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[ 表达式 ] &amp;&amp;&#123;</div><div class="line">    命令1</div><div class="line">    命令2</div><div class="line">&#125;</div><div class="line">[[ 表达式 ]] &amp;&amp;&#123;</div><div class="line">    命令1 </div><div class="line">    命令2 </div><div class="line">&#125;</div><div class="line">test 条件1 &amp;&amp;&#123;</div><div class="line">    命令1</div><div class="line">    命令2</div><div class="line">&#125;</div><div class="line">#使用if判断结构</div><div class="line">if [ 表达式 ]</div><div class="line">  then</div><div class="line">    命令1</div><div class="line">    命令2</div><div class="line">fi</div></pre></td></tr></table></figure>
-<h3 id="5-字符串测试操作符"><a href="#5-字符串测试操作符" class="headerlink" title="5. 字符串测试操作符"></a>5. 字符串测试操作符</h3><p>可以使用 -n 参数 ，代表后面字符串不等于空， -z 参数，代表字符串为空<br>还可以使用 =  或者 != 表示两个字符串相等或者等。这里是指内容相当而不是长度。<br>整数二元比较操作符使用参考：</p>
-<table>
-<thead>
-<tr>
-<th>在[]和test中使用</th>
-<th>在(())和[[]]中使用</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-eq</td>
-<td>==或=</td>
-<td>相等，全拼为equal </td>
-</tr>
-<tr>
-<td>-ne</td>
-<td>!=</td>
-<td>不相等，全拼为not equal </td>
-</tr>
-<tr>
-<td>-ge</td>
-<td>&gt;=</td>
-<td>大于等于，全拼为greater than </td>
-</tr>
-<tr>
-<td>-gt</td>
-<td>&gt;</td>
-<td>大于，全拼为greater equal </td>
-</tr>
-<tr>
-<td>-le</td>
-<td>&lt;=</td>
-<td>小于等于，全拼为less equal </td>
-</tr>
-<tr>
-<td>-lt</td>
-<td>&lt;</td>
-<td>小于，全拼为less than </td>
-</tr>
-</tbody>
-</table>
-<p><strong>注意</strong> 一般来说，[]里面是不能&lt;或者&gt;,但是可以先使用转义符</p>
-<h3 id="6-逻辑比较符"><a href="#6-逻辑比较符" class="headerlink" title="6. 逻辑比较符"></a>6. 逻辑比较符</h3><table>
-<thead>
-<tr>
-<th>在[]和test中使用</th>
-<th>在(())和[[]]中使用</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-a</td>
-<td>&amp;&amp;</td>
-<td>and，与，两端为真，则结果为真</td>
-</tr>
-<tr>
-<td>-o</td>
-<td>两竖</td>
-<td>or，或，两端有一个为真，则结果为真</td>
-</tr>
-<tr>
-<td>!</td>
-<td>!</td>
-<td>not,非，两端相反，则结果为真</td>
-</tr>
-</tbody>
-</table>
-<p>举例：<br><code>[ -f file1 -a -f file2 ] &amp;&amp; echo yes || echo no</code></p>
-<h3 id="7-企业案例"><a href="#7-企业案例" class="headerlink" title="7. 企业案例"></a>7. 企业案例</h3><p>输入或者通过命令传入一个字符或数字，如果传入的数字等于1，就打印1；<br>如果等于2，就打印2.如果不等于1也不等于2.就提示输入不对。然后退出程序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">read -p &quot;please input your result:&quot; a</div><div class="line">[ &quot;$a&quot; == &quot;1&quot; ] &amp;&amp; echo 1 &amp;&amp; exit 0</div><div class="line">[ &quot;$a&quot; == &quot;2&quot; ] &amp;&amp; echo 2 &amp;&amp; exit 2</div><div class="line">[ &quot;$a&quot; -ne  &quot;1&quot; -o &quot;$a&quot; -ne &quot;2&quot; ] &amp;&amp;&#123;</div><div class="line">        echo &quot;your input error!&quot;</div><div class="line">        exit 1</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1945,7 +1859,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
