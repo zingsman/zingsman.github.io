@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="gdisk," />
+  <meta name="keywords" content="vmware," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="背景在安装系统中，一般来说超过2T的硬盘，就不能使用fdisk分区了。我们常用part分区，由于公司，要求将20T硬盘以逻辑卷形式挂在/data目录下。part分区好像并没有设置系统分区为格式 lvm 格式。所以需要 gdisk 分区。gdisk就是（GPT格式的disk） 配置配置之前，可以使用fdisk -l 查看，是那一块盘哦详细信息如下：12345678910111213141516171">
-<meta name="keywords" content="gdisk">
+<meta name="description" content="vmware 搭建vsan集群教材概述由于工作相关。以前自己看的明教教主的vmware5.5教学视频隔了很长一段时间。也没有动。最近在vmware官方试着安装了vsphere 6.5 一系列。 简单知识点 vmware 就是底层虚拟化技术。实现主机资源（cpu，内存，）和存储（光纤存储，iscsi）分离。集中管理，节约成本的很多功能。 vcenter 是vmware非常重要的主机。能够实现负载均衡">
+<meta name="keywords" content="vmware">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gdisk_分区">
-<meta property="og:url" content="http://yoursite.com/2017/07/24/gdisk-分区/index.html">
+<meta property="og:title" content="Vmware_6.5_Install">
+<meta property="og:url" content="http://yoursite.com/2017/08/31/Vmware-6-5-Install/index.html">
 <meta property="og:site_name" content="ZingsMan">
-<meta property="og:description" content="背景在安装系统中，一般来说超过2T的硬盘，就不能使用fdisk分区了。我们常用part分区，由于公司，要求将20T硬盘以逻辑卷形式挂在/data目录下。part分区好像并没有设置系统分区为格式 lvm 格式。所以需要 gdisk 分区。gdisk就是（GPT格式的disk） 配置配置之前，可以使用fdisk -l 查看，是那一块盘哦详细信息如下：12345678910111213141516171">
-<meta property="og:updated_time" content="2017-07-24T08:53:45.920Z">
+<meta property="og:description" content="vmware 搭建vsan集群教材概述由于工作相关。以前自己看的明教教主的vmware5.5教学视频隔了很长一段时间。也没有动。最近在vmware官方试着安装了vsphere 6.5 一系列。 简单知识点 vmware 就是底层虚拟化技术。实现主机资源（cpu，内存，）和存储（光纤存储，iscsi）分离。集中管理，节约成本的很多功能。 vcenter 是vmware非常重要的主机。能够实现负载均衡">
+<meta property="og:updated_time" content="2017-08-31T02:10:18.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gdisk_分区">
-<meta name="twitter:description" content="背景在安装系统中，一般来说超过2T的硬盘，就不能使用fdisk分区了。我们常用part分区，由于公司，要求将20T硬盘以逻辑卷形式挂在/data目录下。part分区好像并没有设置系统分区为格式 lvm 格式。所以需要 gdisk 分区。gdisk就是（GPT格式的disk） 配置配置之前，可以使用fdisk -l 查看，是那一块盘哦详细信息如下：12345678910111213141516171">
+<meta name="twitter:title" content="Vmware_6.5_Install">
+<meta name="twitter:description" content="vmware 搭建vsan集群教材概述由于工作相关。以前自己看的明教教主的vmware5.5教学视频隔了很长一段时间。也没有动。最近在vmware官方试着安装了vsphere 6.5 一系列。 简单知识点 vmware 就是底层虚拟化技术。实现主机资源（cpu，内存，）和存储（光纤存储，iscsi）分离。集中管理，节约成本的很多功能。 vcenter 是vmware非常重要的主机。能够实现负载均衡">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/24/gdisk-分区/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/31/Vmware-6-5-Install/"/>
 
 
 
 
 
-  <title> gdisk_分区 | ZingsMan </title>
+  <title> Vmware_6.5_Install | ZingsMan </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -280,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/24/gdisk-分区/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/31/Vmware-6-5-Install/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZingsMan">
@@ -301,7 +301,7 @@
             
             
               
-                gdisk_分区
+                Vmware_6.5_Install
               
             
           </h1>
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T16:37:38+08:00">
-                2017-07-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T09:11:46+08:00">
+                2017-08-31
               </time>
             
 
@@ -352,14 +352,31 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在安装系统中，一般来说超过2T的硬盘，就不能使用fdisk分区了。我们常用part分区，<br>由于公司，要求将20T硬盘以逻辑卷形式挂在/data目录下。part分区好像并没有设置<br>系统分区为格式 lvm 格式。所以需要 gdisk 分区。gdisk就是（GPT格式的disk）</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>配置之前，可以使用<code>fdisk -l</code> 查看，是那一块盘哦<br>详细信息如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">mkdir /data</div><div class="line"></div><div class="line">gdisk /dev/sdk</div><div class="line"></div><div class="line">Command (? for help): ?</div><div class="line">b       back up GPT data to a file</div><div class="line">c       change a partition's name</div><div class="line">d       delete a partition</div><div class="line">i       show detailed information on a partition</div><div class="line">l       list known partition types</div><div class="line">n       add a new partition</div><div class="line">o       create a new empty GUID partition table (GPT)</div><div class="line">p       print the partition table</div><div class="line">q       quit without saving changes</div><div class="line">r       recovery and transformation options (experts only)</div><div class="line">s       sort partitions</div><div class="line">t       change a partition's type code</div><div class="line">v       verify disk</div><div class="line">w       write table to disk and exit</div><div class="line">x       extra functionality (experts only)</div><div class="line">?       print this menu</div><div class="line"></div><div class="line">Command (? for help): </div><div class="line"></div><div class="line"></div><div class="line">Command (? for help): n</div><div class="line">Partition number (1-128, default 1): </div><div class="line">First sector (34-40957358046, default = 2048) or &#123;+-&#125;size&#123;KMGTP&#125;: </div><div class="line">Last sector (2048-40957358046, default = 40957358046) or &#123;+-&#125;size&#123;KMGTP&#125;: </div><div class="line">Current type is 'Linux filesystem'</div><div class="line">Hex code or GUID (L to show codes, Enter = 8300): 8e00</div><div class="line">Changed type of partition to 'Linux LVM'</div><div class="line"></div><div class="line">Command (? for help): p</div><div class="line">Disk /dev/sdk: 40957358080 sectors, 19.1 TiB</div><div class="line">Logical sector size: 512 bytes</div><div class="line">Disk identifier (GUID): F8C461D2-634A-4A57-B6CF-977F2A0E86BF</div><div class="line">Partition table holds up to 128 entries</div><div class="line">First usable sector is 34, last usable sector is 40957358046</div><div class="line">Partitions will be aligned on 2048-sector boundaries</div><div class="line">Total free space is 2014 sectors (1007.0 KiB)</div><div class="line"></div><div class="line">Number  Start (sector)    End (sector)  Size       Code  Name</div><div class="line">   1            2048     40957358046   19.1 TiB    8E00  Linux LVM</div><div class="line"></div><div class="line">wq</div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> 其中我们默认是使用全部分在一个分区，所有一直按确认即可。<br>帮助：<code>？</code>   <code>n</code> 是添加分区， <code>l</code>是查看分区格式类型。和fdisk不一样，这里的8e00 在fdisk是8e  <code>t</code>是改变分区系统格式<br>最后<code>wq</code> 退出即可。  最候使用 <code>fdisk -l</code>  看看我们的分区详情。</p>
-<p>然后分区，加入 lvm  其中lvcreat有新命令哦<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">pvcreate /dev/sdk1</div><div class="line">vgextend rhel /dev/sdk1</div><div class="line">vgdisplay </div><div class="line">lvcreate -n data -l 100%FREE rhel</div><div class="line">mkfs.xfs /dev/mapper/rhel-data </div><div class="line">vi /etc/fstab </div><div class="line">/dev/mapper/rhel-data   /data                   xfs     defaults        0 0</div><div class="line">mount -a</div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> lvcreat 命令是使用vg里面的空间，我们扩展或者新建时候，在选择大小时候，有两种方式<br>PE和SIZE：<code>vgdisplay</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">[root@localhost src]# vgdisplay </div><div class="line">  --- Volume group ---</div><div class="line">  VG Name               rhel</div><div class="line">  System ID             </div><div class="line">  Format                lvm2</div><div class="line">  Metadata Areas        2</div><div class="line">  Metadata Sequence No  6</div><div class="line">  VG Access             read/write</div><div class="line">  VG Status             resizable</div><div class="line">  MAX LV                0</div><div class="line">  Cur LV                4</div><div class="line">  Open LV               4</div><div class="line">  Max PV                0</div><div class="line">  Cur PV                2</div><div class="line">  Act PV                2</div><div class="line">  VG Size               19.98 TiB</div><div class="line">  PE Size               4.00 MiB</div><div class="line">  Total PE              5237883</div><div class="line">  Alloc PE / Size       5237883 / 19.98 TiB</div><div class="line">  Free  PE / Size       0 / 0 </div><div class="line"><span class="meta">  #</span><span class="bash">这里使用：PE模式命令：lvcreate -n data -l 100%FREE rhel</span></div><div class="line">  VG UUID               qt7tUm-NoXx-e1GP-QnCf-Ibrd-1s5f-kmQ0JM</div><div class="line">   </div><div class="line">[root@localhost src]#</div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> 其中讲道理是lvextend也可以用这种方式。现在总结2中方法：</p>
-<h3 id="lvcreat"><a href="#lvcreat" class="headerlink" title="lvcreat"></a>lvcreat</h3><p><code>lvcreate -n data -l 100%FREE rhel</code> 将vg中所有空间拿来使用（PE）<br><code>lvcreate -n data -L 100G rhel</code> 将vg里面100G给lv data使用</p>
-<h3 id="lvextend"><a href="#lvextend" class="headerlink" title="lvextend"></a>lvextend</h3><p><code>lvextend -L +100M /dev/mapper/rhel-data</code>    将vg里面100G给lv data使用</p>
+        <h1 id="vmware-搭建vsan集群教材"><a href="#vmware-搭建vsan集群教材" class="headerlink" title="vmware 搭建vsan集群教材"></a>vmware 搭建vsan集群教材</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>由于工作相关。以前自己看的明教教主的vmware5.5教学视频隔了很长一段时间。也没有动。最近在vmware官方试着安装了vsphere 6.5 一系列。</p>
+<h2 id="简单知识点"><a href="#简单知识点" class="headerlink" title="简单知识点"></a>简单知识点</h2><ul>
+<li>vmware 就是底层虚拟化技术。实现主机资源（cpu，内存，）和存储（光纤存储，iscsi）分离。集中管理，节约成本的很多功能。</li>
+<li>vcenter 是vmware非常重要的主机。能够实现负载均衡，冗余等（上行链路），能够实现高可用性（HA），动态资源分配（DRS）。在线迁移等等一系列技术。</li>
+<li>要实现vmware的HA和DRS的很多功能，前提条件是需要有 <strong>共享存储</strong> 比如：<code>FC</code> 和 <code>ISCSI</code> 。在实验环境没有这些，可用通过vmware的VSAN(Vphere Storage Area Network)技术.他是vmware的 存储技术<h2 id="下载软件"><a href="#下载软件" class="headerlink" title="下载软件"></a>下载软件</h2>链接：<a href="https://www.vmware.com/cn.html" target="_blank" rel="external">https://www.vmware.com/cn.html</a> 可以在官网注册账号免费评估，即可下载</li>
+</ul>
+<ol>
+<li>VMware vSphere Hypervisor (ESXi ISO) image (Includes VMware Tools) 这个 esxi 6.5主机系统</li>
+<li>VMware vCenter Server and modules for Windows 下载linux版的或者windows版的vcenter，这里我下载windows的vcenter</li>
+<li>linux安装vcenter简单，中移教程文档里面有。<h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3>环境使用公司vmware上一条虚拟机（16C32G）装workstation虚拟机来完成。默认情况下，虚拟机是不支持64位虚拟化。需要打开cpu虚拟化功能。需要在网页版vcenter上虚拟机设置里面cpu设置。<br>一共有5台虚拟机。3台esxi主机（4C8G）一台windows server 2012 sp2 安装vcenter（4C8G）。一台windows server 2012（4C-8G）装NTP服务器和DNS服务器。<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3></li>
+<li>安装3台esxi主机，并配置相应的网络。设置静态ip，DNS，esxi主机自己名字，我dns前缀</li>
+<li>安装1台虚拟机，做NTP服务器，和DNS服务器。配置如下：<br>首先安装NTP服务器：<br>打开注册表; regedit 依次打开：<br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\Type<br>双击 AnnounceFlags文件，将值改为5<br>双击  Enabled文件 将值改为1<br>关闭注册表，重启windows 时间服务<br><code>$ net stop w32time</code><br><code>$ net start w32time</code><br>若关闭防火墙，则不需要加入规则，开启则加入防火墙规则：<br><code>netsh firewall add portopening protocol = UDP port =123 name = NTPSERVER</code><br>设置 win32time服务<br><code>gpedit.msc</code><br>执行上述命令后，计算机策略对话框打开，按照如下路径  计算机配置\管理模板\系统\windows 时间服务\时间提供程序 找到服务器设置文件。<br>双击  启用 Windows NTP 服务器，显示状态 已启用即可<br>修改本地启动模式<br>运行服务<code>services.msc</code>,找到  Windows Time 文件,点击属性，改为延迟自动启动。</li>
+</ol>
+<p>dns服务器安装：<br>打开角色服务器管理器，点击新建服务器角色。下一步，选择dns服务器。安装即可。<br>安装后在服务器管理器页面有dns服务器。点击进去，添加正向解析区域。添加主机即可。</p>
+<ol>
+<li>安装vcenter<br>安装center，把下载的iso挂着在cd上。里面有个自动运行的文件。直接自动运行，填写好相关的信息。直接安装。</li>
+<li>安装成功后。登录vcenter上面。注意登录名是时候 vcenter@pengke.com 注意是@</li>
+<li>添加规则：<br>先键数据中心，再建vsan集群（建立时候选择打开vsan）。打开HA和DRA等<br>在做vsan时候，必须声明一个缓存盘和容量盘，所以，除了系统盘，至少还需要2快盘。其中一块盘，必须是SDD（闪存类型）（默认是HDD）。一块即可。配置的交换机就必须是混杂模式了。<br>将默认的HDD改为SDD：<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">esxcli storage core device list # 查看硬盘信息并找到相关盘符</div><div class="line">esxcli storage nmp satp rule add --satp VMW_SATP_LOCAL --device mpx.vmhba0:C0:T1:L0 --option "enable_local enable_ssd" #建SATP规则，并将可选参数设置为enable_ssd，注意磁盘编号</div><div class="line">esxcli storage nmp satp rule list | grep enable_ssd #查看刚才创建的规则</div><div class="line">esxcli storage core claiming reclaim -d mpx.vmhba0:C0:T1:L0 #重新申明磁盘，也只有盘符</div><div class="line">esxcli storage core device list -d mpx.vmhba0:C0:T1:L0 #验证</div><div class="line"><span class="meta"></span></div><div class="line">#若想将SSD重新恢复至HDD，则执行</div><div class="line"> esxcli storage nmp satp rule remove --satp VMW_SATP_LOCAL --device="mpx.vmhba0:C0:T1:L0"</div><div class="line"> esxcli storage core claiming reclaim -d mpx.vmhba0:C0:T1:L0</div><div class="line"> esxcli storage core device list -d mpx.vmhba0:C0:T1:L0</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>做vsan，只需一块改为hdd就行，我这hdd用来做缓存盘。</p>
+<ol>
+<li>vsan的流量，需要vmkernel交换机，也可以使用默认的switec 0 也可以专门创建新的交换机来跑vsan流量。我直接使用的默认交换机。将所有HA，Vmotion。vsan等流量都往上面跑。</li>
+<li>配置好交换机后。设置vsan配置<br>在vsan集群中，添加3个主机，配置点击存储配置。将3个主机的磁盘声明下，我有出系统盘后，2个磁盘。一个100G SDD 声明为 缓存盘，一个150 HDD声明为容量盘。就能看的3个主机vsan盘的数据盘变成了 450G。<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>写文档写得匆忙，在自己配置过程中遇到了很多问题，开始安装好后登录。不知道加@。<br>安装好vcenter时，登录进去，直接新建数据中心，就直接添加主机，导致各个主机上虚拟机不能兼容迁移。应该 新建数据中心-新建集群-新建主机，才合理。还有管理网络配置，配置标准交换机，配置vmkernel交换机，配置分布式交换机。等。最后，HA功能和drs功能没有测试。找机会测试下。还有就是vmware6的主机聚集和主机互斥功能没有找到。带测试。</li>
+</ol>
 
       
     </div>
@@ -410,7 +427,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/gdisk/" rel="tag"># gdisk</a>
+            <a href="/tags/vmware/" rel="tag"># vmware</a>
           
         </div>
       
@@ -423,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/19/ansible学习/" rel="next" title="ansible学习">
-                <i class="fa fa-chevron-left"></i> ansible学习
+              <a href="/2017/08/18/python-picture-to-ascii/" rel="next" title="python_picture_to_ascii">
+                <i class="fa fa-chevron-left"></i> python_picture_to_ascii
               </a>
             
           </div>
@@ -433,8 +450,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/26/sublime-install/" rel="prev" title="sublime_install">
-                sublime_install <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/04/shell-if-语句/" rel="prev" title="shell_if_语句">
+                shell_if_语句 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -593,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lvcreat"><span class="nav-number">2.1.</span> <span class="nav-text">lvcreat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lvextend"><span class="nav-number">2.2.</span> <span class="nav-text">lvextend</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vmware-搭建vsan集群教材"><span class="nav-number">1.</span> <span class="nav-text">vmware 搭建vsan集群教材</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单知识点"><span class="nav-number">1.2.</span> <span class="nav-text">简单知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载软件"><span class="nav-number">1.3.</span> <span class="nav-text">下载软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装软件"><span class="nav-number">1.4.</span> <span class="nav-text">安装软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境"><span class="nav-number">1.4.1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装步骤"><span class="nav-number">1.4.2.</span> <span class="nav-text">安装步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>

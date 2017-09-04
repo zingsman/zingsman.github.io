@@ -280,6 +280,292 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/shell-if-语句/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/04/shell-if-语句/" itemprop="url">
+                  shell_if_语句
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T09:38:56+08:00">
+                2017-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="shell脚本if语句的几种写法和格式"><a href="#shell脚本if语句的几种写法和格式" class="headerlink" title="shell脚本if语句的几种写法和格式"></a>shell脚本if语句的几种写法和格式</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>if条件判断语句，是控制流的非常重要的核心。自己在写shell脚本时候，总是忘记格式和写法。<br>if后面的条件判断语句，如果为真 0 ，就会执行then里面的表达式，如果为假，就会忽略then里面的命令。执行else里面的语句。else是匹配最近的一条if语句</p>
+<h3 id="单分支结构"><a href="#单分支结构" class="headerlink" title="单分支结构"></a>单分支结构</h3><p>下面的条件表达式可以是： <strong>test命令</strong>,<strong>[ ]</strong>, <strong>[[]]</strong> ,<strong>(())</strong>，<strong>其他命令</strong></p>
+<ul>
+<li><p>第一种语法</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if  &lt;条件表达式&gt;</div><div class="line">    then</div><div class="line">        指令</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+<li><p>第二种语法</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if &lt;条件表达式&gt;;then</div><div class="line">    指令</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>-第三种语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">if &lt;条件语句&gt;;then</div><div class="line">    if &lt;条件语句&gt;;then</div><div class="line">        指令1</div><div class="line">    fi</div><div class="line">    if &lt;条件语句&gt;;then</div><div class="line">        指令2</div><div class="line">    fi</div><div class="line">    指令0</div><div class="line">fi</div></pre></td></tr></table></figure></p>
+<h3 id="双分支结构"><a href="#双分支结构" class="headerlink" title="双分支结构"></a>双分支结构</h3><ul>
+<li>第一种语法<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if &lt;条件语句&gt;;then</div><div class="line">    指令1</div><div class="line">else</div><div class="line">    指令2</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="多分支结构"><a href="#多分支结构" class="headerlink" title="多分支结构"></a>多分支结构</h3><ul>
+<li>第一种语法<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">if &lt;条件语句&gt;;then</div><div class="line">    指令1</div><div class="line">elif</div><div class="line">    then</div><div class="line">    指令2</div><div class="line">elif </div><div class="line">    then</div><div class="line">    指令3</div><div class="line">else</div><div class="line">    指令4</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>注意</strong> 多分支结构，每个elif都要带then，耳而最后的else，是不能带else的。</p>
+<h3 id="if语句执行步骤"><a href="#if语句执行步骤" class="headerlink" title="if语句执行步骤"></a>if语句执行步骤</h3><p>if –&gt;（真）–&gt;指令<br>if –&gt;（假）–&gt;elif–&gt;（真）–&gt;指令<br>if –&gt;（假）–&gt;elif–&gt;（假）–&gt;ellse–&gt;指令</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/31/Vmware-6-5-Install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/31/Vmware-6-5-Install/" itemprop="url">
+                  Vmware_6.5_Install
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T09:11:46+08:00">
+                2017-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="vmware-搭建vsan集群教材"><a href="#vmware-搭建vsan集群教材" class="headerlink" title="vmware 搭建vsan集群教材"></a>vmware 搭建vsan集群教材</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>由于工作相关。以前自己看的明教教主的vmware5.5教学视频隔了很长一段时间。也没有动。最近在vmware官方试着安装了vsphere 6.5 一系列。</p>
+<h2 id="简单知识点"><a href="#简单知识点" class="headerlink" title="简单知识点"></a>简单知识点</h2><ul>
+<li>vmware 就是底层虚拟化技术。实现主机资源（cpu，内存，）和存储（光纤存储，iscsi）分离。集中管理，节约成本的很多功能。</li>
+<li>vcenter 是vmware非常重要的主机。能够实现负载均衡，冗余等（上行链路），能够实现高可用性（HA），动态资源分配（DRS）。在线迁移等等一系列技术。</li>
+<li>要实现vmware的HA和DRS的很多功能，前提条件是需要有 <strong>共享存储</strong> 比如：<code>FC</code> 和 <code>ISCSI</code> 。在实验环境没有这些，可用通过vmware的VSAN(Vphere Storage Area Network)技术.他是vmware的 存储技术<h2 id="下载软件"><a href="#下载软件" class="headerlink" title="下载软件"></a>下载软件</h2>链接：<a href="https://www.vmware.com/cn.html" target="_blank" rel="external">https://www.vmware.com/cn.html</a> 可以在官网注册账号免费评估，即可下载</li>
+</ul>
+<ol>
+<li>VMware vSphere Hypervisor (ESXi ISO) image (Includes VMware Tools) 这个 esxi 6.5主机系统</li>
+<li>VMware vCenter Server and modules for Windows 下载linux版的或者windows版的vcenter，这里我下载windows的vcenter</li>
+<li>linux安装vcenter简单，中移教程文档里面有。<h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3>环境使用公司vmware上一条虚拟机（16C32G）装workstation虚拟机来完成。默认情况下，虚拟机是不支持64位虚拟化。需要打开cpu虚拟化功能。需要在网页版vcenter上虚拟机设置里面cpu设置。<br>一共有5台虚拟机。3台esxi主机（4C8G）一台windows server 2012 sp2 安装vcenter（4C8G）。一台windows server 2012（4C-8G）装NTP服务器和DNS服务器。<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3></li>
+<li>安装3台esxi主机，并配置相应的网络。设置静态ip，DNS，esxi主机自己名字，我dns前缀</li>
+<li>安装1台虚拟机，做NTP服务器，和DNS服务器。配置如下：<br>首先安装NTP服务器：<br>打开注册表; regedit 依次打开：<br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\Type<br>双击 AnnounceFlags文件，将值改为5<br>双击  Enabled文件 将值改为1<br>关闭注册表，重启windows 时间服务<br><code>$ net stop w32time</code><br><code>$ net start w32time</code><br>若关闭防火墙，则不需要加入规则，开启则加入防火墙规则：<br><code>netsh firewall add portopening protocol = UDP port =123 name = NTPSERVER</code><br>设置 win32time服务<br><code>gpedit.msc</code><br>执行上述命令后，计算机策略对话框打开，按照如下路径  计算机配置\管理模板\系统\windows 时间服务\时间提供程序 找到服务器设置文件。<br>双击  启用 Windows NTP 服务器，显示状态 已启用即可<br>修改本地启动模式<br>运行服务<code>services.msc</code>,找到  Windows Time 文件,点击属性，改为延迟自动启动。</li>
+</ol>
+<p>dns服务器安装：<br>打开角色服务器管理器，点击新建服务器角色。下一步，选择dns服务器。安装即可。<br>安装后在服务器管理器页面有dns服务器。点击进去，添加正向解析区域。添加主机即可。</p>
+<ol>
+<li>安装vcenter<br>安装center，把下载的iso挂着在cd上。里面有个自动运行的文件。直接自动运行，填写好相关的信息。直接安装。</li>
+<li>安装成功后。登录vcenter上面。注意登录名是时候 vcenter@pengke.com 注意是@</li>
+<li>添加规则：<br>先键数据中心，再建vsan集群（建立时候选择打开vsan）。打开HA和DRA等<br>在做vsan时候，必须声明一个缓存盘和容量盘，所以，除了系统盘，至少还需要2快盘。其中一块盘，必须是SDD（闪存类型）（默认是HDD）。一块即可。配置的交换机就必须是混杂模式了。<br>将默认的HDD改为SDD：<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">esxcli storage core device list # 查看硬盘信息并找到相关盘符</div><div class="line">esxcli storage nmp satp rule add --satp VMW_SATP_LOCAL --device mpx.vmhba0:C0:T1:L0 --option "enable_local enable_ssd" #建SATP规则，并将可选参数设置为enable_ssd，注意磁盘编号</div><div class="line">esxcli storage nmp satp rule list | grep enable_ssd #查看刚才创建的规则</div><div class="line">esxcli storage core claiming reclaim -d mpx.vmhba0:C0:T1:L0 #重新申明磁盘，也只有盘符</div><div class="line">esxcli storage core device list -d mpx.vmhba0:C0:T1:L0 #验证</div><div class="line"><span class="meta"></span></div><div class="line">#若想将SSD重新恢复至HDD，则执行</div><div class="line"> esxcli storage nmp satp rule remove --satp VMW_SATP_LOCAL --device="mpx.vmhba0:C0:T1:L0"</div><div class="line"> esxcli storage core claiming reclaim -d mpx.vmhba0:C0:T1:L0</div><div class="line"> esxcli storage core device list -d mpx.vmhba0:C0:T1:L0</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>做vsan，只需一块改为hdd就行，我这hdd用来做缓存盘。</p>
+<ol>
+<li>vsan的流量，需要vmkernel交换机，也可以使用默认的switec 0 也可以专门创建新的交换机来跑vsan流量。我直接使用的默认交换机。将所有HA，Vmotion。vsan等流量都往上面跑。</li>
+<li>配置好交换机后。设置vsan配置<br>在vsan集群中，添加3个主机，配置点击存储配置。将3个主机的磁盘声明下，我有出系统盘后，2个磁盘。一个100G SDD 声明为 缓存盘，一个150 HDD声明为容量盘。就能看的3个主机vsan盘的数据盘变成了 450G。<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>写文档写得匆忙，在自己配置过程中遇到了很多问题，开始安装好后登录。不知道加@。<br>安装好vcenter时，登录进去，直接新建数据中心，就直接添加主机，导致各个主机上虚拟机不能兼容迁移。应该 新建数据中心-新建集群-新建主机，才合理。还有管理网络配置，配置标准交换机，配置vmkernel交换机，配置分布式交换机。等。最后，HA功能和drs功能没有测试。找机会测试下。还有就是vmware6的主机聚集和主机互斥功能没有找到。带测试。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/18/python-picture-to-ascii/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1200,7 +1486,7 @@
 <p>将变量定义在，其他文件中，host文件包含定义变量的文件<br>参考链接：<a href="http://www.ansible.com.cn/docs/intro_inventory.html" target="_blank" rel="external">http://www.ansible.com.cn/docs/intro_inventory.html</a></p>
 <h3 id="2-2-支持主机组里面的变量如下："><a href="#2-2-支持主机组里面的变量如下：" class="headerlink" title="2.2 支持主机组里面的变量如下："></a>2.2 支持主机组里面的变量如下：</h3><p>inventory文件的参数（组变量）如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">ansible_ssh_host</div><div class="line">      #将要连接的远程主机名.与你想要设定的主机的别名不同的话,可通过此变量设置.</div><div class="line"></div><div class="line">ansible_ssh_port</div><div class="line">      #ssh端口号.如果不是默认的端口号,通过此变量设置.</div><div class="line"></div><div class="line">ansible_ssh_user</div><div class="line">      #默认的 ssh 用户名</div><div class="line"></div><div class="line">ansible_ssh_pass</div><div class="line">      #ssh 密码(这种方式并不安全,我们强烈建议使用 --ask-pass 或 SSH 密钥)</div><div class="line"></div><div class="line">ansible_sudo_pass</div><div class="line">      #sudo 密码(这种方式并不安全,我们强烈建议使用 --ask-sudo-pass)</div><div class="line"></div><div class="line">ansible_sudo_exe (new in version 1.8)</div><div class="line">      #sudo 命令路径(适用于1.8及以上版本)</div><div class="line"></div><div class="line">ansible_connection</div><div class="line">      #与主机的连接类型.比如:local, ssh 或者 paramiko. Ansible 1.2 以前默认使用</div><div class="line">      # paramiko.1.2 以后默认使用 &apos;smart&apos;,&apos;smart&apos; 方式会根据是否</div><div class="line">      #支持ControlPersist, 来判断&apos;ssh&apos; 方式是否可行.</div><div class="line"></div><div class="line">ansible_ssh_private_key_file</div><div class="line">      #ssh 使用的私钥文件.适用于有多个密钥,而你不想使用 SSH 代理的情况.</div><div class="line"></div><div class="line">ansible_shell_type</div><div class="line">      #目标系统的shell类型.默认情况下,命令的执行使用 &apos;sh&apos; 语法,</div><div class="line">      #可设置为 &apos;csh&apos; 或 &apos;fish&apos;.</div><div class="line"></div><div class="line">ansible_python_interpreter</div><div class="line">      #目标主机的 python 路径.适用于的情况: 系统中有多个 Python, </div><div class="line">      #或者命令路径不是&quot;/usr/bin/python&quot;,比如  \*BSD, 或者 /usr/bin/python</div><div class="line">      #不是 2.X 版本的 Python.我们不使用 &quot;/usr/bin/env&quot; 机制,</div><div class="line">      #因为这要求远程用户的路径设置正确,且要求 &quot;python&quot; 可执行程序名不可</div><div class="line">      #为 python以外的名字(实际有可能名为python26).</div><div class="line">      #与 ansible_python_interpreter 的工作方式相同,</div><div class="line">      #可设定如 ruby 或 perl 的路径....</div></pre></td></tr></table></figure></p>
 <p>以上是静态的inventory 文件，也可以是inventory 动态文件，保存在数据库中等<br>例如： 配置管理数据库工具：  ansible-cmdb  这个很重要，可以通过web方式，显示出来<br>参考链接：<a href="http://www.ansible.com.cn/docs/intro_dynamic_inventory.html" target="_blank" rel="external">http://www.ansible.com.cn/docs/intro_dynamic_inventory.html</a><br>参考链接：<a href="http://www.ansible.com.cn/docs/developing_inventory.html" target="_blank" rel="external">http://www.ansible.com.cn/docs/developing_inventory.html</a></p>
-<h3 id="2-3-patterns-（模式）"><a href="#2-3-patterns-（模式）" class="headerlink" title="2.3 patterns  （模式）"></a>2.3 patterns  （模式）</h3><p>它就是 不用playbooks，直接用ansible执行一系列命令<br>在Ansible中,Patterns 是指我们怎样确定由哪一台主机来管理. 意思就是与哪台主机进行交互.<br>但是在:doc:playbooks 中它指的是对应主机应用特定的配置或执行特定进程.<br>例子：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ansible webservers -m service -a "name=httpd state=restarted"`</div><div class="line"><span class="meta">#</span><span class="bash">若多个组： 用冒号隔开，表示或， 表示在一个组，不在另一个组用：</span></div><div class="line">ansible webservers:test -m service -a "name=httpd state=restarted"</div><div class="line">ansible webservers:!test -m service -a "name=httpd state=restarted"</div><div class="line">ansible webservers:&amp;test -m service -a "name=httpd state=restarted"   #两个组的交集</div></pre></td></tr></table></figure></p>
+<h3 id="2-3-patterns-（模式）"><a href="#2-3-patterns-（模式）" class="headerlink" title="2.3 patterns  （模式）"></a>2.3 patterns  （模式）</h3><p>它就是 不用playbooks，直接用ansible执行一系列命令<br>在Ansible中,Patterns 是指我们怎样确定由哪一台主机来管理. 意思就是与哪台主机进行交互.<br>但是在:doc:playbooks 中它指的是对应主机应用特定的配置或执行特定进程.<br>例子：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ansible webservers -m service -a "name=httpd state=restarted"`</div><div class="line"><span class="meta">#</span>若多个组： 用冒号隔开，表示或， 表示在一个组，不在另一个组用：</div><div class="line">ansible webservers:test -m service -a "name=httpd state=restarted"</div><div class="line">ansible webservers:!test -m service -a "name=httpd state=restarted"</div><div class="line">ansible webservers:&amp;test -m service -a "name=httpd state=restarted"   #两个组的交集</div></pre></td></tr></table></figure></p>
 <p>它分为两类：一个是ansilbel（Ad-Hoc） 和 playbooks（ymal文件）</p>
 <h3 id="2-4-Introduction-To-Ad-Hoc-Commands"><a href="#2-4-Introduction-To-Ad-Hoc-Commands" class="headerlink" title="2.4  Introduction To Ad-Hoc Commands"></a>2.4  Introduction To Ad-Hoc Commands</h3><p>所谓 ad-hoc 命令是什么呢?</p>
 <ol>
@@ -1475,341 +1761,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/powerer-linux-install/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZingsMan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZingsMan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/23/powerer-linux-install/" itemprop="url">
-                  IBM惠普powerer-linux装redhat系统
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T14:33:03+08:00">
-                2017-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WORK/" itemprop="url" rel="index">
-                    <span itemprop="name">WORK</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="寻找系统"><a href="#寻找系统" class="headerlink" title="寻找系统"></a>寻找系统</h3><p>power-linux系统是<code>ppc64le</code>系统架构，平常的X86，或者64bit架构的系统都不支持。<br>下载特定的系统<code>redhat7.2</code>下载地址，网上自行寻找。<br><code>RHEL-7.2-Server-ppc64le-dvd.iso</code></p>
-<h3 id="power-linux介绍和自己理解"><a href="#power-linux介绍和自己理解" class="headerlink" title="power-linux介绍和自己理解"></a>power-linux介绍和自己理解</h3><ol>
-<li>power-linux和华为服务打不通，ibm的web管理界面，远远没有华为好用和方便。</li>
-<li>power-linux web管理界面上，控制台串口登录不进去系统，java总是报错。所以<br>使用了了ibmitools工具，进行串口登录。他登录方式是你的pc的cmd命令行。还是很方便。</li>
-<li>听说power-linux登录web管理界面，不能远程装系统（ubuntu可以），我也没有找到挂载<br>镜像的地方。</li>
-</ol>
-<h3 id="ibmitools软件的使用"><a href="#ibmitools软件的使用" class="headerlink" title="ibmitools软件的使用"></a>ibmitools软件的使用</h3><ol>
-<li>下载软件。百度网盘：</li>
-<li>点ibmitool.exe 运行。然后点run.bat运行，自动打开cmd命令行</li>
-<li>登录串口的终端就是这个cmd窗口。运行命令：<br><code>ipmitool -I lanplus -H server_ip_address -U ipmi_user -P ipmi_password sol activate</code> 其中ip是imana管理地址。用户名是登录管理界面的用户和密码。</li>
-<li>登录成功，就相当于登录了串口。—就是不能挂载镜像安装。</li>
-</ol>
-<h3 id="power-linux装系统redhat-7-2"><a href="#power-linux装系统redhat-7-2" class="headerlink" title="power-linux装系统redhat.7.2"></a>power-linux装系统redhat.7.2</h3><p>由于发现已经重装了系统，就没有装系统。</p>
-<h3 id="power-linux在线配置raid-卡"><a href="#power-linux在线配置raid-卡" class="headerlink" title="power-linux在线配置raid 卡"></a>power-linux在线配置raid 卡</h3><p>这里我们运用到工具。在系统中安装这个工具，就能命令行在线做raid<br><code>Arcconf-1.08-21385.ppc64le.rpm</code> 下载后直接 rpm -i 路径   安装即可<br>安装步骤：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#操作步骤</span></div><div class="line"><span class="comment">#1、上传raid卡管理工具安装包到系统，用rpm直接安装</span></div><div class="line">    Arcconf-1.08-21385.ppc64le.rpm</div><div class="line"><span class="comment">#2、查看raid卡信息</span></div><div class="line">   arcconf getconfig 1 |more   <span class="comment">#（注意硬盘的state mode ）</span></div><div class="line"><span class="comment">#3、一般默认前置硬盘state mode为RAW,将其改为ready，下一块盘为 1 0。</span></div><div class="line">   arcconf task start 1 device 0 0 initialize noprompt</div><div class="line"><span class="comment">#4、创建raid</span></div><div class="line">   arcconf create 1 logicaldrive max 10 0 0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 noprompt</div><div class="line"><span class="comment"># 其中 10 代表raid 10 ，后面数字就是盘符</span></div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> 一定要注意盘符的查看：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#查看命令：</span></div><div class="line">arcconf getconfig 1 |more</div><div class="line"><span class="comment">#结果：</span></div><div class="line">Logical device number 1</div><div class="line">   Logical device name                      : LogicalDrv 1</div><div class="line">   Block Size of member drives              : 512 Bytes</div><div class="line">   RAID level                               : 10          <span class="comment">#代表RAID 10</span></div><div class="line">   Unique Identifier                        : B83F682D</div><div class="line">   Status of logical device                 : Optimal</div><div class="line">   Additional details                       : Quick initialized</div><div class="line">   Size                                     : 11427830 MB</div><div class="line">   Parity space                             : 11427840 MB</div><div class="line">   Stripe-unit size                         : 256 KB</div><div class="line">   Read-cache setting                       : Enabled</div><div class="line">   Read-cache status                        : On</div><div class="line">   Write-cache setting                      : Enabled</div><div class="line">   Write-cache status                       : On</div><div class="line">   Partitioned                              : Yes</div><div class="line">   Protected by Hot-Spare                   : No</div><div class="line">   Bootable                                 : No</div><div class="line">   Failed stripes                           : No</div><div class="line">   Power settings                           : Disabled</div><div class="line"></div><div class="line"><span class="comment">#单个设备信息</span></div><div class="line">----------------------------------------------------------------------</div><div class="line">Physical Device information</div><div class="line">----------------------------------------------------------------------</div><div class="line">      Device <span class="comment">#0</span></div><div class="line">         Device is a Hard drive</div><div class="line">         State                              : Online</div><div class="line">         Block Size                         : 512 Bytes</div><div class="line">         Supported                          : Yes</div><div class="line">         Programmed Max Speed               : SATA 6.0 Gb/s</div><div class="line">         Transfer Speed                     : SATA 6.0 Gb/s</div><div class="line">         Reported Channel,Device(T:L)       : 0,0(0:0)    <span class="comment">#这里0,0就是盘符</span></div><div class="line">         Reported Location                  : Enclosure 0, Slot 0(Connector 0)</div><div class="line">         Reported ESD(T:L)                  : 2,0(0:0)</div><div class="line">         Vendor                             : ATA</div></pre></td></tr></table></figure></p>
-<h3 id="做好raid后就是使用part进行超过2T磁盘分区"><a href="#做好raid后就是使用part进行超过2T磁盘分区" class="headerlink" title="做好raid后就是使用part进行超过2T磁盘分区"></a>做好raid后就是使用part进行超过2T磁盘分区</h3><p>也可使用gdisk分区，gdisk分区和gdisk分区差不多。详情看 gdisk 分区<br>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">parted /dev/sdd</div><div class="line">mklabel gpt</div><div class="line">yes</div><div class="line"><span class="built_in">print</span></div><div class="line">mkpart primary 0 -1</div><div class="line">i</div><div class="line"><span class="built_in">print</span></div><div class="line">quit</div><div class="line"><span class="comment"># 进行挂载和格式化</span></div><div class="line">mkfs -t xfs /dev/sdb1   <span class="comment">#可能使用mke2fs格式化，或者其他ext4系统</span></div><div class="line"><span class="comment"># 挂载</span></div><div class="line">mount /dev/sdb1 /data</div><div class="line"><span class="comment"># 更新 /etc/fstab 文件</span></div><div class="line">/dev/sdb1               /data                   xfs     defaults        0 0</div></pre></td></tr></table></figure></p>
-<h3 id="然后进行最后的各项配置。"><a href="#然后进行最后的各项配置。" class="headerlink" title="然后进行最后的各项配置。"></a>然后进行最后的各项配置。</h3><p>配置包括：YUM源。用户，监控，网卡绑定等一系列操作</p>
-<blockquote>
-<p>这里在配置YUM源的方面。由于系统架构为ppc这种架构。以前搭建的yum源无法使用。<br>直接，将这个系统镜像里边的包解压放到yum源某个目录。<br>在客户端配置文件中。对应的url就能使用镜像yum源。</p>
-</blockquote>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>后面学习看看ansible自动化工具作配置。已经公司已经写好脚本的使用。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/22/yum-config/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZingsMan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZingsMan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/22/yum-config/" itemprop="url">
-                  内网yum源配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T15:15:43+08:00">
-                2017-06-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/配置/" itemprop="url" rel="index">
-                    <span itemprop="name">配置</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>在公司内网中，为了节约外网流量已经带宽，也为了安全目的，需要配置内网安全的yum源。</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li>需要一台主机，作为内网yum源，这台主机通过rsync协议，rsync命令，去同步centos或者阿里云镜像。</li>
-<li>配置yum服务器主机</li>
-<li>配置客户端</li>
-</ol>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
-<li>在yum主机上面新建存储仓库包的目录。并安装所需软件 createrepo 和 rsync</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#安装软件</span></div><div class="line">yum -y install createrepo rsync</div><div class="line"><span class="comment">#创建目录，我只用来放centos6.5的数据包</span></div><div class="line">mkdir -p /data/centos6.5 </div><div class="line"><span class="built_in">cd</span> /data/centos</div><div class="line"><span class="comment">#创建该仓库的索引目录</span></div><div class="line">createrepo -pdo /data/centos6.5 /data/centos6.5</div><div class="line"><span class="comment">#注意，我们在看官方源时候，分不清这个目录是什么。这个目录里面有os和update等子目录，这些子目录可以直接从官方源同步。理解为centos6.5总目录，里面放所有包</span></div></pre></td></tr></table></figure>
-<ul>
-<li>提供yum源文件查看。可用（nginx和python和apatch都可以）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 可以用Apache或nginx提供web服务，但用Python的http模块更简单，适用于内网环境</span></div><div class="line"><span class="built_in">cd</span> /data/centos6.5</div><div class="line">python -m SimpleHTTPServer 80 &amp;&gt;/dev/null &amp;</div><div class="line"><span class="comment">#可以通过浏览器输入本机IP查看。</span></div></pre></td></tr></table></figure>
-<ul>
-<li>放rpm包在仓库中。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 只下载软件不安装,若没有yumdownloader，就安装。</span></div><div class="line">yumdownloader pcre-devel openssl-devel </div><div class="line">createrepo --update /data/centos6.5  </div><div class="line"><span class="comment"># 每加入一个rpm包就要更新一下。</span></div><div class="line"><span class="comment">#平时yum安装软件时不删除安装包</span></div><div class="line"><span class="comment"># cat /etc/yum.conf </span></div><div class="line">keepcache=1</div><div class="line"><span class="comment"># 安装包存储目录</span></div><div class="line">cachedir=/var/cache/yum/<span class="variable">$basearch</span>/<span class="variable">$releasever</span></div><div class="line"><span class="comment"># /var/cache/yum/x86_64/6/base/packages</span></div></pre></td></tr></table></figure>
-<ul>
-<li>用rcync同步官方源到我的本地源服务器 。</li>
-</ul>
-<p>上面第3步只是将自己制作的rpm包，放入yum源。但还有一种企业需求，说的更具体一点，平时学生上课yum安装软件都是从公网下载的，占用带宽，因此在学校里搭建一个内网yum服务器，但又考虑到学生回家也要使用yum安装软件，如果yum软件的数据库文件repodata不一样，就会有问题。因此我想到的解决方法就是直接使用公网yum源的repodata。</p>
-<p>镜像同步公网yum源<br>上游yum源必须要支持rsync协议，否则不能使用rsync进行同步。<br><a href="http://mirrors.ustc.edu.cn/status/" target="_blank" rel="external">http://mirrors.ustc.edu.cn/status/</a><br>CentOS官方标准源：rsync://mirrors.ustc.edu.cn/centos/<br>epel源：rsync://mirrors.ustc.edu.cn/epel/<br>同步命令：<br>使用rsync同步yum源，为了节省带宽、磁盘和下载时间，我只同步了CentOS6的rpm包，这样所有的rpm包只占用了21G，全部同步需要300G左右。<br>同步base源，小技巧，我们安装系统的光盘镜像含有部分rpm包，大概3G，这些就不用重新下载。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#将官方的源，同步到本地，-a是保持所有源属性。</span></div><div class="line">/usr/bin/rsync -avzL rsync://mirrors.ustc.edu.cn/centos/6/ /data/centos6.5/</div><div class="line">/usr/bin/rsync -avzL rsync://mirrors.ustc.edu.cn/centos/7/ /data/centos7.2/</div><div class="line">/usr/bin/rsync -avzL rsync://mirrors.ustc.edu.cn/centos/5/ /data/centos5/</div><div class="line"><span class="comment"># epel源</span></div><div class="line">/usr/bin/rsync -av --exclude=debug rsync://mirrors.ustc.edu.cn/epel/6/x86_64/ /data/yum_data/epel/6/x86_64/</div></pre></td></tr></table></figure>
-<p>结果展示<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[root@KVM data]<span class="comment"># du -sh yum_data    </span></div><div class="line">21G     yum_data</div><div class="line">[root@KVM data]<span class="comment"># tree -L 3 yum_data/</span></div><div class="line">yum_data/</div><div class="line">├── centos</div><div class="line">│   ├── 6.5</div><div class="line">│   │   ├── extras</div><div class="line">│   │   ├── os</div><div class="line">│   │   └── updates</div><div class="line">│   └── RPM-GPG-KEY-CentOS-6</div><div class="line">├── epel</div><div class="line">│   └── 6</div><div class="line">│       └── x86_64</div></pre></td></tr></table></figure></p>
-<ol>
-<li>客户端配置</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># cd /etc/yum.repos.d</span></div><div class="line">[root@B yum.repos.d]<span class="comment"># vi zingsman.repo</span></div><div class="line">[zingsman]</div><div class="line">name=Server</div><div class="line">baseurl=http://10.0.0.5</div><div class="line"><span class="built_in">enable</span>=1</div><div class="line">gpgcheck=0</div><div class="line">[root@YUM ~]<span class="comment"># yum --enablerepo=zingsman --disablerepo=base,extras,updates,epel list </span></div><div class="line"><span class="comment"># 指定使用zingsman库</span></div></pre></td></tr></table></figure>
-<p>上面是临时使用内网yum源，想永久并简单使用yum -y install lrzsz命令，就需要修改配置文件将默认的repo文件关闭。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[root@oldboy ~]<span class="comment"># cd /etc/yum.repos.d/</span></div><div class="line">[root@oldboy yum.repos.d]<span class="comment"># vim CentOS-Base.repo</span></div><div class="line"><span class="comment"># 在每一个启动的源加上</span></div><div class="line"><span class="comment"># enabled=0   #改为1就启用，没有此参数也是启用。</span></div><div class="line">[base]</div><div class="line">…………</div><div class="line">enabled=0</div><div class="line">[updates]</div><div class="line">…………</div><div class="line">enabled=0</div><div class="line">[extras]</div><div class="line">…………</div><div class="line">enabled=0</div><div class="line"><span class="comment"># 还有其他开启的仓库就使用这个办法关闭。</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1859,7 +1810,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1881,7 +1832,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

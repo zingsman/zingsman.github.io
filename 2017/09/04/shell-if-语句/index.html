@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="gdisk," />
+  <meta name="keywords" content="SHELL," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="背景在安装系统中，一般来说超过2T的硬盘，就不能使用fdisk分区了。我们常用part分区，由于公司，要求将20T硬盘以逻辑卷形式挂在/data目录下。part分区好像并没有设置系统分区为格式 lvm 格式。所以需要 gdisk 分区。gdisk就是（GPT格式的disk） 配置配置之前，可以使用fdisk -l 查看，是那一块盘哦详细信息如下：12345678910111213141516171">
-<meta name="keywords" content="gdisk">
+<meta name="description" content="shell脚本if语句的几种写法和格式概述if条件判断语句，是控制流的非常重要的核心。自己在写shell脚本时候，总是忘记格式和写法。if后面的条件判断语句，如果为真 0 ，就会执行then里面的表达式，如果为假，就会忽略then里面的命令。执行else里面的语句。else是匹配最近的一条if语句 单分支结构下面的条件表达式可以是： test命令,[ ], [[]] ,(())，其他命令  第一种">
+<meta name="keywords" content="SHELL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gdisk_分区">
-<meta property="og:url" content="http://yoursite.com/2017/07/24/gdisk-分区/index.html">
+<meta property="og:title" content="shell_if_语句">
+<meta property="og:url" content="http://yoursite.com/2017/09/04/shell-if-语句/index.html">
 <meta property="og:site_name" content="ZingsMan">
-<meta property="og:description" content="背景在安装系统中，一般来说超过2T的硬盘，就不能使用fdisk分区了。我们常用part分区，由于公司，要求将20T硬盘以逻辑卷形式挂在/data目录下。part分区好像并没有设置系统分区为格式 lvm 格式。所以需要 gdisk 分区。gdisk就是（GPT格式的disk） 配置配置之前，可以使用fdisk -l 查看，是那一块盘哦详细信息如下：12345678910111213141516171">
-<meta property="og:updated_time" content="2017-07-24T08:53:45.920Z">
+<meta property="og:description" content="shell脚本if语句的几种写法和格式概述if条件判断语句，是控制流的非常重要的核心。自己在写shell脚本时候，总是忘记格式和写法。if后面的条件判断语句，如果为真 0 ，就会执行then里面的表达式，如果为假，就会忽略then里面的命令。执行else里面的语句。else是匹配最近的一条if语句 单分支结构下面的条件表达式可以是： test命令,[ ], [[]] ,(())，其他命令  第一种">
+<meta property="og:updated_time" content="2017-09-04T01:39:29.257Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gdisk_分区">
-<meta name="twitter:description" content="背景在安装系统中，一般来说超过2T的硬盘，就不能使用fdisk分区了。我们常用part分区，由于公司，要求将20T硬盘以逻辑卷形式挂在/data目录下。part分区好像并没有设置系统分区为格式 lvm 格式。所以需要 gdisk 分区。gdisk就是（GPT格式的disk） 配置配置之前，可以使用fdisk -l 查看，是那一块盘哦详细信息如下：12345678910111213141516171">
+<meta name="twitter:title" content="shell_if_语句">
+<meta name="twitter:description" content="shell脚本if语句的几种写法和格式概述if条件判断语句，是控制流的非常重要的核心。自己在写shell脚本时候，总是忘记格式和写法。if后面的条件判断语句，如果为真 0 ，就会执行then里面的表达式，如果为假，就会忽略then里面的命令。执行else里面的语句。else是匹配最近的一条if语句 单分支结构下面的条件表达式可以是： test命令,[ ], [[]] ,(())，其他命令  第一种">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/24/gdisk-分区/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/04/shell-if-语句/"/>
 
 
 
 
 
-  <title> gdisk_分区 | ZingsMan </title>
+  <title> shell_if_语句 | ZingsMan </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -280,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/24/gdisk-分区/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/shell-if-语句/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZingsMan">
@@ -301,7 +301,7 @@
             
             
               
-                gdisk_分区
+                shell_if_语句
               
             
           </h1>
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T16:37:38+08:00">
-                2017-07-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T09:38:56+08:00">
+                2017-09-04
               </time>
             
 
@@ -352,14 +352,27 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在安装系统中，一般来说超过2T的硬盘，就不能使用fdisk分区了。我们常用part分区，<br>由于公司，要求将20T硬盘以逻辑卷形式挂在/data目录下。part分区好像并没有设置<br>系统分区为格式 lvm 格式。所以需要 gdisk 分区。gdisk就是（GPT格式的disk）</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>配置之前，可以使用<code>fdisk -l</code> 查看，是那一块盘哦<br>详细信息如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">mkdir /data</div><div class="line"></div><div class="line">gdisk /dev/sdk</div><div class="line"></div><div class="line">Command (? for help): ?</div><div class="line">b       back up GPT data to a file</div><div class="line">c       change a partition's name</div><div class="line">d       delete a partition</div><div class="line">i       show detailed information on a partition</div><div class="line">l       list known partition types</div><div class="line">n       add a new partition</div><div class="line">o       create a new empty GUID partition table (GPT)</div><div class="line">p       print the partition table</div><div class="line">q       quit without saving changes</div><div class="line">r       recovery and transformation options (experts only)</div><div class="line">s       sort partitions</div><div class="line">t       change a partition's type code</div><div class="line">v       verify disk</div><div class="line">w       write table to disk and exit</div><div class="line">x       extra functionality (experts only)</div><div class="line">?       print this menu</div><div class="line"></div><div class="line">Command (? for help): </div><div class="line"></div><div class="line"></div><div class="line">Command (? for help): n</div><div class="line">Partition number (1-128, default 1): </div><div class="line">First sector (34-40957358046, default = 2048) or &#123;+-&#125;size&#123;KMGTP&#125;: </div><div class="line">Last sector (2048-40957358046, default = 40957358046) or &#123;+-&#125;size&#123;KMGTP&#125;: </div><div class="line">Current type is 'Linux filesystem'</div><div class="line">Hex code or GUID (L to show codes, Enter = 8300): 8e00</div><div class="line">Changed type of partition to 'Linux LVM'</div><div class="line"></div><div class="line">Command (? for help): p</div><div class="line">Disk /dev/sdk: 40957358080 sectors, 19.1 TiB</div><div class="line">Logical sector size: 512 bytes</div><div class="line">Disk identifier (GUID): F8C461D2-634A-4A57-B6CF-977F2A0E86BF</div><div class="line">Partition table holds up to 128 entries</div><div class="line">First usable sector is 34, last usable sector is 40957358046</div><div class="line">Partitions will be aligned on 2048-sector boundaries</div><div class="line">Total free space is 2014 sectors (1007.0 KiB)</div><div class="line"></div><div class="line">Number  Start (sector)    End (sector)  Size       Code  Name</div><div class="line">   1            2048     40957358046   19.1 TiB    8E00  Linux LVM</div><div class="line"></div><div class="line">wq</div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> 其中我们默认是使用全部分在一个分区，所有一直按确认即可。<br>帮助：<code>？</code>   <code>n</code> 是添加分区， <code>l</code>是查看分区格式类型。和fdisk不一样，这里的8e00 在fdisk是8e  <code>t</code>是改变分区系统格式<br>最后<code>wq</code> 退出即可。  最候使用 <code>fdisk -l</code>  看看我们的分区详情。</p>
-<p>然后分区，加入 lvm  其中lvcreat有新命令哦<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">pvcreate /dev/sdk1</div><div class="line">vgextend rhel /dev/sdk1</div><div class="line">vgdisplay </div><div class="line">lvcreate -n data -l 100%FREE rhel</div><div class="line">mkfs.xfs /dev/mapper/rhel-data </div><div class="line">vi /etc/fstab </div><div class="line">/dev/mapper/rhel-data   /data                   xfs     defaults        0 0</div><div class="line">mount -a</div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> lvcreat 命令是使用vg里面的空间，我们扩展或者新建时候，在选择大小时候，有两种方式<br>PE和SIZE：<code>vgdisplay</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">[root@localhost src]# vgdisplay </div><div class="line">  --- Volume group ---</div><div class="line">  VG Name               rhel</div><div class="line">  System ID             </div><div class="line">  Format                lvm2</div><div class="line">  Metadata Areas        2</div><div class="line">  Metadata Sequence No  6</div><div class="line">  VG Access             read/write</div><div class="line">  VG Status             resizable</div><div class="line">  MAX LV                0</div><div class="line">  Cur LV                4</div><div class="line">  Open LV               4</div><div class="line">  Max PV                0</div><div class="line">  Cur PV                2</div><div class="line">  Act PV                2</div><div class="line">  VG Size               19.98 TiB</div><div class="line">  PE Size               4.00 MiB</div><div class="line">  Total PE              5237883</div><div class="line">  Alloc PE / Size       5237883 / 19.98 TiB</div><div class="line">  Free  PE / Size       0 / 0 </div><div class="line"><span class="meta">  #</span><span class="bash">这里使用：PE模式命令：lvcreate -n data -l 100%FREE rhel</span></div><div class="line">  VG UUID               qt7tUm-NoXx-e1GP-QnCf-Ibrd-1s5f-kmQ0JM</div><div class="line">   </div><div class="line">[root@localhost src]#</div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> 其中讲道理是lvextend也可以用这种方式。现在总结2中方法：</p>
-<h3 id="lvcreat"><a href="#lvcreat" class="headerlink" title="lvcreat"></a>lvcreat</h3><p><code>lvcreate -n data -l 100%FREE rhel</code> 将vg中所有空间拿来使用（PE）<br><code>lvcreate -n data -L 100G rhel</code> 将vg里面100G给lv data使用</p>
-<h3 id="lvextend"><a href="#lvextend" class="headerlink" title="lvextend"></a>lvextend</h3><p><code>lvextend -L +100M /dev/mapper/rhel-data</code>    将vg里面100G给lv data使用</p>
+        <h1 id="shell脚本if语句的几种写法和格式"><a href="#shell脚本if语句的几种写法和格式" class="headerlink" title="shell脚本if语句的几种写法和格式"></a>shell脚本if语句的几种写法和格式</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>if条件判断语句，是控制流的非常重要的核心。自己在写shell脚本时候，总是忘记格式和写法。<br>if后面的条件判断语句，如果为真 0 ，就会执行then里面的表达式，如果为假，就会忽略then里面的命令。执行else里面的语句。else是匹配最近的一条if语句</p>
+<h3 id="单分支结构"><a href="#单分支结构" class="headerlink" title="单分支结构"></a>单分支结构</h3><p>下面的条件表达式可以是： <strong>test命令</strong>,<strong>[ ]</strong>, <strong>[[]]</strong> ,<strong>(())</strong>，<strong>其他命令</strong></p>
+<ul>
+<li><p>第一种语法</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if  &lt;条件表达式&gt;</div><div class="line">    then</div><div class="line">        指令</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+<li><p>第二种语法</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if &lt;条件表达式&gt;;then</div><div class="line">    指令</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>-第三种语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">if &lt;条件语句&gt;;then</div><div class="line">    if &lt;条件语句&gt;;then</div><div class="line">        指令1</div><div class="line">    fi</div><div class="line">    if &lt;条件语句&gt;;then</div><div class="line">        指令2</div><div class="line">    fi</div><div class="line">    指令0</div><div class="line">fi</div></pre></td></tr></table></figure></p>
+<h3 id="双分支结构"><a href="#双分支结构" class="headerlink" title="双分支结构"></a>双分支结构</h3><ul>
+<li>第一种语法<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if &lt;条件语句&gt;;then</div><div class="line">    指令1</div><div class="line">else</div><div class="line">    指令2</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="多分支结构"><a href="#多分支结构" class="headerlink" title="多分支结构"></a>多分支结构</h3><ul>
+<li>第一种语法<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">if &lt;条件语句&gt;;then</div><div class="line">    指令1</div><div class="line">elif</div><div class="line">    then</div><div class="line">    指令2</div><div class="line">elif </div><div class="line">    then</div><div class="line">    指令3</div><div class="line">else</div><div class="line">    指令4</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>注意</strong> 多分支结构，每个elif都要带then，耳而最后的else，是不能带else的。</p>
+<h3 id="if语句执行步骤"><a href="#if语句执行步骤" class="headerlink" title="if语句执行步骤"></a>if语句执行步骤</h3><p>if –&gt;（真）–&gt;指令<br>if –&gt;（假）–&gt;elif–&gt;（真）–&gt;指令<br>if –&gt;（假）–&gt;elif–&gt;（假）–&gt;ellse–&gt;指令</p>
 
       
     </div>
@@ -410,7 +423,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/gdisk/" rel="tag"># gdisk</a>
+            <a href="/tags/SHELL/" rel="tag"># SHELL</a>
           
         </div>
       
@@ -423,8 +436,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/19/ansible学习/" rel="next" title="ansible学习">
-                <i class="fa fa-chevron-left"></i> ansible学习
+              <a href="/2017/08/31/Vmware-6-5-Install/" rel="next" title="Vmware_6.5_Install">
+                <i class="fa fa-chevron-left"></i> Vmware_6.5_Install
               </a>
             
           </div>
@@ -432,10 +445,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/26/sublime-install/" rel="prev" title="sublime_install">
-                sublime_install <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -593,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lvcreat"><span class="nav-number">2.1.</span> <span class="nav-text">lvcreat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lvextend"><span class="nav-number">2.2.</span> <span class="nav-text">lvextend</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#shell脚本if语句的几种写法和格式"><span class="nav-number">1.</span> <span class="nav-text">shell脚本if语句的几种写法和格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单分支结构"><span class="nav-number">1.1.1.</span> <span class="nav-text">单分支结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双分支结构"><span class="nav-number">1.1.2.</span> <span class="nav-text">双分支结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多分支结构"><span class="nav-number">1.1.3.</span> <span class="nav-text">多分支结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if语句执行步骤"><span class="nav-number">1.1.4.</span> <span class="nav-text">if语句执行步骤</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
