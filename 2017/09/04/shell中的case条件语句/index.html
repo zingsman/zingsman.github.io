@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="shell," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="使用pyrhon3爬12306火车余票背景 初学python2，看完了简明的python教程，是一本很好的书。然后找项目练手，准备了爬虫 看到了实验楼的12306余票查询的教程，就跟根据文档一步一步做。 在最后的阶段，由于实验楼教程过久。12306网站get到数据已经改变。网上找其他教程链接：   实验楼：https://www.shiyanlou.com/courses/623/labs/207">
-<meta name="keywords" content="python">
+<meta name="description" content="sehll中，case条件语句的格式概述case 条件语句格式，常在shell中，用作服务脚本启动脚本。 语法case条件语句的语法格式为：12345678910case &quot;变量&quot; in    值1)        指令1...        ;;    #结束标志    值2)        指令2...        ;;    *)             #当上面都不匹配时候，匹配这里">
+<meta name="keywords" content="shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python_12306">
-<meta property="og:url" content="http://yoursite.com/2017/08/10/python-12306/index.html">
+<meta property="og:title" content="shell中的case条件语句">
+<meta property="og:url" content="http://yoursite.com/2017/09/04/shell中的case条件语句/index.html">
 <meta property="og:site_name" content="ZingsMan">
-<meta property="og:description" content="使用pyrhon3爬12306火车余票背景 初学python2，看完了简明的python教程，是一本很好的书。然后找项目练手，准备了爬虫 看到了实验楼的12306余票查询的教程，就跟根据文档一步一步做。 在最后的阶段，由于实验楼教程过久。12306网站get到数据已经改变。网上找其他教程链接：   实验楼：https://www.shiyanlou.com/courses/623/labs/207">
-<meta property="og:updated_time" content="2017-08-10T05:40:01.593Z">
+<meta property="og:description" content="sehll中，case条件语句的格式概述case 条件语句格式，常在shell中，用作服务脚本启动脚本。 语法case条件语句的语法格式为：12345678910case &quot;变量&quot; in    值1)        指令1...        ;;    #结束标志    值2)        指令2...        ;;    *)             #当上面都不匹配时候，匹配这里">
+<meta property="og:updated_time" content="2017-09-04T08:58:51.102Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python_12306">
-<meta name="twitter:description" content="使用pyrhon3爬12306火车余票背景 初学python2，看完了简明的python教程，是一本很好的书。然后找项目练手，准备了爬虫 看到了实验楼的12306余票查询的教程，就跟根据文档一步一步做。 在最后的阶段，由于实验楼教程过久。12306网站get到数据已经改变。网上找其他教程链接：   实验楼：https://www.shiyanlou.com/courses/623/labs/207">
+<meta name="twitter:title" content="shell中的case条件语句">
+<meta name="twitter:description" content="sehll中，case条件语句的格式概述case 条件语句格式，常在shell中，用作服务脚本启动脚本。 语法case条件语句的语法格式为：12345678910case &quot;变量&quot; in    值1)        指令1...        ;;    #结束标志    值2)        指令2...        ;;    *)             #当上面都不匹配时候，匹配这里">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/10/python-12306/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/04/shell中的case条件语句/"/>
 
 
 
 
 
-  <title> python_12306 | ZingsMan </title>
+  <title> shell中的case条件语句 | ZingsMan </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -304,7 +304,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/python-12306/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/shell中的case条件语句/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZingsMan">
@@ -325,7 +325,7 @@
             
             
               
-                python_12306
+                shell中的case条件语句
               
             
           </h1>
@@ -340,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T10:58:31+08:00">
-                2017-08-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T16:57:13+08:00">
+                2017-09-04
               </time>
             
 
@@ -376,20 +376,10 @@
       
 
       
-        <h1 id="使用pyrhon3爬12306火车余票"><a href="#使用pyrhon3爬12306火车余票" class="headerlink" title="使用pyrhon3爬12306火车余票"></a>使用pyrhon3爬12306火车余票</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
-<li>初学python2，看完了简明的python教程，是一本很好的书。然后找项目练手，准备了爬虫</li>
-<li>看到了实验楼的12306余票查询的教程，就跟根据文档一步一步做。</li>
-<li>在最后的阶段，由于实验楼教程过久。12306网站get到数据已经改变。网上找其他教程<br>链接：</li>
-</ul>
-<ol>
-<li>实验楼：<a href="https://www.shiyanlou.com/courses/623/labs/2072/document" target="_blank" rel="external">https://www.shiyanlou.com/courses/623/labs/2072/document</a></li>
-<li>参考的网上最新爬虫：<a href="http://blog.csdn.net/lexyhp/article/details/71108216" target="_blank" rel="external">http://blog.csdn.net/lexyhp/article/details/71108216</a> 里面还有使用的很多库的解释和源代码<h2 id="所用到-的库："><a href="#所用到-的库：" class="headerlink" title="所用到 的库："></a>所用到 的库：</h2></li>
-<li>requests， 用于请求12306网站网址</li>
-<li>docopt， 解析命令行参数</li>
-<li>prettytable， 数据用表格的形式打印在终端</li>
-<li>colorama， 为打印在表格中的数据着色<h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2>其中步骤，在实验楼的文档里面非常详细。下来说说我自己的步骤。<h3 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h3>首先，你需要做什么？<br>此次目的是为了熟悉python代码。熟悉爬虫的流程。<h3 id="步骤详情："><a href="#步骤详情：" class="headerlink" title="步骤详情："></a>步骤详情：</h3><a href="https://www.shiyanlou.com/courses/623/labs/2072/document" target="_blank" rel="external">https://www.shiyanlou.com/courses/623/labs/2072/document</a></li>
-</ol>
-<h2 id="我的源代码："><a href="#我的源代码：" class="headerlink" title="我的源代码："></a>我的源代码：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding: utf-8</span></div><div class="line"><span class="string">"""命令行火车票查看器</span></div><div class="line"></div><div class="line">Usage:</div><div class="line">    tickets [-gdtkz] &lt;from&gt; &lt;to&gt; &lt;date&gt;</div><div class="line"></div><div class="line">Options:</div><div class="line">    -h,--help   显示帮助菜单</div><div class="line">    -g          高铁</div><div class="line">    -d          动车</div><div class="line">    -t          特快</div><div class="line">    -k          快速</div><div class="line">    -z          直达</div><div class="line"></div><div class="line">Example:</div><div class="line">    tickets 北京 上海 2016-10-10</div><div class="line">    tickets -dg 成都 南京 2016-10-10</div><div class="line">"""</div><div class="line"><span class="keyword">from</span> docopt <span class="keyword">import</span> docopt</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">from</span> stations <span class="keyword">import</span> stations</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> prettytable <span class="keyword">import</span> PrettyTable</div><div class="line"><span class="keyword">from</span> colorama <span class="keyword">import</span> init,Fore</div><div class="line"></div><div class="line">init()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrainsCollection</span>:</span></div><div class="line"></div><div class="line">    header = <span class="string">'车次 车站 时间 历时 一等 二等 高级软卧 软卧 硬卧 硬座 无座'</span>.split()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, available_trains,available_place,options)</span>:</span></div><div class="line">        <span class="string">"""查询到的火车班次集合</span></div><div class="line"></div><div class="line">        :param available_trains: 一个列表, 包含可获得的火车班次, 每个</div><div class="line">                                 火车班次是一个字典</div><div class="line">        :param options: 查询的选项, 如高铁, 动车, etc...</div><div class="line">        """</div><div class="line">        self.available_trains = available_trains</div><div class="line">        self.available_place = available_place</div><div class="line">        self.options = options</div><div class="line"><span class="meta">    @property</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trains</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">for</span> raw_train <span class="keyword">in</span> self.available_trains:</div><div class="line">            raw_train_list = raw_train.split(<span class="string">'|'</span>)</div><div class="line">            <span class="comment">#print(raw_train_list)</span></div><div class="line">            train_no = raw_train_list[<span class="number">3</span>]</div><div class="line">            <span class="comment">#print(train_no)</span></div><div class="line">            initial = train_no[<span class="number">0</span>].lower()</div><div class="line">            <span class="comment">#print(initial)</span></div><div class="line">            duration = raw_train_list[<span class="number">10</span>]</div><div class="line">            <span class="keyword">if</span>  (initial <span class="keyword">in</span> self.options) <span class="keyword">or</span> (self.options == <span class="string">""</span>) :</div><div class="line">            <span class="comment">#后面这个 or 条件是我自己添加，因为如果不输入参数[-dktz]，就查不出来</span></div><div class="line">                train = [</div><div class="line">                    train_no,        </div><div class="line">                    <span class="string">'\n'</span>.join([Fore.LIGHTGREEN_EX + self.available_place[raw_train_list[<span class="number">6</span>]] + Fore.RESET,</div><div class="line">                               Fore.LIGHTRED_EX + self.available_place[raw_train_list[<span class="number">7</span>]] + Fore.RESET]),</div><div class="line">                    <span class="string">'\n'</span>.join([Fore.LIGHTGREEN_EX + raw_train_list[<span class="number">8</span>] + Fore.RESET,</div><div class="line">                               Fore.LIGHTRED_EX + raw_train_list[<span class="number">9</span>] + Fore.RESET]),</div><div class="line">                    duration,</div><div class="line">                    raw_train_list[<span class="number">-4</span>] <span class="keyword">if</span> raw_train_list[<span class="number">-4</span>] <span class="keyword">else</span> <span class="string">'--'</span>,</div><div class="line">                    raw_train_list[<span class="number">-5</span>] <span class="keyword">if</span> raw_train_list[<span class="number">-5</span>] <span class="keyword">else</span> <span class="string">'--'</span>,</div><div class="line">                    raw_train_list[<span class="number">-14</span>] <span class="keyword">if</span> raw_train_list[<span class="number">-14</span>] <span class="keyword">else</span> <span class="string">'--'</span>,</div><div class="line">                    raw_train_list[<span class="number">-12</span>] <span class="keyword">if</span> raw_train_list[<span class="number">-12</span>] <span class="keyword">else</span> <span class="string">'--'</span>,</div><div class="line">                    raw_train_list[<span class="number">-7</span>] <span class="keyword">if</span> raw_train_list[<span class="number">-7</span>] <span class="keyword">else</span> <span class="string">'--'</span>,</div><div class="line">                    raw_train_list[<span class="number">-6</span>] <span class="keyword">if</span> raw_train_list[<span class="number">-6</span>] <span class="keyword">else</span> <span class="string">'--'</span>,</div><div class="line">                    raw_train_list[<span class="number">-9</span>] <span class="keyword">if</span> raw_train_list[<span class="number">-9</span>] <span class="keyword">else</span> <span class="string">'--'</span>,</div><div class="line">                ]</div><div class="line">                <span class="comment">#print(train[:])</span></div><div class="line">                <span class="keyword">yield</span> train</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pretty_print</span><span class="params">(self)</span>:</span></div><div class="line">        pt = PrettyTable()</div><div class="line">        pt._set_field_names(self.header)</div><div class="line">        <span class="keyword">for</span> train <span class="keyword">in</span> self.trains:</div><div class="line">            pt.add_row(train)</div><div class="line">        print(pt)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cli</span><span class="params">()</span>:</span></div><div class="line">    <span class="string">"""command-line interface"""</span></div><div class="line">    arguments = docopt(__doc__) <span class="comment">#__doc__是出去当前对象的帮助文档</span></div><div class="line">    <span class="comment">#   print(arguments)#是返回一个字典</span></div><div class="line">    from_station = stations.get(arguments[<span class="string">'&lt;from&gt;'</span>])</div><div class="line">    to_station = stations.get(arguments[<span class="string">'&lt;to&gt;'</span>])</div><div class="line">    date = arguments[<span class="string">'&lt;date&gt;'</span>]</div><div class="line">    url = <span class="string">'https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=&#123;&#125;&amp;leftTicketDTO.from_station=&#123;&#125;&amp;leftTicketDTO.to_station=&#123;&#125;&amp;purpose_codes=ADULT'</span>.format(date, from_station, to_station)</div><div class="line">    options= <span class="string">''</span>.join([key <span class="keyword">for</span> key, value <span class="keyword">in</span> arguments.items() <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">True</span>])</div><div class="line">    <span class="comment"># 获取参数</span></div><div class="line">    <span class="comment"># 添加verify=False 参数不验证证书</span></div><div class="line">    r=requests.get(url, verify=<span class="keyword">False</span>)</div><div class="line">    <span class="comment">#print(r.json())</span></div><div class="line">    <span class="comment">#r = requests.get(url);</span></div><div class="line">    available_trains = r.json()[<span class="string">'data'</span>][<span class="string">'result'</span>]</div><div class="line">    available_place = r.json()[<span class="string">'data'</span>][<span class="string">'map'</span>]</div><div class="line">    <span class="comment">#print(available_trains[:])</span></div><div class="line">    <span class="comment">#a=''.join(available_trains[:])</span></div><div class="line">    <span class="comment">#print(a.split("|"))</span></div><div class="line">    <span class="comment">#Trainsconllection(available_trains, options).pretty_print()</span></div><div class="line">    TrainsCollection(available_trains,available_place,options).pretty_print()</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    cli()</div></pre></td></tr></table></figure>
+        <h1 id="sehll中，case条件语句的格式"><a href="#sehll中，case条件语句的格式" class="headerlink" title="sehll中，case条件语句的格式"></a>sehll中，case条件语句的格式</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>case 条件语句格式，常在shell中，用作服务脚本启动脚本。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>case条件语句的语法格式为：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">case "变量" in</div><div class="line">    值1)</div><div class="line">        指令1...</div><div class="line">        ;;    #结束标志</div><div class="line">    值2)</div><div class="line">        指令2...</div><div class="line">        ;;</div><div class="line">    *)             #当上面都不匹配时候，匹配这里</div><div class="line">        指令3...</div><div class="line">esac</div></pre></td></tr></table></figure></p>
+<p>解释：<br>在上述case语句中，当条件语句（变量）的<code>值为1</code>时候，执行<code>指令1</code>，当值等于<code>2</code>时候，执行<code>指令2</code>。当上面指令<code>都不匹配</code>的时候，执行<code>指令3</code> 。此外注意不同行内容的缩进距离。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>case条件分支语句，多用于脚本启动文件编写。</p>
 
       
     </div>
@@ -440,7 +430,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/shell/" rel="tag"># shell</a>
           
         </div>
       
@@ -453,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/26/sublime-install/" rel="next" title="sublime_install">
-                <i class="fa fa-chevron-left"></i> sublime_install
+              <a href="/2017/09/04/shell中的循环/" rel="next" title="shell中的循环">
+                <i class="fa fa-chevron-left"></i> shell中的循环
               </a>
             
           </div>
@@ -463,8 +453,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/14/auto-zabbix-agentd/" rel="prev" title="auto_zabbix_agentd">
-                auto_zabbix_agentd <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/04/shell中的函数/" rel="prev" title="shell中的函数">
+                shell中的函数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -623,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用pyrhon3爬12306火车余票"><span class="nav-number">1.</span> <span class="nav-text">使用pyrhon3爬12306火车余票</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所用到-的库："><span class="nav-number">1.2.</span> <span class="nav-text">所用到 的库：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤："><span class="nav-number">1.3.</span> <span class="nav-text">步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目的："><span class="nav-number">1.3.1.</span> <span class="nav-text">目的：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤详情："><span class="nav-number">1.3.2.</span> <span class="nav-text">步骤详情：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的源代码："><span class="nav-number">1.4.</span> <span class="nav-text">我的源代码：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sehll中，case条件语句的格式"><span class="nav-number">1.</span> <span class="nav-text">sehll中，case条件语句的格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -202,16 +202,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-search">
           <a href="/search" rel="section">
             
@@ -253,9 +243,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -270,6 +294,379 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/shell中的函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/04/shell中的函数/" itemprop="url">
+                  shell中的函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T16:57:32+08:00">
+                2017-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Shell中的函数"><a href="#Shell中的函数" class="headerlink" title="Shell中的函数"></a>Shell中的函数</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>shell中，函数有关键字function，声明一个函数。有时候可以省略不写。函数就是多个指令的集合，方便重用和修改。</p>
+<h2 id="写法格式"><a href="#写法格式" class="headerlink" title="写法格式"></a>写法格式</h2><p>常见的写法有：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">其中，函数名后的括号可以省略不写，不推荐。</span></div><div class="line"><span class="meta">#</span><span class="bash">标准写法，推荐</span></div><div class="line">function 函数名()&#123;</div><div class="line">    指令</div><div class="line">    return n</div><div class="line">&#125;</div><div class="line"><span class="meta">#</span><span class="bash">简化写法</span></div><div class="line">函数名()&#123;</div><div class="line">    指令</div><div class="line">    return n</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在执行函数时候，关键字function和括号都不应该带。执行：<br><code>函数名 参数1 参数2</code></p>
+<h2 id="函数里的参数"><a href="#函数里的参数" class="headerlink" title="函数里的参数"></a>函数里的参数</h2><p>其中，函数里面的参数，都可以是使用<code>$1</code>  <code>$2</code>  <code>$#</code> <code>$*</code>  <code>$?</code> <code>$@</code> 来作为函数的参数来使用。其中<code>$0</code> 任然是父脚本的名称。<br>其中<code>$*</code>和<code>$@</code>的差别，可以看linux shell 老男孩的书46页。差别是： 他们在不使用 双引号时候，用法一模一样，都是读取shell的所有参数。 若使用双引号。则echo 出来的 <code>$*</code> 和 <code>$@</code> 内容一模一样。但是 <code>$*</code> 只是一个参数，记录所有值，如： <code>&quot;$1$2$3&quot;</code> ·而<code>$@</code>是多个参数来记录所有值，如：”$1”  “$2”…</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/shell中的case条件语句/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/04/shell中的case条件语句/" itemprop="url">
+                  shell中的case条件语句
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T16:57:13+08:00">
+                2017-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="sehll中，case条件语句的格式"><a href="#sehll中，case条件语句的格式" class="headerlink" title="sehll中，case条件语句的格式"></a>sehll中，case条件语句的格式</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>case 条件语句格式，常在shell中，用作服务脚本启动脚本。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>case条件语句的语法格式为：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">case "变量" in</div><div class="line">    值1)</div><div class="line">        指令1...</div><div class="line">        ;;    #结束标志</div><div class="line">    值2)</div><div class="line">        指令2...</div><div class="line">        ;;</div><div class="line">    *)             #当上面都不匹配时候，匹配这里</div><div class="line">        指令3...</div><div class="line">esac</div></pre></td></tr></table></figure></p>
+<p>解释：<br>在上述case语句中，当条件语句（变量）的<code>值为1</code>时候，执行<code>指令1</code>，当值等于<code>2</code>时候，执行<code>指令2</code>。当上面指令<code>都不匹配</code>的时候，执行<code>指令3</code> 。此外注意不同行内容的缩进距离。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>case条件分支语句，多用于脚本启动文件编写。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/shell中的循环/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZingsMan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZingsMan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/04/shell中的循环/" itemprop="url">
+                  shell中的循环
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T16:53:19+08:00">
+                2017-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="shell中的循环"><a href="#shell中的循环" class="headerlink" title="shell中的循环"></a>shell中的循环</h1><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>循环就是用于重复执行一条或一组指令。直到条件不再满足时候，停止。shell中参加的循环语句有：<code>while</code>，<code>until</code>，<code>for</code>，<code>select</code></p>
+<h2 id="当型（while）和直到型（until）的循环语法"><a href="#当型（while）和直到型（until）的循环语法" class="headerlink" title="当型（while）和直到型（until）的循环语法"></a>当型（while）和直到型（until）的循环语法</h2><h2 id="while-循环的基本语法"><a href="#while-循环的基本语法" class="headerlink" title="while 循环的基本语法"></a>while 循环的基本语法</h2><p>在while的循环中，<code>条件表达式</code>成立为真，就执行do…done 里面的指令。每一次执行到done时候，就会重新判断<code>条件表达式</code>是否成立。直到不成立时候，才跳出循环。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">while &lt;条件表达式&gt;</div><div class="line">do</div><div class="line">    指令</div><div class="line">done</div></pre></td></tr></table></figure></p>
+<h2 id="until-循环语句"><a href="#until-循环语句" class="headerlink" title="until 循环语句"></a>until 循环语句</h2><p>until 循环和whiel循环的用法和格式差不多。<strong>唯一区别：</strong> until是在<code>条件表达式不成立</code>时候，执行do…done 里面的循环体，直到<code>条件表达式成立为真</code>时候，才跳出循环体。结束循环。一般来说，这种用法很少。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">until &lt;条件表达式&gt;</div><div class="line">do</div><div class="line">    指令</div><div class="line">done</div></pre></td></tr></table></figure></p>
+<h3 id="循环例子"><a href="#循环例子" class="headerlink" title="循环例子"></a>循环例子</h3><p>打印54321,利用while循环<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">i=5</div><div class="line">while (( i &gt; 1 ))</div><div class="line">#while [ $i -gt 1 ]</div><div class="line">#while [[$i&gt;1]]  #里面不能使用&gt;=</div><div class="line">do</div><div class="line">    echo $</div><div class="line">    (( i-- ))</div><div class="line">done</div></pre></td></tr></table></figure></p>
+<p>使用until循环<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">i=5</div><div class="line">until [ $i -lt 1 ]</div><div class="line">do</div><div class="line">    echo $i</div><div class="line">    (( i-- ))</div><div class="line">done</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -515,7 +912,7 @@
 <ol>
 <li>安装vcenter<br>安装center，把下载的iso挂着在cd上。里面有个自动运行的文件。直接自动运行，填写好相关的信息。直接安装。</li>
 <li>安装成功后。登录vcenter上面。注意登录名是时候 vcenter@pengke.com 注意是@</li>
-<li>添加规则：<br>先键数据中心，再建vsan集群（建立时候选择打开vsan）。打开HA和DRA等<br>在做vsan时候，必须声明一个缓存盘和容量盘，所以，除了系统盘，至少还需要2快盘。其中一块盘，必须是SDD（闪存类型）（默认是HDD）。一块即可。配置的交换机就必须是混杂模式了。<br>将默认的HDD改为SDD：<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">esxcli storage core device list # 查看硬盘信息并找到相关盘符</div><div class="line">esxcli storage nmp satp rule add --satp VMW_SATP_LOCAL --device mpx.vmhba0:C0:T1:L0 --option "enable_local enable_ssd" #建SATP规则，并将可选参数设置为enable_ssd，注意磁盘编号</div><div class="line">esxcli storage nmp satp rule list | grep enable_ssd #查看刚才创建的规则</div><div class="line">esxcli storage core claiming reclaim -d mpx.vmhba0:C0:T1:L0 #重新申明磁盘，也只有盘符</div><div class="line">esxcli storage core device list -d mpx.vmhba0:C0:T1:L0 #验证</div><div class="line"><span class="meta"></span></div><div class="line">#若想将SSD重新恢复至HDD，则执行</div><div class="line"> esxcli storage nmp satp rule remove --satp VMW_SATP_LOCAL --device="mpx.vmhba0:C0:T1:L0"</div><div class="line"> esxcli storage core claiming reclaim -d mpx.vmhba0:C0:T1:L0</div><div class="line"> esxcli storage core device list -d mpx.vmhba0:C0:T1:L0</div></pre></td></tr></table></figure>
+<li>添加规则：<br>先键数据中心，再建vsan集群（建立时候选择打开vsan）。打开HA和DRA等<br>在做vsan时候，必须声明一个缓存盘和容量盘，所以，除了系统盘，至少还需要2快盘。其中一块盘，必须是SDD（闪存类型）（默认是HDD）。一块即可。配置的交换机就必须是混杂模式了。<br>将默认的HDD改为SDD：<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">esxcli storage core device list # 查看硬盘信息并找到相关盘符</div><div class="line">esxcli storage nmp satp rule add --satp VMW_SATP_LOCAL --device mpx.vmhba0:C0:T1:L0 --option "enable_local enable_ssd" #建SATP规则，并将可选参数设置为enable_ssd，注意磁盘编号</div><div class="line">esxcli storage nmp satp rule list | grep enable_ssd #查看刚才创建的规则</div><div class="line">esxcli storage core claiming reclaim -d mpx.vmhba0:C0:T1:L0 #重新申明磁盘，也只有盘符</div><div class="line">esxcli storage core device list -d mpx.vmhba0:C0:T1:L0 #验证</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">若想将SSD重新恢复至HDD，则执行</span></div><div class="line"> esxcli storage nmp satp rule remove --satp VMW_SATP_LOCAL --device="mpx.vmhba0:C0:T1:L0"</div><div class="line"> esxcli storage core claiming reclaim -d mpx.vmhba0:C0:T1:L0</div><div class="line"> esxcli storage core device list -d mpx.vmhba0:C0:T1:L0</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>做vsan，只需一块改为hdd就行，我这hdd用来做缓存盘。</p>
@@ -1262,505 +1659,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/24/gdisk-分区/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZingsMan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZingsMan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/24/gdisk-分区/" itemprop="url">
-                  gdisk_分区
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T16:37:38+08:00">
-                2017-07-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在安装系统中，一般来说超过2T的硬盘，就不能使用fdisk分区了。我们常用part分区，<br>由于公司，要求将20T硬盘以逻辑卷形式挂在/data目录下。part分区好像并没有设置<br>系统分区为格式 lvm 格式。所以需要 gdisk 分区。gdisk就是（GPT格式的disk）</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>配置之前，可以使用<code>fdisk -l</code> 查看，是那一块盘哦<br>详细信息如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">mkdir /data</div><div class="line"></div><div class="line">gdisk /dev/sdk</div><div class="line"></div><div class="line">Command (? for help): ?</div><div class="line">b       back up GPT data to a file</div><div class="line">c       change a partition's name</div><div class="line">d       delete a partition</div><div class="line">i       show detailed information on a partition</div><div class="line">l       list known partition types</div><div class="line">n       add a new partition</div><div class="line">o       create a new empty GUID partition table (GPT)</div><div class="line">p       print the partition table</div><div class="line">q       quit without saving changes</div><div class="line">r       recovery and transformation options (experts only)</div><div class="line">s       sort partitions</div><div class="line">t       change a partition's type code</div><div class="line">v       verify disk</div><div class="line">w       write table to disk and exit</div><div class="line">x       extra functionality (experts only)</div><div class="line">?       print this menu</div><div class="line"></div><div class="line">Command (? for help): </div><div class="line"></div><div class="line"></div><div class="line">Command (? for help): n</div><div class="line">Partition number (1-128, default 1): </div><div class="line">First sector (34-40957358046, default = 2048) or &#123;+-&#125;size&#123;KMGTP&#125;: </div><div class="line">Last sector (2048-40957358046, default = 40957358046) or &#123;+-&#125;size&#123;KMGTP&#125;: </div><div class="line">Current type is 'Linux filesystem'</div><div class="line">Hex code or GUID (L to show codes, Enter = 8300): 8e00</div><div class="line">Changed type of partition to 'Linux LVM'</div><div class="line"></div><div class="line">Command (? for help): p</div><div class="line">Disk /dev/sdk: 40957358080 sectors, 19.1 TiB</div><div class="line">Logical sector size: 512 bytes</div><div class="line">Disk identifier (GUID): F8C461D2-634A-4A57-B6CF-977F2A0E86BF</div><div class="line">Partition table holds up to 128 entries</div><div class="line">First usable sector is 34, last usable sector is 40957358046</div><div class="line">Partitions will be aligned on 2048-sector boundaries</div><div class="line">Total free space is 2014 sectors (1007.0 KiB)</div><div class="line"></div><div class="line">Number  Start (sector)    End (sector)  Size       Code  Name</div><div class="line">   1            2048     40957358046   19.1 TiB    8E00  Linux LVM</div><div class="line"></div><div class="line">wq</div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> 其中我们默认是使用全部分在一个分区，所有一直按确认即可。<br>帮助：<code>？</code>   <code>n</code> 是添加分区， <code>l</code>是查看分区格式类型。和fdisk不一样，这里的8e00 在fdisk是8e  <code>t</code>是改变分区系统格式<br>最后<code>wq</code> 退出即可。  最候使用 <code>fdisk -l</code>  看看我们的分区详情。</p>
-<p>然后分区，加入 lvm  其中lvcreat有新命令哦<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">pvcreate /dev/sdk1</div><div class="line">vgextend rhel /dev/sdk1</div><div class="line">vgdisplay </div><div class="line">lvcreate -n data -l 100%FREE rhel</div><div class="line">mkfs.xfs /dev/mapper/rhel-data </div><div class="line">vi /etc/fstab </div><div class="line">/dev/mapper/rhel-data   /data                   xfs     defaults        0 0</div><div class="line">mount -a</div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> lvcreat 命令是使用vg里面的空间，我们扩展或者新建时候，在选择大小时候，有两种方式<br>PE和SIZE：<code>vgdisplay</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">[root@localhost src]# vgdisplay </div><div class="line">  --- Volume group ---</div><div class="line">  VG Name               rhel</div><div class="line">  System ID             </div><div class="line">  Format                lvm2</div><div class="line">  Metadata Areas        2</div><div class="line">  Metadata Sequence No  6</div><div class="line">  VG Access             read/write</div><div class="line">  VG Status             resizable</div><div class="line">  MAX LV                0</div><div class="line">  Cur LV                4</div><div class="line">  Open LV               4</div><div class="line">  Max PV                0</div><div class="line">  Cur PV                2</div><div class="line">  Act PV                2</div><div class="line">  VG Size               19.98 TiB</div><div class="line">  PE Size               4.00 MiB</div><div class="line">  Total PE              5237883</div><div class="line">  Alloc PE / Size       5237883 / 19.98 TiB</div><div class="line">  Free  PE / Size       0 / 0 </div><div class="line"><span class="meta">  #</span><span class="bash">这里使用：PE模式命令：lvcreate -n data -l 100%FREE rhel</span></div><div class="line">  VG UUID               qt7tUm-NoXx-e1GP-QnCf-Ibrd-1s5f-kmQ0JM</div><div class="line">   </div><div class="line">[root@localhost src]#</div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> 其中讲道理是lvextend也可以用这种方式。现在总结2中方法：</p>
-<h3 id="lvcreat"><a href="#lvcreat" class="headerlink" title="lvcreat"></a>lvcreat</h3><p><code>lvcreate -n data -l 100%FREE rhel</code> 将vg中所有空间拿来使用（PE）<br><code>lvcreate -n data -L 100G rhel</code> 将vg里面100G给lv data使用</p>
-<h3 id="lvextend"><a href="#lvextend" class="headerlink" title="lvextend"></a>lvextend</h3><p><code>lvextend -L +100M /dev/mapper/rhel-data</code>    将vg里面100G给lv data使用</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/19/ansible学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZingsMan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZingsMan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/19/ansible学习/" itemprop="url">
-                  ansible学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T11:58:03+08:00">
-                2017-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><h3 id="1-1-centos-7-系列-系统安装"><a href="#1-1-centos-7-系列-系统安装" class="headerlink" title="1.1 centos 7 系列 系统安装"></a>1.1 centos 7 系列 系统安装</h3><p>前提，尽量使用yum安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">yum install epel-release</div><div class="line">yum install ansible -y</div><div class="line">yum install python-pip</div><div class="line">pip install ansible</div><div class="line">pip install --upgrade setuptools</div></pre></td></tr></table></figure></p>
-<h3 id="1-2-ubuntu-系统"><a href="#1-2-ubuntu-系统" class="headerlink" title="1.2 ubuntu 系统"></a>1.2 ubuntu 系统</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-add-repository -y ppa:ansible/ansible</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install -y ansible</div></pre></td></tr></table></figure>
-<h3 id="1-3-安装成功后简单配置"><a href="#1-3-安装成功后简单配置" class="headerlink" title="1.3  安装成功后简单配置"></a>1.3  安装成功后简单配置</h3><p>安装成功后，配偶文件在:  /etc/ansible/目录下，其中默认的hosts文件也在里面。<br>安装成功后，默认是用key登录，我们改成密码的方式、就需要在hosts文件添加远程用户名和密码：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[test]</div><div class="line">192.168.13.130</div><div class="line">[test:vars]</div><div class="line">ansible_ssh_user=app</div><div class="line">ansible_ssh_pass=app_!QAZxsw2</div></pre></td></tr></table></figure></p>
-<p>测试代码: <code>ansible all -a &quot;/bin/echo hello&quot;</code><br>若使用ssh-key登陆，配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh-agent bash</div><div class="line">$ ssh-add ~/.ssh/id_rsa</div></pre></td></tr></table></figure></p>
-<p>如果不想使用 ssh-agent, 想通过密码验证的方式使用 SSH,<br>可以在执行ansible命令时使用 <code>-k</code> 参数选项, 但这里建议使用 ssh-agent.</p>
-<h2 id="2-简单使用"><a href="#2-简单使用" class="headerlink" title="2. 简单使用"></a>2. 简单使用</h2><p>官方文档：<a href="http://www.ansible.com.cn/docs/intro_inventory.html" target="_blank" rel="external">http://www.ansible.com.cn/docs/intro_inventory.html</a></p>
-<h3 id="2-1-Inventory文件"><a href="#2-1-Inventory文件" class="headerlink" title="2.1 Inventory文件"></a>2.1 Inventory文件</h3><p>Inventory文件 ： 就是主机清单。里面记录着主机组中的多台主机。 已经变量。默认在<code>/etc/ansible/hosts</code>中。<br>例子:  hosts文件内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">10.10.10.10:2222 #若不是默认的22端口</div><div class="line">[webservers]  #主机组名</div><div class="line">foo.example.com</div><div class="line">bar.example.com</div><div class="line"></div><div class="line">[dbservers]   #主机组名</div><div class="line">one.example.com</div><div class="line">two.example.com</div><div class="line">three.example.com</div><div class="line"></div><div class="line">[test]   #主机组名</div><div class="line">192.168.13.130</div><div class="line">[test:vars]    #主机组里面的变量</div><div class="line">ansible_ssh_user=app</div><div class="line">ansible_ssh_pass=app_!QAZxsw2</div></pre></td></tr></table></figure></p>
-<p>将变量定义在，其他文件中，host文件包含定义变量的文件<br>参考链接：<a href="http://www.ansible.com.cn/docs/intro_inventory.html" target="_blank" rel="external">http://www.ansible.com.cn/docs/intro_inventory.html</a></p>
-<h3 id="2-2-支持主机组里面的变量如下："><a href="#2-2-支持主机组里面的变量如下：" class="headerlink" title="2.2 支持主机组里面的变量如下："></a>2.2 支持主机组里面的变量如下：</h3><p>inventory文件的参数（组变量）如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">ansible_ssh_host</div><div class="line">      #将要连接的远程主机名.与你想要设定的主机的别名不同的话,可通过此变量设置.</div><div class="line"></div><div class="line">ansible_ssh_port</div><div class="line">      #ssh端口号.如果不是默认的端口号,通过此变量设置.</div><div class="line"></div><div class="line">ansible_ssh_user</div><div class="line">      #默认的 ssh 用户名</div><div class="line"></div><div class="line">ansible_ssh_pass</div><div class="line">      #ssh 密码(这种方式并不安全,我们强烈建议使用 --ask-pass 或 SSH 密钥)</div><div class="line"></div><div class="line">ansible_sudo_pass</div><div class="line">      #sudo 密码(这种方式并不安全,我们强烈建议使用 --ask-sudo-pass)</div><div class="line"></div><div class="line">ansible_sudo_exe (new in version 1.8)</div><div class="line">      #sudo 命令路径(适用于1.8及以上版本)</div><div class="line"></div><div class="line">ansible_connection</div><div class="line">      #与主机的连接类型.比如:local, ssh 或者 paramiko. Ansible 1.2 以前默认使用</div><div class="line">      # paramiko.1.2 以后默认使用 &apos;smart&apos;,&apos;smart&apos; 方式会根据是否</div><div class="line">      #支持ControlPersist, 来判断&apos;ssh&apos; 方式是否可行.</div><div class="line"></div><div class="line">ansible_ssh_private_key_file</div><div class="line">      #ssh 使用的私钥文件.适用于有多个密钥,而你不想使用 SSH 代理的情况.</div><div class="line"></div><div class="line">ansible_shell_type</div><div class="line">      #目标系统的shell类型.默认情况下,命令的执行使用 &apos;sh&apos; 语法,</div><div class="line">      #可设置为 &apos;csh&apos; 或 &apos;fish&apos;.</div><div class="line"></div><div class="line">ansible_python_interpreter</div><div class="line">      #目标主机的 python 路径.适用于的情况: 系统中有多个 Python, </div><div class="line">      #或者命令路径不是&quot;/usr/bin/python&quot;,比如  \*BSD, 或者 /usr/bin/python</div><div class="line">      #不是 2.X 版本的 Python.我们不使用 &quot;/usr/bin/env&quot; 机制,</div><div class="line">      #因为这要求远程用户的路径设置正确,且要求 &quot;python&quot; 可执行程序名不可</div><div class="line">      #为 python以外的名字(实际有可能名为python26).</div><div class="line">      #与 ansible_python_interpreter 的工作方式相同,</div><div class="line">      #可设定如 ruby 或 perl 的路径....</div></pre></td></tr></table></figure></p>
-<p>以上是静态的inventory 文件，也可以是inventory 动态文件，保存在数据库中等<br>例如： 配置管理数据库工具：  ansible-cmdb  这个很重要，可以通过web方式，显示出来<br>参考链接：<a href="http://www.ansible.com.cn/docs/intro_dynamic_inventory.html" target="_blank" rel="external">http://www.ansible.com.cn/docs/intro_dynamic_inventory.html</a><br>参考链接：<a href="http://www.ansible.com.cn/docs/developing_inventory.html" target="_blank" rel="external">http://www.ansible.com.cn/docs/developing_inventory.html</a></p>
-<h3 id="2-3-patterns-（模式）"><a href="#2-3-patterns-（模式）" class="headerlink" title="2.3 patterns  （模式）"></a>2.3 patterns  （模式）</h3><p>它就是 不用playbooks，直接用ansible执行一系列命令<br>在Ansible中,Patterns 是指我们怎样确定由哪一台主机来管理. 意思就是与哪台主机进行交互.<br>但是在:doc:playbooks 中它指的是对应主机应用特定的配置或执行特定进程.<br>例子：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ansible webservers -m service -a "name=httpd state=restarted"`</div><div class="line"><span class="meta">#</span>若多个组： 用冒号隔开，表示或， 表示在一个组，不在另一个组用：</div><div class="line">ansible webservers:test -m service -a "name=httpd state=restarted"</div><div class="line">ansible webservers:!test -m service -a "name=httpd state=restarted"</div><div class="line">ansible webservers:&amp;test -m service -a "name=httpd state=restarted"   #两个组的交集</div></pre></td></tr></table></figure></p>
-<p>它分为两类：一个是ansilbel（Ad-Hoc） 和 playbooks（ymal文件）</p>
-<h3 id="2-4-Introduction-To-Ad-Hoc-Commands"><a href="#2-4-Introduction-To-Ad-Hoc-Commands" class="headerlink" title="2.4  Introduction To Ad-Hoc Commands"></a>2.4  Introduction To Ad-Hoc Commands</h3><p>所谓 ad-hoc 命令是什么呢?</p>
-<ol>
-<li>这其实是一个概念性的名字,是相对于写 Ansible playbook来说的.类似于在命令行敲入shell命令和 写shell scripts两者之间的关系)…</li>
-<li>如果我们敲入一些命令去比较快的完成一些事情,而不需要将这些执行的命令特别保存下来, 这样的命令就叫做 ad-hoc 命令.</li>
-<li>Ansible提供两种方式去完成任务,一是 ad-hoc 命令,一是写 Ansible playbook.前者可以解决一些简单的任务, 后者解决较复杂的任务.</li>
-<li>那我们会在什么情境下去使用ad-hoc 命令呢?比如说因为圣诞节要来了,想要把所有实验室的电源关闭,我们只需要执行一行命令 就可以达成这个任务,而不需要写 playbook 来做这个任务.</li>
-<li><p>至于说做配置管理或部署这种事,还是要借助 playbook 来完成,<br>即使用 ‘/usr/bin/ansible-playbook’ 这个命令.</p>
-<p> 比如我重启某组的主机</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible atlanta -a &quot;/usr/bin/foo&quot; -u username -f 10  #-f是进程数，-u后面是以某用户身份执行</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>如果想通过 sudo 去执行命令,如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible atlanta -a &quot;/usr/bin/foo&quot; -u username --sudo [--ask-sudo-pass]</div></pre></td></tr></table></figure></p>
-<p>使用sudo，前提 你的-u 后面用户有sudo权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible atlanta -a &quot;/usr/bin/foo&quot; -u username -b -K</div></pre></td></tr></table></figure></p>
-<p>2.5 常用模块介绍<br>常用模块：  </p>
-<ul>
-<li>第一： service command shell   就是执行一些linux shell 基本命令</li>
-<li>第二： copy 用于文件的传输：<code>ansible atlanta -m copy -a &quot;src=/etc/hosts dest=/tmp/hosts&quot;</code></li>
-<li>第三：file 。使用 file 模块可以做到修改文件的属主和权限,(在这里可替换为 copy 模块,是等效的):<br><code>nsible webservers -m file -a &quot;dest=/srv/foo/a.txt mode=600&quot;</code><br><code>ansible webservers -m file -a &quot;dest=/srv/foo/b.txt mode=600 owner=mdehaangroup=mdehaan&quot;</code><br>删除目录(递归的删除)和删除文件:<br><code>ansible webservers -m file -a &quot;dest=/path/to/c state=absent&quot;</code></li>
-<li>第四：yum。Ansible 提供对 yum 和 apt 的支持.这里是关于 yum 的示例.<br>确认一个软件包已经安装,但不去升级它:<br><code>$ ansible webservers -m yum -a &quot;name=acme state=present&quot;</code><br>确认一个软件包的安装版本:<br><code>$ ansible webservers -m yum -a &quot;name=acme-1.5 state=present&quot;</code><br>确认一个软件包还没有安装:<br><code>$ ansible webservers -m yum -a &quot;name=acme state=absent&quot;</code><br>对于不同平台的软件包管理工具,Ansible都有对应的模块.如果没有,你也可以使用<br>command 模块去安装软件. 或者最好是来为那个软件包管理工具贡献一个相应的模块.<br>请在 mailing list 中查看相关的信息和详情.</li>
-<li><p>第四： Users and Groups    –模块<br>使用 ‘user’ 模块可以方便的创建账户,删除账户,或是管理现有的账户:<br><code>$ ansible all -m user -a &quot;name=foo password=&lt;crypted password here&gt;&quot;</code><br><code>$ ansible all -m user -a &quot;name=foo state=absent&quot;</code></p>
-</li>
-<li><p>第五： Managing Services<br>确认某个服务在所有的webservers上都已经启动:<br><code>$ ansible webservers -m service -a &quot;name=httpd state=started&quot;</code><br>或是在所有的webservers上重启某个服务(译者注:可能是确认已重启的状态?):<br><code>$ ansible webservers -m service -a &quot;name=httpd state=restarted&quot;</code><br>确认某个服务已经停止:<br><code>$ ansible webservers -m service -a &quot;name=httpd state=stopped&quot;</code></p>
-<h2 id="3-ansible的配置文件"><a href="#3-ansible的配置文件" class="headerlink" title="3. ansible的配置文件"></a>3. ansible的配置文件</h2><h3 id="3-1-ansible读取配置文件的顺序："><a href="#3-1-ansible读取配置文件的顺序：" class="headerlink" title="3.1 ansible读取配置文件的顺序："></a>3.1 ansible读取配置文件的顺序：</h3></li>
-<li><ul>
-<li>ANSIBLE_CONFIG (一个环境变量)</li>
-</ul>
-</li>
-<li><ul>
-<li>ansible.cfg (位于当前目录中)</li>
-</ul>
-</li>
-<li><ul>
-<li>.ansible.cfg (位于家目录中)</li>
-</ul>
-</li>
-<li><ul>
-<li>/etc/ansible/ansible.cfg<br>Ansible 将会按以上顺序逐个查询这些文件,直到找到一个为止,并且使用第一个寻找到个配置文件的配置,这些配置将不会被叠加.<br>配置文件的详细参数以及取值范围请查看<code>ansible.cfg</code><br>参考链接：<a href="https://raw.github.com/ansible/ansible/devel/examples/ansible.cfg" target="_blank" rel="external">https://raw.github.com/ansible/ansible/devel/examples/ansible.cfg</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="3-2-配置文件详情："><a href="#3-2-配置文件详情：" class="headerlink" title="3.2 配置文件详情："></a>3.2 配置文件详情：</h3><p>默认的配置文件基本不用改变，我将日志打开了<br>(注意日志文件的权限。/var目录一般只能root读取，ansible是你远程登陆的用户执行)<br><a href="http://www.ansible.com.cn/docs/intro_configuration.html#ansible-managed" target="_blank" rel="external">http://www.ansible.com.cn/docs/intro_configuration.html#ansible-managed</a></p>
-<h2 id="4-windows-支持"><a href="#4-windows-支持" class="headerlink" title="4. windows 支持"></a>4. windows 支持</h2><p>Ansible仍然通过一台Linux系统机器来进行集中管理,使用Python的 “winrm” 模块来和远程主机交互.<br>建议先学习playbooks<br><a href="https://github.com/ansible/ansible-examples" target="_blank" rel="external">https://github.com/ansible/ansible-examples</a>   一些例子</p>
-<h2 id="5-playbook学习"><a href="#5-playbook学习" class="headerlink" title="5. playbook学习"></a>5. playbook学习</h2><p>playbook 由一个或多个 ‘plays’ 计划组成.它的内容是一个以 ‘plays’ 为元素的列表.在 play 之中,一组机器被映射为定义好的角色.在 ansible 中,play 的内容,被称为 tasks,即任务.在基本层次的应用中,一个任务是一个对 ansible 模块的调用。<br>plays 是playbook的一个核心内脏。  一个playbook 执行多个任务，就是多个plays</p>
-<p>下面是只有一个plays情况； <code>注意:</code> <strong>一个name下面只能执行一个模块(一个action)</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">- hosts: webservers</div><div class="line">  vars:</div><div class="line">    http_port: 80</div><div class="line">    max_clients: 200</div><div class="line">  remote_user: root</div><div class="line">  tasks:</div><div class="line">  - name: ensure apache is at the latest version</div><div class="line">    yum: pkg=httpd state=latest</div><div class="line">  - name: write the apache config file</div><div class="line">    template: src=/srv/httpd.j2 dest=/etc/httpd.conf</div><div class="line">    notify:</div><div class="line">    - restart apache</div><div class="line">  - name: ensure apache is running</div><div class="line">    service: name=httpd state=started</div><div class="line">  handlers:</div><div class="line">    - name: restart apache</div><div class="line">      service: name=httpd state=restarted</div></pre></td></tr></table></figure></p>
-<p>层次关系：  playbook-&gt;plays-&gt;tast-&gt;name(只能执行一个模块（action）)</p>
-<h3 id="5-1-playbook基础"><a href="#5-1-playbook基础" class="headerlink" title="5.1 playbook基础"></a>5.1 playbook基础</h3><p>主机与用户<br>你可以为 playbook 中的每一个 play,个别地选择操作的目标机器是哪些,<br>以哪个用户身份去完成要执行的步骤（called tasks）.<br>hosts 行的内容是一个或多个组或主机的 patterns,以逗号为分隔符,详见 Patterns 章节.<br>remote_user 就是账户名:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">- hosts: webservers</div><div class="line">  remote_user: root</div></pre></td></tr></table></figure></p>
-<p>再者,在每一个 task 中,可以定义自己的远程用户:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">- hosts: webservers</div><div class="line">  remote_user: root</div><div class="line">  tasks:</div><div class="line">    - name: test connection</div><div class="line">      ping:</div><div class="line">      remote_user: yourname</div></pre></td></tr></table></figure></p>
-<p>也支持从 sudo 执行命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">- hosts: webservers</div><div class="line">  remote_user: yourname</div><div class="line">  sudo: yes</div></pre></td></tr></table></figure></p>
-<p>同样的,你可以仅在一个 task 中,使用 sudo 执行命令,而不是在整个 play 中使用 sudo:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">- hosts: webservers</div><div class="line">  remote_user: yourname</div><div class="line">  tasks:</div><div class="line">    - service: name=nginx state=started</div><div class="line">      sudo: yes</div></pre></td></tr></table></figure></p>
-<p>你也可以登陆后,sudo 到不同的用户身份,而不是使用 root:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">- hosts: webservers</div><div class="line">  remote_user: yourname</div><div class="line">  sudo: yes</div><div class="line">  sudo_user: postgres</div></pre></td></tr></table></figure></p>
-<p>如果你需要在使用 sudo 时指定密码,可在运行 ansible-playbook 命令时加上选项 <code>--ask-sudo-pass</code>这个参数 就是等于  (-K). 参数<br>如果使用 sudo 时,playbook 疑似被挂起,可能是在 sudo prompt 处被卡住,这时可执行 <code>Control + C</code>杀死卡住的任务,<br>再重新运行一次.</p>
-<h3 id="5-2-Tasks-列表"><a href="#5-2-Tasks-列表" class="headerlink" title="5.2 Tasks 列表"></a>5.2 Tasks 列表</h3><p>每一个 play 包含了一个 task 列表（任务列表）.一个 task 在其所对应的所有主机上（通过 host pattern 匹配的所有主机）执行完毕之后,下一个 task 才会执行.<br>在运行 playbook 时（从上到下执行）,如果一个 host 执行 task 失败,这个 host 将会从整个 playbook 的 rotation 中移除. 意思就是在 ; task中，<strong>一个name 只能执行一个模块shell command等</strong><br>每一个 task 必须有一个名称 name,这样在运行 playbook 时,从其输出的任务执行信息中可以很好的辨别出是属于哪一个 task 的.<br>如果没有定义 name,‘action’ 的值将会用作输出信息中标记特定的 task</p>
-<p>test的定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">tasks:</div><div class="line">  - name: make sure apache is running</div><div class="line">    service: name=httpd state=running</div><div class="line"></div><div class="line">tasks:</div><div class="line">  - name: disable selinux</div><div class="line">    command: /sbin/setenforce 0</div><div class="line"></div><div class="line">tasks:</div><div class="line">  - name: run this command and ignore the result </div><div class="line">    shell: /usr/bin/somecommand</div><div class="line">    ignore_errors: True                   #忽略错误</div></pre></td></tr></table></figure></p>
-<p>在 action 行中可以使用变量.假设在 ‘vars’ 那里定义了一个变量 ‘vhost’ ,可以这样使用它:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tasks:</div><div class="line">  - name: create a virtual host file for &#123;&#123; vhost &#125;&#125;</div><div class="line">    template: src=somefile.j2 dest=/etc/httpd/conf.d/&#123;&#123; vhost &#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>第一次运行playbook，我的第一个playbook，重启xinetd 服务<br>命令：<code>ansible-playbook playbook.yml -i host -K</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">- hosts: tmp</div><div class="line">  remote_user: app</div><div class="line">  sudo: yes</div><div class="line">  sudo_user: root</div><div class="line">  tasks:</div><div class="line">    - service: name=xinetd state=restarted</div><div class="line">      sudo: yes</div></pre></td></tr></table></figure></p>
-<h2 id="6-Playbook-角色-Roles-和-Include-语句"><a href="#6-Playbook-角色-Roles-和-Include-语句" class="headerlink" title="6. Playbook 角色(Roles) 和 Include 语句"></a>6. Playbook 角色(Roles) 和 Include 语句</h2><p>在一个基础的 playbook 中,所有的 task 都是在一个 play 中列出,稍后将介绍一种更合理的安排 task 的方式:使用 ‘include:’ 指令.<br>就是一个任务，tast，需要被多过play 或者 playbook使用，我们可以将任务tast写在文件里面，在play中用include包含它</p>
-<h2 id="7-Roles-—-非常重要和方便，什么时候回来学学"><a href="#7-Roles-—-非常重要和方便，什么时候回来学学" class="headerlink" title="7. Roles   —-非常重要和方便，什么时候回来学学"></a>7. Roles   —-非常重要和方便，什么时候回来学学</h2><p>你现在已经学过 tasks 和 handlers，那怎样组织 playbook 才是最好的方式呢？简单的回答就是：<br>使用 roles ! Roles 基于一个已知的文件结构，去自动的加载某些 vars_files，tasks 以及 handlers。<br>基于 roles 对内容进行分组，使得我们可以容易地与其他用户分享 roles 。<br>这使宿主机的动态分组有了匹配的标准,即使该分组尚未在清单文件中被定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line"></div><div class="line"># talk to all hosts just so we can learn about them</div><div class="line">- hosts: all</div><div class="line">  tasks:</div><div class="line">     - group_by: key=os_&#123;&#123; ansible_distribution &#125;&#125;</div><div class="line"></div><div class="line"># now just on the CentOS hosts...</div><div class="line"></div><div class="line">- hosts: os_CentOS</div><div class="line">  gather_facts: False</div><div class="line">  tasks:</div><div class="line">     - # tasks that only happen on CentOS go here</div></pre></td></tr></table></figure></p>
-<p>这会抛出所有基于操作系统名的分组.<br>如果需要对特定分组做设定,这也是可以的.例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line"># file: group_vars/all</div><div class="line">asdf: 10</div><div class="line"></div><div class="line">---</div><div class="line"># file: group_vars/os_CentOS</div><div class="line">asdf: 42</div></pre></td></tr></table></figure></p>
-<p>顶层目录结构应当包括下列文件和目录.一个项目的结构如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">production                # inventory file for production servers 关于生产环境服务器的清单文件</div><div class="line">stage                     # inventory file for stage environment 关于 stage 环境的清单文件</div><div class="line"></div><div class="line">group_vars/</div><div class="line">   group1                 # here we assign variables to particular groups 这里我们给特定的组赋值</div><div class="line">   group2                 # &quot;&quot;</div><div class="line">host_vars/</div><div class="line">   hostname1              # if systems need specific variables, put them here 如果系统需要特定的变量,把它们放置在这里.</div><div class="line">   hostname2              # &quot;&quot;</div><div class="line"></div><div class="line">library/                  # if any custom modules, put them here (optional) 如果有自定义的模块,放在这里(可选)</div><div class="line">filter_plugins/           # if any custom filter plugins, put them here (optional) 如果有自定义的过滤插件,放在这里(可选)</div><div class="line"></div><div class="line">site.yml                  # master playbook 主 playbook</div><div class="line">webservers.yml            # playbook for webserver tier Web 服务器的 playbook</div><div class="line">dbservers.yml             # playbook for dbserver tier 数据库服务器的 playbook</div><div class="line"></div><div class="line">roles/</div><div class="line">    common/               # this hierarchy represents a &quot;role&quot; 这里的结构代表了一个 &quot;role&quot;</div><div class="line">        tasks/            #</div><div class="line">            main.yml      #  &lt;-- tasks file can include smaller files if warranted</div><div class="line">        handlers/         #</div><div class="line">            main.yml      #  &lt;-- handlers file</div><div class="line">        templates/        #  &lt;-- files for use with the template resource</div><div class="line">            ntp.conf.j2   #  &lt;------- templates end in .j2</div><div class="line">        files/            #</div><div class="line">            bar.txt       #  &lt;-- files for use with the copy resource</div><div class="line">            foo.sh        #  &lt;-- script files for use with the script resource</div><div class="line">        vars/             #</div><div class="line">            main.yml      #  &lt;-- variables associated with this role</div><div class="line">        defaults/         #</div><div class="line">            main.yml      #  &lt;-- default lower priority variables for this role</div><div class="line">        meta/             #</div><div class="line">            main.yml      #  &lt;-- role dependencies</div><div class="line"></div><div class="line">    webtier/              # same kind of structure as &quot;common&quot; was above, done for the webtier role</div><div class="line">    monitoring/           # &quot;&quot;</div><div class="line">    fooapp/               # &quot;&quot;</div></pre></td></tr></table></figure></p>
-<h2 id="8-变量的定义"><a href="#8-变量的定义" class="headerlink" title="8. 变量的定义"></a>8. 变量的定义</h2><p>   可在hosts 定义  可在playbooks定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- hosts: webservers</div><div class="line">  vars:</div><div class="line">    http_port: 80</div></pre></td></tr></table></figure></p>
-<p>在文件和roles中定义</p>
-<p>使用变量 Jinja2方式<br><code>My amp goes to </code></p>
-<h3 id="8-1-怎么使用变量。"><a href="#8-1-怎么使用变量。" class="headerlink" title="8.1 怎么使用变量。"></a>8.1 怎么使用变量。</h3><p>其中， <code>ansible all -m setup</code>  可以查看远程主机很多信息，可以使用和引用里面的变量。</p>
-<h3 id="8-2-查看主机信息"><a href="#8-2-查看主机信息" class="headerlink" title="8.2 查看主机信息"></a>8.2 查看主机信息</h3><p> <code>ansible -i host tmp  -m setup</code><br>里面有很多变量信息，我们需要什么变量就取用就好<br>可以在playbook中这样引用以上例子中第一个硬盘的模型:<br><code></code><br>同样,作为系统报告的主机名如以下所示:<br><code></code><br>不合格的主机名显示了句号(.)之前的字符串:<br><code></code><br>在模板和条件判断(请看 playbook_conditionals )中会经常使用Facts.</p>
-<h2 id="9-playbook的-条件语句（when）"><a href="#9-playbook的-条件语句（when）" class="headerlink" title="9. playbook的 条件语句（when）"></a>9. playbook的 条件语句（when）</h2><p>常常来说,一个play的结果经常取决于一个变量的值,事件（从远端系统得到事件）, 或者之前任务的结果.在有些情况下,<br>这些变量的值也会取决于其他变量. 进而,可以建立多余的组基于这些主机是否符合某些条件来操控主机, Ansible 提供了<br>很多不同选项,来控制执行流. 让我们详细看看这些都是啥.<br>when 语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tasks:</div><div class="line">  - name: &quot;shutdown Debian flavored systems&quot;</div><div class="line">    command: /sbin/shutdown -t now</div><div class="line">    when: ansible_os_family == &quot;Debian&quot;</div></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible-playbook zabbix-agent_allos.yaml -i test -b -K -C  #-C是测试看是否成功</div></pre></td></tr></table></figure></p>
-<h2 id="10-标准循环-（with-itms）"><a href="#10-标准循环-（with-itms）" class="headerlink" title="10. 标准循环 （with_itms）"></a>10. 标准循环 （with_itms）</h2><p>为了保持简洁,重复的任务可以用以下简写的方式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- name: add several users</div><div class="line">  user: name=&#123;&#123; item &#125;&#125; state=present groups=wheel</div><div class="line">  with_items:</div><div class="line">     - testuser1</div><div class="line">     - testuser2</div></pre></td></tr></table></figure></p>
-<p>如果你在变量文件中或者 ‘vars’ 区域定义了一组YAML列表,你也可以这样做:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">with_items: &quot;&#123;&#123;somelist&#125;&#125;&quot;</div></pre></td></tr></table></figure></p>
-<p>以上写法与下面是完全等同的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- name: add user testuser1</div><div class="line">  user: name=testuser1 state=present groups=wheel</div><div class="line">- name: add user testuser2</div><div class="line">  user: name=testuser2 state=present groups=wheel</div></pre></td></tr></table></figure></p>
-<p>或者   其中 with_itmes：是固定写发<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- name: add several users</div><div class="line">  user: name=&#123;&#123; item.name &#125;&#125; state=present groups=&#123;&#123; item.groups &#125;&#125;</div><div class="line">  with_items:</div><div class="line">    - &#123; name: &apos;testuser1&apos;, groups: &apos;wheel&apos; &#125;</div><div class="line">    - &#123; name: &apos;testuser2&apos;, groups: &apos;root&apos; &#125;</div></pre></td></tr></table></figure></p>
-<p>我的循环脚本：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">- hosts: tmp</div><div class="line">  remote_user: app</div><div class="line">  sudo: yes</div><div class="line">  sudo_user: root</div><div class="line">  tasks:</div><div class="line">  - name: test</div><div class="line">    shell: echo "&#123;&#123; ansible_os_family &#125;&#125;" &gt;&gt; testdff</div><div class="line">    sudo: yes</div><div class="line">    when: ansible_os_family == "RedHat"</div><div class="line">  - name: hello_test</div><div class="line">    shell: echo "&#123;&#123; item.name &#125;&#125;" &gt;&gt; testdff</div><div class="line">    with_items:</div><div class="line">     - &#123; name: test0111111 &#125;</div><div class="line">     - &#123; name: test0222222 &#125;</div><div class="line">     - &#123; name: test0333333 &#125;</div></pre></td></tr></table></figure></p>
-<h2 id="11-ymal-语法："><a href="#11-ymal-语法：" class="headerlink" title="11. ymal 语法："></a>11. ymal 语法：</h2><p>“—“代表 yaml文件的开始<br>基本的 YAML<br>对于 Ansible, 每一个 YAML 文件都是从一个列表开始. 列表中的每一项都是一个键值对, 通常它们被称为一个 “哈希” 或 “字典”. 所以, 我们需要知道如何在 YAML 中编写列表和字典.</p>
-<p>YAML 还有一个小的怪癖. 所有的 YAML 文件(无论和 Ansible 有没有关系)开始行都应该是 —. 这是 YAML 格式的一部分, 表明一个文件的开始.</p>
-<p>列表中的所有成员都开始于相同的缩进级别, 并且使用一个 “- “ 作为开头(一个横杠和一个空格):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line"># 一个美味水果的列表</div><div class="line">- Apple</div><div class="line">- Orange</div><div class="line">- Strawberry</div><div class="line">- Mango</div><div class="line">一个字典是由一个简单的 键: 值 的形式组成(这个冒号后面必须是一个空格):</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line"># 一位职工的记录</div><div class="line">name: Example Developer</div><div class="line">job: Developer</div><div class="line">skill: Elite</div></pre></td></tr></table></figure>
-<p>字典也可以使用缩进形式来表示, 如果你喜欢这样的话:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line"># 一位职工的记录</div><div class="line">&#123;name: Example Developer, job: Developer, skill: Elite&#125;</div></pre></td></tr></table></figure></p>
-<p>Ansible并不是太多的使用这种格式, 但是你可以通过以下格式来指定一个布尔值(true/fase):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">create_key: yes</div><div class="line">needs_agent: no</div><div class="line">knows_oop: True</div><div class="line">likes_emacs: TRUE</div><div class="line">uses_cvs: false</div></pre></td></tr></table></figure></p>
-<p>让我们把目前所学到的 YAML 例子组合在一起. 这些在 Ansible 中什么也干不了, 但这些格式将会给你感觉:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line"># 一位职工记录</div><div class="line">name: Example Developer</div><div class="line">job: Developer</div><div class="line">skill: Elite</div><div class="line">employed: True</div><div class="line">foods:</div><div class="line">    - Apple</div><div class="line">    - Orange</div><div class="line">    - Strawberry</div><div class="line">    - Mango</div><div class="line">languages:</div><div class="line">    ruby: Elite</div><div class="line">    python: Elite</div><div class="line">    dotnet: Lame</div></pre></td></tr></table></figure></p>
-<ol>
-<li>总结<br>由于公司运维已经使用到了ansible，在这里只了解了基本的playbook的when（条件）<br>我们需要了结几个大概。</li>
-</ol>
-<ul>
-<li>ansible有两种方式 ansible 和 ansible-playbooks</li>
-<li>我控制远程主机，需要定义我要控制那些主机。（写在inventory文件里面，也是hosts文件）</li>
-<li>hosts主机文件里面，可以定义组。组里面可以定义一些变量。以及端口，用户和密码等</li>
-<li>playbooks 的ymal文件。里面用一个<code>-</code>或者<code> </code>来控制等级。</li>
-<li>playbooks 等级为:playbooks –&gt; plays –&gt;tasts –&gt; name(一个name只有一个模块) </li>
-<li>在下ymal文件供使用时，我们需要常常获取远程控制主机的信息。可以通过<code>ansible -i host tmp  -m setup</code> 来获取变量名。</li>
-<li>ymal文件中，使用when 来控制条件。条件控制变量通过上一条获取。</li>
-<li>ymal文件中，使用with_itms来循环。</li>
-<li>目前工作就使用到这些</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/10/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZingsMan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZingsMan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/10/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T21:58:24+08:00">
-                2017-07-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<h3 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h3><table>
-<thead>
-<tr>
-<th>name</th>
-<th>age</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>xiao</td>
-<td>13</td>
-</tr>
-<tr>
-<td>ming</td>
-<td>15</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1810,7 +1708,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2042,6 +1940,132 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
 
 
 
