@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="power-linux," />
+  <meta name="keywords" content="shell FHS," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="寻找系统power-linux系统是ppc64le系统架构，平常的X86，或者64bit架构的系统都不支持。下载特定的系统redhat7.2下载地址，网上自行寻找。RHEL-7.2-Server-ppc64le-dvd.iso power-linux介绍和自己理解 power-linux和华为服务打不通，ibm的web管理界面，远远没有华为好用和方便。 power-linux web管理界面上，控">
-<meta name="keywords" content="power-linux">
+<meta name="description" content="linux系统各目录说明概述FHS—Filesystem Hierarchy Standard 文件系统层级标准linux发行版本太多。有一目录层级标准才是最好的。每个目录对应不同的功能。让使用者更加明了。是对linux系统的理解和学习有很重要。 linux系统linux的根目录/ 是中重要的，以下所有目录都是跟目录衍生出来的。在系统开机时候，首先需要挂载跟里面。如果根目录挂载不成功，你系统启动就">
+<meta name="keywords" content="shell FHS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IBM惠普powerer-linux装redhat系统">
-<meta property="og:url" content="http://yoursite.com/2017/06/23/powerer-linux-install/index.html">
+<meta property="og:title" content="linux_directory_info">
+<meta property="og:url" content="http://yoursite.com/2017/10/20/linux-directory-info/index.html">
 <meta property="og:site_name" content="ZingsMan">
-<meta property="og:description" content="寻找系统power-linux系统是ppc64le系统架构，平常的X86，或者64bit架构的系统都不支持。下载特定的系统redhat7.2下载地址，网上自行寻找。RHEL-7.2-Server-ppc64le-dvd.iso power-linux介绍和自己理解 power-linux和华为服务打不通，ibm的web管理界面，远远没有华为好用和方便。 power-linux web管理界面上，控">
-<meta property="og:updated_time" content="2017-07-24T08:36:45.729Z">
+<meta property="og:description" content="linux系统各目录说明概述FHS—Filesystem Hierarchy Standard 文件系统层级标准linux发行版本太多。有一目录层级标准才是最好的。每个目录对应不同的功能。让使用者更加明了。是对linux系统的理解和学习有很重要。 linux系统linux的根目录/ 是中重要的，以下所有目录都是跟目录衍生出来的。在系统开机时候，首先需要挂载跟里面。如果根目录挂载不成功，你系统启动就">
+<meta property="og:updated_time" content="2017-10-20T08:15:50.490Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IBM惠普powerer-linux装redhat系统">
-<meta name="twitter:description" content="寻找系统power-linux系统是ppc64le系统架构，平常的X86，或者64bit架构的系统都不支持。下载特定的系统redhat7.2下载地址，网上自行寻找。RHEL-7.2-Server-ppc64le-dvd.iso power-linux介绍和自己理解 power-linux和华为服务打不通，ibm的web管理界面，远远没有华为好用和方便。 power-linux web管理界面上，控">
+<meta name="twitter:title" content="linux_directory_info">
+<meta name="twitter:description" content="linux系统各目录说明概述FHS—Filesystem Hierarchy Standard 文件系统层级标准linux发行版本太多。有一目录层级标准才是最好的。每个目录对应不同的功能。让使用者更加明了。是对linux系统的理解和学习有很重要。 linux系统linux的根目录/ 是中重要的，以下所有目录都是跟目录衍生出来的。在系统开机时候，首先需要挂载跟里面。如果根目录挂载不成功，你系统启动就">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/23/powerer-linux-install/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/20/linux-directory-info/"/>
 
 
 
 
 
-  <title> IBM惠普powerer-linux装redhat系统 | ZingsMan </title>
+  <title> linux_directory_info | ZingsMan </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +294,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/powerer-linux-install/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/20/linux-directory-info/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZingsMan">
@@ -315,7 +315,7 @@
             
             
               
-                IBM惠普powerer-linux装redhat系统
+                linux_directory_info
               
             
           </h1>
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T14:33:03+08:00">
-                2017-06-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T15:05:06+08:00">
+                2017-10-20
               </time>
             
 
@@ -366,27 +366,9 @@
       
 
       
-        <h3 id="寻找系统"><a href="#寻找系统" class="headerlink" title="寻找系统"></a>寻找系统</h3><p>power-linux系统是<code>ppc64le</code>系统架构，平常的X86，或者64bit架构的系统都不支持。<br>下载特定的系统<code>redhat7.2</code>下载地址，网上自行寻找。<br><code>RHEL-7.2-Server-ppc64le-dvd.iso</code></p>
-<h3 id="power-linux介绍和自己理解"><a href="#power-linux介绍和自己理解" class="headerlink" title="power-linux介绍和自己理解"></a>power-linux介绍和自己理解</h3><ol>
-<li>power-linux和华为服务打不通，ibm的web管理界面，远远没有华为好用和方便。</li>
-<li>power-linux web管理界面上，控制台串口登录不进去系统，java总是报错。所以<br>使用了了ibmitools工具，进行串口登录。他登录方式是你的pc的cmd命令行。还是很方便。</li>
-<li>听说power-linux登录web管理界面，不能远程装系统（ubuntu可以），我也没有找到挂载<br>镜像的地方。</li>
-</ol>
-<h3 id="ibmitools软件的使用"><a href="#ibmitools软件的使用" class="headerlink" title="ibmitools软件的使用"></a>ibmitools软件的使用</h3><ol>
-<li>下载软件。百度网盘：</li>
-<li>点ibmitool.exe 运行。然后点run.bat运行，自动打开cmd命令行</li>
-<li>登录串口的终端就是这个cmd窗口。运行命令：<br><code>ipmitool -I lanplus -H server_ip_address -U ipmi_user -P ipmi_password sol activate</code> 其中ip是imana管理地址。用户名是登录管理界面的用户和密码。</li>
-<li>登录成功，就相当于登录了串口。—就是不能挂载镜像安装。</li>
-</ol>
-<h3 id="power-linux装系统redhat-7-2"><a href="#power-linux装系统redhat-7-2" class="headerlink" title="power-linux装系统redhat.7.2"></a>power-linux装系统redhat.7.2</h3><p>由于发现已经重装了系统，就没有装系统。</p>
-<h3 id="power-linux在线配置raid-卡"><a href="#power-linux在线配置raid-卡" class="headerlink" title="power-linux在线配置raid 卡"></a>power-linux在线配置raid 卡</h3><p>这里我们运用到工具。在系统中安装这个工具，就能命令行在线做raid<br><code>Arcconf-1.08-21385.ppc64le.rpm</code> 下载后直接 rpm -i 路径   安装即可<br>安装步骤：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#操作步骤</span></div><div class="line"><span class="comment">#1、上传raid卡管理工具安装包到系统，用rpm直接安装</span></div><div class="line">    Arcconf-1.08-21385.ppc64le.rpm</div><div class="line"><span class="comment">#2、查看raid卡信息</span></div><div class="line">   arcconf getconfig 1 |more   <span class="comment">#（注意硬盘的state mode ）</span></div><div class="line"><span class="comment">#3、一般默认前置硬盘state mode为RAW,将其改为ready，下一块盘为 1 0。</span></div><div class="line">   arcconf task start 1 device 0 0 initialize noprompt</div><div class="line"><span class="comment">#4、创建raid</span></div><div class="line">   arcconf create 1 logicaldrive max 10 0 0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 noprompt</div><div class="line"><span class="comment"># 其中 10 代表raid 10 ，后面数字就是盘符</span></div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong> 一定要注意盘符的查看：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#查看命令：</span></div><div class="line">arcconf getconfig 1 |more</div><div class="line"><span class="comment">#结果：</span></div><div class="line">Logical device number 1</div><div class="line">   Logical device name                      : LogicalDrv 1</div><div class="line">   Block Size of member drives              : 512 Bytes</div><div class="line">   RAID level                               : 10          <span class="comment">#代表RAID 10</span></div><div class="line">   Unique Identifier                        : B83F682D</div><div class="line">   Status of logical device                 : Optimal</div><div class="line">   Additional details                       : Quick initialized</div><div class="line">   Size                                     : 11427830 MB</div><div class="line">   Parity space                             : 11427840 MB</div><div class="line">   Stripe-unit size                         : 256 KB</div><div class="line">   Read-cache setting                       : Enabled</div><div class="line">   Read-cache status                        : On</div><div class="line">   Write-cache setting                      : Enabled</div><div class="line">   Write-cache status                       : On</div><div class="line">   Partitioned                              : Yes</div><div class="line">   Protected by Hot-Spare                   : No</div><div class="line">   Bootable                                 : No</div><div class="line">   Failed stripes                           : No</div><div class="line">   Power settings                           : Disabled</div><div class="line"></div><div class="line"><span class="comment">#单个设备信息</span></div><div class="line">----------------------------------------------------------------------</div><div class="line">Physical Device information</div><div class="line">----------------------------------------------------------------------</div><div class="line">      Device <span class="comment">#0</span></div><div class="line">         Device is a Hard drive</div><div class="line">         State                              : Online</div><div class="line">         Block Size                         : 512 Bytes</div><div class="line">         Supported                          : Yes</div><div class="line">         Programmed Max Speed               : SATA 6.0 Gb/s</div><div class="line">         Transfer Speed                     : SATA 6.0 Gb/s</div><div class="line">         Reported Channel,Device(T:L)       : 0,0(0:0)    <span class="comment">#这里0,0就是盘符</span></div><div class="line">         Reported Location                  : Enclosure 0, Slot 0(Connector 0)</div><div class="line">         Reported ESD(T:L)                  : 2,0(0:0)</div><div class="line">         Vendor                             : ATA</div></pre></td></tr></table></figure></p>
-<h3 id="做好raid后就是使用part进行超过2T磁盘分区"><a href="#做好raid后就是使用part进行超过2T磁盘分区" class="headerlink" title="做好raid后就是使用part进行超过2T磁盘分区"></a>做好raid后就是使用part进行超过2T磁盘分区</h3><p>也可使用gdisk分区，gdisk分区和gdisk分区差不多。详情看 gdisk 分区<br>命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">parted /dev/sdd</div><div class="line">mklabel gpt</div><div class="line">yes</div><div class="line"><span class="built_in">print</span></div><div class="line">mkpart primary 0 -1</div><div class="line">i</div><div class="line"><span class="built_in">print</span></div><div class="line">quit</div><div class="line"><span class="comment"># 进行挂载和格式化</span></div><div class="line">mkfs -t xfs /dev/sdb1   <span class="comment">#可能使用mke2fs格式化，或者其他ext4系统</span></div><div class="line"><span class="comment"># 挂载</span></div><div class="line">mount /dev/sdb1 /data</div><div class="line"><span class="comment"># 更新 /etc/fstab 文件</span></div><div class="line">/dev/sdb1               /data                   xfs     defaults        0 0</div></pre></td></tr></table></figure></p>
-<h3 id="然后进行最后的各项配置。"><a href="#然后进行最后的各项配置。" class="headerlink" title="然后进行最后的各项配置。"></a>然后进行最后的各项配置。</h3><p>配置包括：YUM源。用户，监控，网卡绑定等一系列操作</p>
-<blockquote>
-<p>这里在配置YUM源的方面。由于系统架构为ppc这种架构。以前搭建的yum源无法使用。<br>直接，将这个系统镜像里边的包解压放到yum源某个目录。<br>在客户端配置文件中。对应的url就能使用镜像yum源。</p>
-</blockquote>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>后面学习看看ansible自动化工具作配置。已经公司已经写好脚本的使用。</p>
+        <h2 id="linux系统各目录说明"><a href="#linux系统各目录说明" class="headerlink" title="linux系统各目录说明"></a>linux系统各目录说明</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>FHS—Filesystem Hierarchy Standard 文件系统层级标准<br>linux发行版本太多。有一目录层级标准才是最好的。每个目录对应不同的功能。让使用者更加明了。是对linux系统的理解和学习有很重要。</p>
+<h3 id="linux系统"><a href="#linux系统" class="headerlink" title="linux系统"></a>linux系统</h3><p>linux的根目录/ 是中重要的，以下所有目录都是跟目录衍生出来的。在系统开机时候，首先需要挂载跟里面。如果根目录挂载不成功，你系统启动就有问题。然后在系统启动过程中。会执行一些命令（/sbin），和一些库函数(/lib /lib64) 所以在分区时候，这些目录不能单独分成其他区。否则就有问题。</p>
+<h3 id="目录理解"><a href="#目录理解" class="headerlink" title="目录理解"></a>目录理解</h3><p>FHS规定 根目录为/  次目录为/usr和/var等<br><strong>根目录</strong><br>最重要的目录。里面重要的目录有：<br>/proc 内存里面的数据目录<br>/bin 系统很重要的命令目录（单用户模式，这里面的目录可以执行）<br>/sbin 系统开机和运行需要执行的命令目录<br>/lib 系统开机和运行需要使用到的函数库<br><strong>/usr 目录</strong><br>这个目录一般，与用户自行安装的软件有关，和非系统运行的软件有关。<br>/usr/lib 和 /usr/lib64  用户安装命令和软件所需要库函数在这个目录里面<br>/usr/bin  用户安装命令和软件在这里面。里面有很多命令（大部分运行的命令在这里）<br>/usr/sbin 这里面也是系统运行命令。是非系统正常运作所需要命令<br>/usr/local 我们自行安装软件，应该在里面。里面也有各种lib和bin等目录。<br>/usr/src 我们的源码可以存在这里<br><strong>/var 目录</strong><br>/var目录，是系统运行产生的各种数据，动态存放地方。有以下目录。<br>/var/cache 程序运行时一些暂存的文档<br>/var/lib 程序运行的一些数据存在里面，比如mysql<br>/var/log 非常重要的日志目录<br>/var/run 程序的pid运行文件在这里<br>/var/spool 一些队列相关的数据<br>/var/mail 用户的邮件存在这里。</p>
 
       
     </div>
@@ -437,7 +419,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/power-linux/" rel="tag"># power-linux</a>
+            <a href="/tags/shell-FHS/" rel="tag"># shell FHS</a>
           
         </div>
       
@@ -450,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/22/yum-config/" rel="next" title="内网yum源配置">
-                <i class="fa fa-chevron-left"></i> 内网yum源配置
+              <a href="/2017/09/04/shell中的函数/" rel="next" title="shell中的函数">
+                <i class="fa fa-chevron-left"></i> shell中的函数
               </a>
             
           </div>
@@ -460,8 +442,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/10/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/31/实验楼挑战-批量添加用户和组/" rel="prev" title="实验楼挑战-批量添加用户和组">
+                实验楼挑战-批量添加用户和组 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -620,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#寻找系统"><span class="nav-number">1.</span> <span class="nav-text">寻找系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#power-linux介绍和自己理解"><span class="nav-number">2.</span> <span class="nav-text">power-linux介绍和自己理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ibmitools软件的使用"><span class="nav-number">3.</span> <span class="nav-text">ibmitools软件的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#power-linux装系统redhat-7-2"><span class="nav-number">4.</span> <span class="nav-text">power-linux装系统redhat.7.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#power-linux在线配置raid-卡"><span class="nav-number">5.</span> <span class="nav-text">power-linux在线配置raid 卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做好raid后就是使用part进行超过2T磁盘分区"><span class="nav-number">6.</span> <span class="nav-text">做好raid后就是使用part进行超过2T磁盘分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然后进行最后的各项配置。"><span class="nav-number">7.</span> <span class="nav-text">然后进行最后的各项配置。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux系统各目录说明"><span class="nav-number">1.</span> <span class="nav-text">linux系统各目录说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux系统"><span class="nav-number">1.2.</span> <span class="nav-text">linux系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录理解"><span class="nav-number">1.3.</span> <span class="nav-text">目录理解</span></a></li></ol></li></ol></div>
             
 
           </div>
